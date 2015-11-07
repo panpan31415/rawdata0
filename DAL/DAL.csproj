@@ -60,6 +60,7 @@
     <Compile Include="CommentRepo.cs" />
     <Compile Include="History.cs" />
     <Compile Include="HistoryRepository.cs" />
+    <Compile Include="IPostRepository.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="PostRepository.cs" />
     <Compile Include="SORepo.cs" />
