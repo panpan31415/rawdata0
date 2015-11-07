@@ -12,22 +12,41 @@ namespace portfolio2gr4.Controllers
 {
     public class AnnotationsController : BaseApiController
     {
-        AnnotationRepository _annotationRepository = new AnnotationRepository();
-        public IEnumerable<AnnotationModel> Getannotation()
+        AnnotationRepository _annoRepository = new AnnotationRepository();
+        //ModelFactory _modelFactory = new ModelFactory();
+        public IEnumerable<AnnotationModel> Get()
         {
             var helper = new UrlHelper(Request);
-            return _annotationRepository.GetAllannotation()
+            return _annoRepository.GetAll()
                 .Select(annotation => ModelFactory.Create(annotation));
         }
+        public HttpResponseMessage Get(int PostId)
+        {
+            var helper = new UrlHelper(Request);
+            var annotation = _annoRepository.GetById(PostId);
+            if (User == null)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound);
+            }
+            return Request.CreateResponse(HttpStatusCode.Created, ModelFactory.Create(annotation));
+        }
+
 
         public HttpResponseMessage Post([FromBody] AnnotationModel model)
         {
             var helper = new UrlHelper(Request);
             var annotation = ModelFactory.Parse(model);
-            _annotationRepository.Add(annotation);
-            return Request.CreateResponse(
-                HttpStatusCode.Created
-                , ModelFactory.Create(annotation));
+            _annoRepository.Add(annotation);
+            return Request.CreateResponse(HttpStatusCode.Created, ModelFactory.Create(annotation));
+        }
+
+        public HttpResponseMessage put(int PostId, [FromBody] AnnotationModel model)
+        {
+            var helper = new UrlHelper(Request);
+            var annotation = ModelFactory.Parse(model);
+            annotation.PostId = PostId;
+            _annoRepository.Update(annotation);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
     }
 }

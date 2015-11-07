@@ -23,7 +23,7 @@ namespace DAL
         {
             // create the connection
             using (var connection = new MySqlConnection(
-                "server=localhost;database=stackoverflow;uid=root;pwd=princess786"))
+                ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
             {
                 // open the connection to the database
                 connection.Open();
@@ -84,7 +84,7 @@ namespace DAL
         public int GetNewId()
         {
             using (var connection = new MySqlConnection(
-                "server= localhost; database= stackoverflow; uid= root; pwd= princess786"))
+               ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
             {
                 connection.Open();
                 var cmd = new MySqlCommand("select max(id) from post", connection);
@@ -103,7 +103,7 @@ namespace DAL
         {
             post.Id = GetNewId();
             using (var connection = new MySqlConnection(
-                "server= localhost;database=stackoverflow;uid=root;pwd=princess786"))
+            ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
             {
                 connection.Open();
                 var cmd = new MySqlCommand(

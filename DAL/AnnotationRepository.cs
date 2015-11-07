@@ -3,16 +3,17 @@ using System.Linq;
 using System.Web;
 using MySql.Data.MySqlClient;
 using System.Configuration;
+using System;
 
 namespace DAL
 {
     public class AnnotationRepository
     {
-        public IEnumerable<Annotation> GetAllannotation(int limit = 10, int offset = 0)
+        public IEnumerable<Annotation> GetAll(int limit = 10, int offset = 0)
         {
             // create the SQL statement
             var sql = string.Format(
-                    "select userId, date, body from annotation limit {0} offset {1}",
+                    "select postID, body, date from annotation limit {0} offset {1}",
                     limit, offset);
             // fetch the selected movies
             foreach (var anno in ExecuteQuery(sql))
@@ -21,7 +22,8 @@ namespace DAL
         private static IEnumerable<Annotation> ExecuteQuery(string sql)
         {
             // create the connection
-            using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
+            using (var connection = new MySqlConnection(
+                ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
             {
                 // open the connection to the database
                 connection.Open();
@@ -33,16 +35,36 @@ namespace DAL
                     // as long as we have rows we can read
                     while (rdr.HasRows && rdr.Read())
                     {
-                        // return a movie object and yield
+                        int PostId;
+                        string Body;
+                        DateTime Date;
+
+                        if (!rdr.IsDBNull(0)) { PostId = rdr.GetInt32(0); }
+                        else { PostId = 0; }
+
+                        if (!rdr.IsDBNull(1)) { Body = rdr.GetString(1); }
+                        else { Body = "unknown"; }
+
+                        if (!rdr.IsDBNull(2)) { Date = rdr.GetDateTime(2); }
+                        else { Date = DateTime.Now; }
+
+
+                        //return a movie object and yield
                         yield return new Annotation
                         {
-                            UserId = rdr.GetInt32(0),
-                            Date = rdr.GetDateTime(1),
-                            Body = rdr.GetString(2),
+                            PostId = PostId,
+                            Body = Body,
+                            Date = Date,
+
                         };
                     }
                 }
             }
+        }
+        public Annotation GetById(int PostId)
+        {
+            var sql = string.Format("select postID, body, date from annotation where postId={0} ", PostId);
+            return ExecuteQuery(sql).FirstOrDefault();
         }
 
         public int GetNewId()
@@ -51,7 +73,7 @@ namespace DAL
                 ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
             {
                 connection.Open();
-                var cmd = new MySqlCommand("select max(userId) from annotation", connection);
+                var cmd = new MySqlCommand("select max(postID) from annotation", connection);
                 using (var rdr = cmd.ExecuteReader())
                 {
                     if (rdr.HasRows && rdr.Read())
@@ -65,15 +87,29 @@ namespace DAL
 
         public void Add(Annotation annotation)
         {
-            annotation.UserId = GetNewId();
+            annotation.PostId = GetNewId();
             using (var connection = new MySqlConnection(
-                ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
+             ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
             {
                 connection.Open();
                 var cmd = new MySqlCommand(
-                    "insert into annotation(userid,date,body) values(@userid,@date, @body)", connection);
-                cmd.Parameters.AddWithValue("@userid", annotation.UserId);
-                cmd.Parameters.AddWithValue("@userdate", annotation.Date);
+                    "insert into annotation(body) values(@body)", connection);
+                //cmd.Parameters.AddWithValue("@postID", annotation.PostId);
+                cmd.Parameters.AddWithValue("@body", annotation.Body);
+                //cmd.Parameters.AddWithValue("@date", annotation.Date);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void Update(Annotation annotation)
+        {
+            using (var connection = new MySqlConnection(
+                 ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
+            {
+                connection.Open();
+                var cmd = new MySqlCommand(
+                    "update annotation set body=@body where postID=@postID", connection);
+                cmd.Parameters.AddWithValue("@postID", annotation.PostId);
                 cmd.Parameters.AddWithValue("@body", annotation.Body);
                 cmd.ExecuteNonQuery();
             }

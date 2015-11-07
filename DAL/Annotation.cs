@@ -7,9 +7,9 @@ namespace DAL
 {
     public class Annotation
     {
-        public int UserId { get; set; }
+        public int PostId { get; set; }
         public DateTime Date { get; set; }
         public string Body { get; set; }
-  
+
     }
 }
