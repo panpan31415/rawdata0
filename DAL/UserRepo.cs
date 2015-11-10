@@ -12,7 +12,7 @@ namespace DAL
 	{
 		public IEnumerable<User> GetAll(int limit = 10, int offset = 0)
 		{
-			var sql = string.Format("select Id, DisplayName, AboutMe from users limit {0} offset {1}", limit, offset);
+			var sql = string.Format("select Id, DisplayName, websiteUrl from user limit {0} offset {1}", limit, offset);
 			foreach (var user in ExecuteQuery(sql))
 				yield return user;
 		}
@@ -29,14 +29,14 @@ namespace DAL
 					{
 						int uid;
 						string u_name;
-						string u_about;
+						string u_websiteUrl;
 
 						if (!rdr.IsDBNull(0)) {  uid = rdr.GetInt32(0); } 
 						else { uid = 0; }
 						if (!rdr.IsDBNull(1)) { u_name = rdr.GetString(1); }
 						else { u_name = "unknown"; }
-						if (!rdr.IsDBNull(2)) { u_about = rdr.GetString(2); }
-						else { u_about = "unknown"; }
+						if (!rdr.IsDBNull(2)) { u_websiteUrl = rdr.GetString(2); }
+						else { u_websiteUrl = "unknown"; }
 						//if (String.IsNullOrEmpty(u_name)) { u_name = "unknown"; };
 						//if (String.IsNullOrEmpty(u_about)) { u_about = "unknown"; };
 
@@ -44,7 +44,7 @@ namespace DAL
 						{
 							Id =uid,
 							Name = u_name,
-							About = u_about
+							About = u_websiteUrl
 						};
 					}
 				}
@@ -53,7 +53,7 @@ namespace DAL
 
 		public User GetById(int id)
 		{
-			var sql = string.Format("select Id, DisplayName, AboutMe from users where id = {0}", id);
+			var sql = string.Format("select Id, DisplayName, websiteUrl from user where id = {0}", id);
 			return ExecuteQuery(sql).FirstOrDefault();
 		}
 
@@ -62,7 +62,7 @@ namespace DAL
 			using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
 			{
 				connection.Open();
-				var cmd = new MySqlCommand("select max(Id) from users", connection);
+				var cmd = new MySqlCommand("select max(Id) from user", connection);
 				using (var rdr = cmd.ExecuteReader())
 				{
 					if (rdr.HasRows && rdr.Read())
@@ -80,7 +80,7 @@ namespace DAL
 			using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
 			{
 				connection.Open();
-				var cmd = new MySqlCommand("insert into users(Id, DisplayName, AboutMe) values (@Id, @DisplayName, @AboutMe)", connection);
+				var cmd = new MySqlCommand("insert into user(Id, DisplayName, websiteUrl) values (@Id, @DisplayName, @AboutMe)", connection);
 				cmd.Parameters.AddWithValue("@Id", user.Id);
 				cmd.Parameters.AddWithValue("DisplayName", user.Name );
 				cmd.Parameters.AddWithValue("@AboutMe", user.About);
@@ -93,7 +93,7 @@ namespace DAL
 			using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
 			{
 				connection.Open();
-				var cmd = new MySqlCommand("update users set DisplayName = @DisplayName, AboutMe = @AboutMe where Id = @Id )", connection);
+				var cmd = new MySqlCommand("update user set DisplayName = @DisplayName, websiteUrl = @AboutMe where Id = @Id )", connection);
 				cmd.Parameters.AddWithValue("@Id", user.Id);
 				cmd.Parameters.AddWithValue("DisplayName", user.Name);
 				cmd.Parameters.AddWithValue("@AboutMe", user.About);

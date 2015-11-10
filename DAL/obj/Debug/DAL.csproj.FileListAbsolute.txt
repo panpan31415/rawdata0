@@ -5,3 +5,10 @@ C:\school-projects\portfolio2gr4\DAL\obj\Debug\DAL.dll
 C:\school-projects\portfolio2gr4\DAL\obj\Debug\DAL.pdb
 C:\school-projects\portfolio2gr4\DAL\bin\Debug\DAL.dll.config
 C:\school-projects\portfolio2gr4\DAL\bin\Debug\MySql.Data.dll
+C:\school-projects\rawdata0\DAL\bin\Debug\DAL.dll.config
+C:\school-projects\rawdata0\DAL\bin\Debug\DAL.dll
+C:\school-projects\rawdata0\DAL\bin\Debug\DAL.pdb
+C:\school-projects\rawdata0\DAL\bin\Debug\MySql.Data.dll
+C:\school-projects\rawdata0\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\school-projects\rawdata0\DAL\obj\Debug\DAL.dll
+C:\school-projects\rawdata0\DAL\obj\Debug\DAL.pdb
