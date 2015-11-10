@@ -70,7 +70,7 @@ namespace DAL
 
 		public User GetById(int id)
 		{
-			var sql = string.Format("select Id, DisplayName, websiteUrl from user where id = {0}", id);
+			var sql = string.Format("select id, displayName, websiteUrl, reputation, creationDate, age, upVotes, downVotes, locationId from user where id = {0}", id);
 			return ExecuteQuery(sql).FirstOrDefault();
 		}
 
@@ -94,13 +94,17 @@ namespace DAL
 		public void Add(User user)
 		{
 			user.Id = GetNewId();
+			user.CreationDate = DateTime.Now;
 			using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
 			{
 				connection.Open();
-				var cmd = new MySqlCommand("insert into user(Id, DisplayName, websiteUrl) values (@Id, @DisplayName, @WebsiteUrl)", connection);
+				var cmd = new MySqlCommand("insert into user(Id, DisplayName, websiteUrl, reputation, creationDate, age, locationId, upVotes, downVotes) values (@Id, @DisplayName, @WebsiteUrl, 0, @CreationDate, @Age, @LocationId, 0, 0)", connection);
 				cmd.Parameters.AddWithValue("@Id", user.Id);
 				cmd.Parameters.AddWithValue("DisplayName", user.Name );
 				cmd.Parameters.AddWithValue("@WebsiteUrl", user.WebsiteUrl);
+				cmd.Parameters.AddWithValue("@CreationDate", user.CreationDate);
+				cmd.Parameters.AddWithValue("@Age", user.Age);
+				cmd.Parameters.AddWithValue("@LocationId", user.LocationId);
 				cmd.ExecuteNonQuery();
 			}
 		}
