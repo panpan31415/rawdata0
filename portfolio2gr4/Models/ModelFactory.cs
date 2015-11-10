@@ -26,7 +26,14 @@ namespace WebService.Models
 			{
 				Url = _urlHelper.Link("UserApi", new { Id = user.Id }), //HERE
 				Name = user.Name,
-				About = user.About
+				WebsiteUrl = user.WebsiteUrl,
+				Reputation = user.Reputation,
+				CreationDate = user.CreationDate,
+				Age = user.Age,
+				UpVotes = user.UpVotes,
+				DownVotes = user.DownVotes,
+				LocationId = user.LocationId
+
 			};
 		}
 
@@ -35,7 +42,13 @@ namespace WebService.Models
 			return new User
 			{
 				Name = model.Name,
-				About = model.About
+				WebsiteUrl = model.WebsiteUrl,
+				Reputation = model.Reputation,
+				CreationDate = model.CreationDate,
+				Age = model.Age,
+				UpVotes = model.UpVotes,
+				DownVotes = model.DownVotes,
+				LocationId = model.LocationId
 			};
 		}
 
