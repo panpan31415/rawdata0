@@ -19,12 +19,12 @@ namespace portfolio2gr4
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
-
 			config.Routes.MapHttpRoute(
 				name:"UserApi",
 				routeTemplate:"api/{controller}/{id}",
-				defaults: new { controller = "Users", id = RouteParameter.Optional }
+				defaults: new { controller = "Comment", id = RouteParameter.Optional }
 				);
+
         }
     }
 }

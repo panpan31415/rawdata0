@@ -52,5 +52,26 @@ namespace WebService.Models
 			};
 		}
 
-	}
+        public CommentModel Create(Comment comment)
+        {
+            return new CommentModel
+            {
+                postId = comment.postId,
+                creationDate = comment.creationDate,
+                text = comment.text,
+                userid = comment.userid
+            };
+        }
+
+        public Comment Parse(CommentModel model)
+        {
+            return new Comment
+            {
+                userid = model.userid,
+                creationDate = model.creationDate,
+                postId = model.postId,
+                text = model.text
+            };
+        }
+    }
 }

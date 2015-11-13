@@ -12,3 +12,25 @@ C:\school-projects\rawdata0\DAL\bin\Debug\MySql.Data.dll
 C:\school-projects\rawdata0\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\school-projects\rawdata0\DAL\obj\Debug\DAL.dll
 C:\school-projects\rawdata0\DAL\obj\Debug\DAL.pdb
+C:\Users\panpa\Desktop\rawdata0-master\DAL\bin\Debug\DAL.dll.config
+C:\Users\panpa\Desktop\rawdata0-master\DAL\bin\Debug\DAL.dll
+C:\Users\panpa\Desktop\rawdata0-master\DAL\bin\Debug\DAL.pdb
+C:\Users\panpa\Desktop\rawdata0-master\DAL\bin\Debug\EntityFramework.dll
+C:\Users\panpa\Desktop\rawdata0-master\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\panpa\Desktop\rawdata0-master\DAL\bin\Debug\MySql.Data.dll
+C:\Users\panpa\Desktop\rawdata0-master\DAL\bin\Debug\EntityFramework.xml
+C:\Users\panpa\Desktop\rawdata0-master\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\panpa\Desktop\rawdata0-master\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\panpa\Desktop\rawdata0-master\DAL\obj\Debug\DAL.dll
+C:\Users\panpa\Desktop\rawdata0-master\DAL\obj\Debug\DAL.pdb
+E:\school -master's\SEM1\rawdata\rawdata0-master\DAL\bin\Debug\DAL.dll.config
+E:\school -master's\SEM1\rawdata\rawdata0-master\DAL\bin\Debug\DAL.dll
+E:\school -master's\SEM1\rawdata\rawdata0-master\DAL\bin\Debug\DAL.pdb
+E:\school -master's\SEM1\rawdata\rawdata0-master\DAL\bin\Debug\EntityFramework.dll
+E:\school -master's\SEM1\rawdata\rawdata0-master\DAL\bin\Debug\EntityFramework.SqlServer.dll
+E:\school -master's\SEM1\rawdata\rawdata0-master\DAL\bin\Debug\MySql.Data.dll
+E:\school -master's\SEM1\rawdata\rawdata0-master\DAL\bin\Debug\EntityFramework.xml
+E:\school -master's\SEM1\rawdata\rawdata0-master\DAL\bin\Debug\EntityFramework.SqlServer.xml
+E:\school -master's\SEM1\rawdata\rawdata0-master\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+E:\school -master's\SEM1\rawdata\rawdata0-master\DAL\obj\Debug\DAL.dll
+E:\school -master's\SEM1\rawdata\rawdata0-master\DAL\obj\Debug\DAL.pdb

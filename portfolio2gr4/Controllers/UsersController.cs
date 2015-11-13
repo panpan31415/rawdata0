@@ -27,7 +27,7 @@ namespace portfolio2gr4.Controllers
 			{
 				return Request.CreateResponse(HttpStatusCode.NotFound);
 			}
-			return Request.CreateResponse(HttpStatusCode.OK, ModelFactory.Create(user)	);
+			return Request.CreateResponse(HttpStatusCode.OK, ModelFactory.Create(user));
 		}
 
 		public HttpResponseMessage Post([FromBody] UserModel model)
