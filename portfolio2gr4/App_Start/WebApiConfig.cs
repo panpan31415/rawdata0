@@ -25,6 +25,29 @@ namespace portfolio2gr4
 				defaults: new { controller = "Comment", id = RouteParameter.Optional }
 				);
 
-        }
+			config.Routes.MapHttpRoute(
+				name: "PostApi",
+				routeTemplate: "api/posts/{id}",
+				defaults: new { controller = "Posts", id = RouteParameter.Optional }
+			);
+
+			config.Routes.MapHttpRoute(
+				name: "AnnotationApi",
+				routeTemplate: "api/annotations/{id}",
+				defaults: new { controller = "Annotations", id = RouteParameter.Optional }
+
+				);
+
+			config.Routes.MapHttpRoute(
+				name: "CommentApi",
+				routeTemplate: "api/comments/{id}",
+				defaults: new { controller = "Comment", id = RouteParameter.Optional }
+			);
+			config.Routes.MapHttpRoute(
+			   name: "HistoryApi",
+			   routeTemplate: "api/historys/{id}",
+			   defaults: new { controller = "Historys", id = RouteParameter.Optional }
+		   );
+		}
     }
 }
