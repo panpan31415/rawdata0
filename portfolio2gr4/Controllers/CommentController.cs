@@ -13,41 +13,46 @@ namespace portfolio2gr4.Controllers
     public class CommentsController : BaseApiController
     {
 
-        
-            CommentRepo _commentRepo = new CommentRepo();
 
-            public IEnumerable<CommentModel> Get()
+        CommentRepo _commentRepo = new CommentRepo();
+
+        public IEnumerable<CommentModel> Get()
+        {
+            var helper = new UrlHelper(Request);
+            return _commentRepo.getAll().Select(comment => ModelFactory.Create(comment));//HERESS
+        }
+        public HttpResponseMessage Get(int id)
+        {
+
+            var comment = _commentRepo.getById(id);
+            if (comment == null)
             {
-                var helper = new UrlHelper(Request);
-                 return _commentRepo.getAll().Select(comment => ModelFactory.Create(comment));//HERESS
+                return Request.CreateResponse(HttpStatusCode.NotFound);
             }
-            public HttpResponseMessage Get(int id)
-            {
+            return Request.CreateResponse(HttpStatusCode.OK, comment);
+        }
 
-                var comment = _commentRepo.getById(id);
-                if (comment == null)
-                {
-                    return Request.CreateResponse(HttpStatusCode.NotFound);
-                }
-                return Request.CreateResponse(HttpStatusCode.OK, ModelFactory.Create(comment));
-            }
+        public HttpResponseMessage Post([FromBody] CommentModel model)
+        {
+            var helper = new UrlHelper(Request);
+            _commentRepo.addComment(ModelFactory.Parse(model));
+            return Request.CreateResponse(HttpStatusCode.Created,"a new comment has been added into database");
+        }
+        public HttpResponseMessage Put([FromBody] CommentModel model)
+        {
+            var helper = new UrlHelper(Request);
+           // _commentRepo.addComment(ModelFactory.Parse(model));
+            return Request.CreateResponse(HttpStatusCode.Created, "a new comment has been added into database");
+        }
 
-            public HttpResponseMessage Post([FromBody] CommentModel model)
-            {
-                //var helper = new UrlHelper(Request);
-                var comment = ModelFactory.Parse(model);
-                _commentRepo.addComment(comment);
-                return Request.CreateResponse(HttpStatusCode.Created, ModelFactory.Create(comment));
-            }
+        //public HttpResponseMessage Put(int id, [FromBody] UserModel model)
+        //{
+        //    var helper = new UrlHelper(Request);
+        //    var comment = ModelFactory.Parse(model);
+        //    comment.Id = id;
+        //    _commentRepo.Update(comment);
+        //    return Request.CreateResponse(HttpStatusCode.OK);
+        //}
 
-            //public HttpResponseMessage Put(int id, [FromBody] UserModel model)
-            //{
-            //    var helper = new UrlHelper(Request);
-            //    var comment = ModelFactory.Parse(model);
-            //    comment.Id = id;
-            //    _commentRepo.Update(comment);
-            //    return Request.CreateResponse(HttpStatusCode.OK);
-            //}
-        
     }
 }

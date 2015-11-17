@@ -104,11 +104,25 @@ namespace DAL
             }
         }
         
-        public void editComment(int id, int postId, string text, DateTime creationDate, int userid)
+        //public void editComment(int id, int postId, string text, DateTime creationDate, int userid)
+        //{
+        //    using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
+        //    {
+        //        conn.Open();
+        //        var cmd = new MySqlCommand("update into comment(id,postId,text,creationDate,userid) values(@id, @postId, @text ,@creationDate, @userid)", conn);
+        //        cmd.Parameters.AddWithValue("@id", id);
+        //        cmd.Parameters.AddWithValue("@postId", postId);
+        //        cmd.Parameters.AddWithValue("@text", text);
+        //        cmd.Parameters.AddWithValue("@creationDate", creationDate);
+
+        //    }
+        //}
+        public void updateComment(int id, int postId, string text, DateTime creationDate, int userid)
         {
             using (MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
             {
                 conn.Open();
+
                 var cmd = new MySqlCommand("update into comment(id,postId,text,creationDate,userid) values(@id, @postId, @text ,@creationDate, @userid)", conn);
                 cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@postId", postId);
