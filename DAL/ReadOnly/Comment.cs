@@ -8,10 +8,10 @@ namespace DAL
 {
     public class Comment
     {
-        public int id { get; set; }
-        public int postId { get; set; }
-        public string text { get; set; }
-        public DateTime creationDate { get; set; }
-        public int userid { get; set; }
+        public int Id { get; set; }
+        public int PostId { get; set; }
+        public string Text { get; set; }
+        public DateTime CreationDate { get; set; }
+        public int Userid { get; set; }
     }
 }
