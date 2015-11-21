@@ -20,10 +20,10 @@ namespace portfolio2gr4.Controllers
             return _annoRepository.GetAll()
                 .Select(annotation => ModelFactory.Create(annotation));
         }
-        public HttpResponseMessage Get(int PostId)
+        public HttpResponseMessage Get(int id)
         {
             var helper = new UrlHelper(Request);
-            var annotation = _annoRepository.GetById(PostId);
+            var annotation = _annoRepository.GetById(id);
             if (User == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
@@ -40,11 +40,11 @@ namespace portfolio2gr4.Controllers
             return Request.CreateResponse(HttpStatusCode.Created, ModelFactory.Create(annotation));
         }
 
-        public HttpResponseMessage put(int PostId, [FromBody] AnnotationModel model)
+        public HttpResponseMessage put(int id, [FromBody] AnnotationModel model)
         {
             var helper = new UrlHelper(Request);
             var annotation = ModelFactory.Parse(model);
-            annotation.PostId = PostId;
+            annotation.id = id;
             _annoRepository.Update(annotation);
             return Request.CreateResponse(HttpStatusCode.OK);
         }

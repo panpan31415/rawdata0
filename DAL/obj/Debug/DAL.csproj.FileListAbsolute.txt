@@ -66,3 +66,4 @@ C:\projects\rawdata0\DAL\bin\Debug\EntityFramework.SqlServer.xml
 C:\projects\rawdata0\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\projects\rawdata0\DAL\obj\Debug\DAL.dll
 C:\projects\rawdata0\DAL\obj\Debug\DAL.pdb
+C:\schoolProjects\rawdata0\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache

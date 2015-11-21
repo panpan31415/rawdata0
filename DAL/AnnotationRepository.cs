@@ -13,7 +13,7 @@ namespace DAL
         {
             // create the SQL statement
             var sql = string.Format(
-                    "select postID, body, date from annotation limit {0} offset {1}",
+                    "select id, body, date from annotation limit {0} offset {1}",
                     limit, offset);
             // fetch the selected movies
             foreach (var anno in ExecuteQuery(sql))
@@ -35,12 +35,12 @@ namespace DAL
                     // as long as we have rows we can read
                     while (rdr.HasRows && rdr.Read())
                     {
-                        int PostId;
+                        int id;
                         string Body;
                         DateTime Date;
 
-                        if (!rdr.IsDBNull(0)) { PostId = rdr.GetInt32(0); }
-                        else { PostId = 0; }
+                        if (!rdr.IsDBNull(0)) { id = rdr.GetInt32(0); }
+                        else { id = 0; }
 
                         if (!rdr.IsDBNull(1)) { Body = rdr.GetString(1); }
                         else { Body = "unknown"; }
@@ -52,7 +52,7 @@ namespace DAL
                         //return a movie object and yield
                         yield return new Annotation
                         {
-                            PostId = PostId,
+                            id = id,
                             Body = Body,
                             Date = Date,
 
@@ -61,9 +61,9 @@ namespace DAL
                 }
             }
         }
-        public Annotation GetById(int PostId)
+        public Annotation GetById(int id)
         {
-            var sql = string.Format("select postID, body, date from annotation where postId={0} ", PostId);
+            var sql = string.Format("select id, body, date from annotation where id={0} ", id);
             return ExecuteQuery(sql).FirstOrDefault();
         }
 
@@ -73,7 +73,7 @@ namespace DAL
                 ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
             {
                 connection.Open();
-                var cmd = new MySqlCommand("select max(postID) from annotation", connection);
+                var cmd = new MySqlCommand("select max(id) from annotation", connection);
                 using (var rdr = cmd.ExecuteReader())
                 {
                     if (rdr.HasRows && rdr.Read())
@@ -87,14 +87,14 @@ namespace DAL
 
         public void Add(Annotation annotation)
         {
-            annotation.PostId = GetNewId();
+            annotation.id = GetNewId();
             using (var connection = new MySqlConnection(
              ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
             {
                 connection.Open();
                 var cmd = new MySqlCommand(
                     "insert into annotation(body) values(@body)", connection);
-                //cmd.Parameters.AddWithValue("@postID", annotation.PostId);
+                //cmd.Parameters.AddWithValue("@id", annotation.id);
                 cmd.Parameters.AddWithValue("@body", annotation.Body);
                 //cmd.Parameters.AddWithValue("@date", annotation.Date);
                 cmd.ExecuteNonQuery();
@@ -108,8 +108,8 @@ namespace DAL
             {
                 connection.Open();
                 var cmd = new MySqlCommand(
-                    "update annotation set body=@body where postID=@postID", connection);
-                cmd.Parameters.AddWithValue("@postID", annotation.PostId);
+                    "update annotation set body=@body where id=@id", connection);
+                cmd.Parameters.AddWithValue("@id", annotation.id);
                 cmd.Parameters.AddWithValue("@body", annotation.Body);
                 cmd.ExecuteNonQuery();
             }
