@@ -1,0 +1,10 @@
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Release\DAL.dll.config
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Release\DAL.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Release\DAL.pdb
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Release\EntityFramework.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Release\MySql.Data.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Release\EntityFramework.xml
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\obj\Release\DAL.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\obj\Release\DAL.pdb
