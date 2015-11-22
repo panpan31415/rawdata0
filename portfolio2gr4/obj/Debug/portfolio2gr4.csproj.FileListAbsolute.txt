@@ -262,3 +262,7 @@ C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\System.Web.Http.WebHo
 C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.csprojResolveAssemblyReference.cache
 C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.pdb
+C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\nunit.core.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\nunit.core.interfaces.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\nunit.util.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\NUnit.VisualStudio.TestAdapter.dll

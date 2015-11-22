@@ -55,24 +55,24 @@ namespace WebService.Models
         public CommentModel Create(Comment comment)
         {
             return new CommentModel
-            {
-                postId = comment.postId,
-                creationDate = comment.creationDate,
-                text = comment.text,
-                userid = comment.userid
+            {  
+                postId = comment.PostId,
+                creationDate = comment.CreationDate,
+                text = comment.Text,
+                userid = comment.Userid
             };
         }
-
-        public Comment Parse(CommentModel model)
-        {
-            return new Comment
-            {
-                userid = model.userid,
-                creationDate = model.creationDate,
-                postId = model.postId,
-                text = model.text
-            };
-        }
+        // we dont need this method because comment is only read only. 
+        //public Comment Parse(CommentModel model)
+        //{
+        //    return new Comment
+        //    {
+        //        userid = model.userid,
+        //        creationDate = model.creationDate,
+        //        postId = model.postId,
+        //        text = model.text
+        //    };
+        //}
 
 		public PostModel Create(Post post)
 		{

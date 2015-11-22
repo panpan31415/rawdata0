@@ -55,3 +55,7 @@ C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\EntityFramework.SqlServer
 C:\Users\panpa\Documents\GitHub\rawdata0\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\panpa\Documents\GitHub\rawdata0\DAL\obj\Debug\DAL.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\DAL\obj\Debug\DAL.pdb
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\nunit.core.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\nunit.core.interfaces.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\nunit.util.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\NUnit.VisualStudio.TestAdapter.dll
