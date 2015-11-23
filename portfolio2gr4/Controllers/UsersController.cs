@@ -16,12 +16,12 @@ namespace portfolio2gr4.Controllers
 
 		public IEnumerable<UserModel> Get()
 		{
-			var helper = new UrlHelper(Request);
+			//var helper = new UrlHelper(Request);
 			return _userRepo.GetAll().Select(user => ModelFactory.Create(user));//HERESS
 		}
 		public HttpResponseMessage Get(int id)
 		{
-			var helper = new UrlHelper(Request);
+			//var helper = new UrlHelper(Request);
 			var user = _userRepo.GetById(id);
 			if(user == null)
 			{
@@ -40,7 +40,7 @@ namespace portfolio2gr4.Controllers
 
 		public HttpResponseMessage Put(int id, [FromBody] UserModel model)
 		{
-			var helper = new UrlHelper(Request);
+			//var helper = new UrlHelper(Request);
 			var user = ModelFactory.Parse(model);
 			user.Id = id;
 			_userRepo.Update(user);

@@ -262,6 +262,7 @@ C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\System.Web.Http.WebHo
 C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.csprojResolveAssemblyReference.cache
 C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.pdb
+<<<<<<< HEAD
 C:\projects\rawdata0\portfolio2gr4\bin\roslyn\csc.exe
 C:\projects\rawdata0\portfolio2gr4\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\projects\rawdata0\portfolio2gr4\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -306,3 +307,9 @@ C:\projects\rawdata0\portfolio2gr4\bin\System.Web.Http.WebHost.xml
 C:\projects\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.csprojResolveAssemblyReference.cache
 C:\projects\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.dll
 C:\projects\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.pdb
+=======
+C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\nunit.core.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\nunit.core.interfaces.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\nunit.util.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\NUnit.VisualStudio.TestAdapter.dll
+>>>>>>> panpan
