@@ -70,21 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <Compile Include="Annotation.cs" />
-    <Compile Include="AnnotationRepository.cs" />
-    <Compile Include="Comment.cs" />
-    <Compile Include="CommentRepo.cs" />
-    <Compile Include="History.cs" />
-    <Compile Include="HistoryRepository.cs" />
-    <Compile Include="IPostRepository.cs" />
-    <Compile Include="Post.cs" />
-    <Compile Include="PostRepository.cs" />
-    <Compile Include="SORepo.cs" />
-=======
-=======
->>>>>>> panpan
+
     <Compile Include="ReadOnly\CommentMapper.cs" />
     <Compile Include="ReadOnly\DataMapper.cs" />
     <Compile Include="ReadOnly\IDataMapper.cs" />
@@ -100,10 +86,6 @@
     <Compile Include="ReadOnly\Post.cs" />
     <Compile Include="ReadOnly\PostRepository.cs" />
     <Compile Include="ReadOnly\SORepo.cs" />
-<<<<<<< HEAD
->>>>>>> panpan
-=======
->>>>>>> panpan
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOnly\User.cs" />
     <Compile Include="ReadOnly\UserRepo.cs" />
