@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace DAL
+namespace DAL.ReadOnly
 {
-    public class Comment
+    public class Comment: IIdentityField
     {
         public int Id { get; set; }
         public int PostId { get; set; }
