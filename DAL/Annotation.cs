@@ -5,9 +5,9 @@ using System.Web;
 
 namespace DAL
 {
-    public class Annotation
+    public class Annotation: IIdentityField
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public DateTime Date { get; set; }
         public string Body { get; set; }
 

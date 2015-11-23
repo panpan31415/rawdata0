@@ -62,7 +62,6 @@
     <Compile Include="DataMapper.cs" />
     <Compile Include="History.cs" />
     <Compile Include="HistoryRepository.cs" />
-    <Compile Include="IAnnotationMapper.cs" />
     <Compile Include="IDataMapper.cs" />
     <Compile Include="IIdentityField.cs" />
     <Compile Include="IPostRepository.cs" />

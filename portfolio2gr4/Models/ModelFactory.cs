@@ -97,7 +97,7 @@ namespace WebService.Models
 		{
 			return new AnnotationModel
 			{
-				Url = _urlHelper.Link("AnnotationApi", new { id = annotation.id }),
+				Url = _urlHelper.Link("AnnotationApi", new { id = annotation.Id }),
 				Body = annotation.Body,
 				Date = annotation.Date
 			};

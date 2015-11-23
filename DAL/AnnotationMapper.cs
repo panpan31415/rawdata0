@@ -8,95 +8,40 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-   public class AnnotationMapper: IAnnotationMapper<Annotation>
+   public class AnnotationMapper: DataMapper<Annotation>
     {
-        public AnnotationMapper()
-        { }
-
-
-        public IEnumerable<Annotation> GetAll(MySqlCommand command)
-        {
-            using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
-            {
-                connection.Open();
-                command.Connection = connection;
-                using (var reader = command.ExecuteReader())
-                {
-                    while (reader.HasRows)
-                    {
-                        var annotation = Map(reader);
-                        if (annotation == null)
-                        {
-                            yield break;
-                        }
-                        yield return annotation;
-                    }
-                }
-            }
+        public AnnotationMapper(string connectionString) :base (connectionString)
+		{
+            TableName = "annotation";
+            Attributes = new string[] { "id", "body", "date" };
         }
 
 
-
-        public Annotation GetById(int id)
+        public override Annotation Map(MySqlDataReader reader)
         {
-            var sql = string.Format(
-                 "select id, body,date from annotation where id= {0}", id
-                );
-
-
-            using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
+            if (reader.HasRows && reader.Read())
             {
-                connection.Open();
-                //command.Connection = connection;
-                using (var cmd = new MySqlCommand(sql))
-                {
-                    // cmd.Parameters.AddWithValue("@id", id);
-                    //  cmd.Parameters.AddWithValue("@body", Body);
-                    cmd.Connection = connection;
-                    using (var reader = cmd.ExecuteReader())
-                    {
-                        return Map(reader);
-                    }
-                    //return ExecuteQuery(sql).FirstOrDefault();
-                }
-            }
-        }
-        // public abstract Annotation Map(MySqlDataReader reader);
-        public Annotation Map(MySqlDataReader reader)
-        {
+                int a_id;
+                string a_body;
+                DateTime a_date;
 
-            while (reader.HasRows && reader.Read())
-            {
-                int Id;
-                string Body;
-                DateTime Date;
-                if (!reader.IsDBNull(0)) { Id = reader.GetInt32(0); }
-                else { Id = 0; }
-                if (!reader.IsDBNull(0)) { Body = reader.GetString(1); }
-                else { Body = "unknown"; }
-
-                if (!reader.IsDBNull(2)) { Date = reader.GetDateTime(2); }
-                else { Date = DateTime.Now; }
+                if (!reader.IsDBNull(0)) { a_id = reader.GetInt32(0); }
+                else { a_id = 0; }
+                if (!reader.IsDBNull(1)) { a_body = reader.GetString(1); }
+                else { a_body = "unknown"; }
+                if (!reader.IsDBNull(2)) { a_date = reader.GetDateTime(2); }
+                else { a_date = DateTime.Now; }
 
                 var annotation = new Annotation
                 {
-                    id = Id,
-                    Body = Body,
-                    Date= Date
+                    Id = a_id,
+                    Body = a_body,
+                    Date= a_date
+                    
                 };
-
                 return annotation;
             }
             return null;
         }
-        //public abstract Annotation Insert(Post post);
-
-
-
-        
-        //public abstract IEnumerable<T> Get(int limit = 10, int offset = 0);
-
-
-       
     }
 }

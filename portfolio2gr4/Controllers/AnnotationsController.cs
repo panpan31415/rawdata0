@@ -2,6 +2,7 @@
 using portfolio2gr4.Models;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,21 +13,21 @@ namespace portfolio2gr4.Controllers
 {
     public class AnnotationsController : BaseApiController
     {
-        static AnnotationMapper dataMapper = new AnnotationMapper();
+        static AnnotationMapper dataMapper = new AnnotationMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
         AnnotationRepository _annoRepository = new AnnotationRepository(dataMapper);
         public IEnumerable<AnnotationModel> Get()
         {
             var helper = new UrlHelper(Request);
-            return _annoRepository.GetAllAnnotation()
+            return _annoRepository.GetAll()
                 .Select(annotation => ModelFactory.Create(annotation));
         }
 
 
 
-        public HttpResponseMessage GetId(int id)
+        public HttpResponseMessage GetById(int id)
         {
             var helper = new UrlHelper(Request);
-            var annotation = _annoRepository.GetId(id);
+            var annotation = _annoRepository.GetById(id);
             if (annotation == null)
             {
                 return Request.CreateResponse(HttpStatusCode.NotFound);
@@ -37,5 +38,6 @@ namespace portfolio2gr4.Controllers
                 , ModelFactory.Create(annotation));
 
         }
+
     }
 }
