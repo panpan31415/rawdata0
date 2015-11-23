@@ -58,8 +58,10 @@
     <Compile Include="AnnotationRepository.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="CommentRepo.cs" />
+    <Compile Include="AnnotationMapper.cs" />
     <Compile Include="History.cs" />
     <Compile Include="HistoryRepository.cs" />
+    <Compile Include="IAnnotationMapper.cs" />
     <Compile Include="IPostRepository.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="PostRepository.cs" />
