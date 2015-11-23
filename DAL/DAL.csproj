@@ -70,7 +70,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-
     <Compile Include="ReadOnly\CommentMapper.cs" />
     <Compile Include="ReadOnly\DataMapper.cs" />
     <Compile Include="ReadOnly\IDataMapper.cs" />

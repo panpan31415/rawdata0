@@ -69,6 +69,7 @@ C:\projects\rawdata0\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\projects\rawdata0\DAL\obj\Debug\DAL.dll
 C:\projects\rawdata0\DAL\obj\Debug\DAL.pdb
 C:\schoolProjects\rawdata0\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> panpan
@@ -80,3 +81,9 @@ C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\NUnit.VisualStudio.TestAd
 >>>>>>> panpan
 =======
 >>>>>>> panpan
+=======
+C:\school-projects\rawdata0\DAL\bin\Debug\EntityFramework.dll
+C:\school-projects\rawdata0\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\school-projects\rawdata0\DAL\bin\Debug\EntityFramework.xml
+C:\school-projects\rawdata0\DAL\bin\Debug\EntityFramework.SqlServer.xml
+>>>>>>> a67b4f672c2a3f25c3abd264226a4088dcc6515a

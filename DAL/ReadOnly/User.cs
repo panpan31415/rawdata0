@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DAL
 {
-	public class User
+	public class User : IIdentityField
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
