@@ -10,7 +10,6 @@ namespace DAL
    public interface IAnnotationMapper<Annotation>
     {
         Annotation Map(MySqlDataReader reader);
-
         IEnumerable<Annotation> GetAll(MySqlCommand command);
         Annotation GetById(int id);
 
