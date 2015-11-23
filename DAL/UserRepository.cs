@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-	public interface IIdentityField
+	public class UserRepository : Repository<User>
 	{
-		int Id { get; }
+		public UserRepository(IDataMapper<User> dataMapper) : base(dataMapper){ }
 	}
 }
