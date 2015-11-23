@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ namespace DAL
 
         public IEnumerable<Annotation> GetAll(MySqlCommand command)
         {
-            using (var connection = new MySqlConnection("server=localhost;database=stackoverflow;uid=root;pwd=princess786"))
+            using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
             {
                 connection.Open();
                 command.Connection = connection;
@@ -43,7 +44,7 @@ namespace DAL
                 );
 
 
-            using (var connection = new MySqlConnection("server=localhost;database=stackoverflow;uid=root;pwd=princess786"))
+            using (var connection = new MySqlConnection(ConfigurationManager.ConnectionStrings["remote"].ConnectionString))
             {
                 connection.Open();
                 //command.Connection = connection;
