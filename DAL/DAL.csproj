@@ -70,12 +70,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnnotationMapper.cs" />
+    <Compile Include="DataMapper.cs" />
+    <Compile Include="IDataMapper.cs" />
+    <Compile Include="IIdentityField.cs" />
+    <Compile Include="IPostRepository.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="ReadOnly\CommentMapper.cs" />
     <Compile Include="ReadOnly\DataMapper.cs" />
     <Compile Include="ReadOnly\IDataMapper.cs" />
     <Compile Include="ReadOnly\IIdentityField.cs" />
     <Compile Include="ReadOnly\IRepository.cs" />
     <Compile Include="ReadOnly\Repository.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="Rewrittable\Annotation.cs" />
     <Compile Include="Rewrittable\AnnotationRepository.cs" />
     <Compile Include="ReadOnly\Comment.cs" />
@@ -88,6 +95,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOnly\User.cs" />
     <Compile Include="ReadOnly\UserRepo.cs" />
+    <Compile Include="UserMapper.cs" />
+    <Compile Include="UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
