@@ -263,6 +263,7 @@ C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.c
 C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.pdb
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\projects\rawdata0\portfolio2gr4\bin\roslyn\csc.exe
 C:\projects\rawdata0\portfolio2gr4\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\projects\rawdata0\portfolio2gr4\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
@@ -308,8 +309,13 @@ C:\projects\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.csprojResolveAssembly
 C:\projects\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.dll
 C:\projects\rawdata0\portfolio2gr4\obj\Debug\portfolio2gr4.pdb
 =======
+=======
+>>>>>>> panpan
 C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\nunit.core.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\nunit.core.interfaces.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\nunit.util.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\portfolio2gr4\bin\NUnit.VisualStudio.TestAdapter.dll
+<<<<<<< HEAD
+>>>>>>> panpan
+=======
 >>>>>>> panpan

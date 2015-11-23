@@ -56,6 +56,7 @@ C:\Users\panpa\Documents\GitHub\rawdata0\DAL\obj\Debug\DAL.csprojResolveAssembly
 C:\Users\panpa\Documents\GitHub\rawdata0\DAL\obj\Debug\DAL.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\DAL\obj\Debug\DAL.pdb
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\projects\rawdata0\DAL\bin\Debug\DAL.dll.config
 C:\projects\rawdata0\DAL\bin\Debug\DAL.dll
 C:\projects\rawdata0\DAL\bin\Debug\DAL.pdb
@@ -69,8 +70,13 @@ C:\projects\rawdata0\DAL\obj\Debug\DAL.dll
 C:\projects\rawdata0\DAL\obj\Debug\DAL.pdb
 C:\schoolProjects\rawdata0\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 =======
+=======
+>>>>>>> panpan
 C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\nunit.core.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\nunit.core.interfaces.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\nunit.util.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\NUnit.VisualStudio.TestAdapter.dll
+<<<<<<< HEAD
+>>>>>>> panpan
+=======
 >>>>>>> panpan
