@@ -66,8 +66,10 @@
     <Compile Include="IDataMapper.cs" />
     <Compile Include="IIdentityField.cs" />
     <Compile Include="IPostRepository.cs" />
+    <Compile Include="IRepository.cs" />
     <Compile Include="Post.cs" />
     <Compile Include="PostRepository.cs" />
+    <Compile Include="Repository.cs" />
     <Compile Include="SORepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
