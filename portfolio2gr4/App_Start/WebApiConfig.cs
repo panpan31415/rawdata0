@@ -68,10 +68,16 @@ namespace portfolio2gr4
                 name: "AnnotationApi",
                 routeTemplate: "api/annotations/{id}",
                 defaults: new { controller = "Annotations", id = RouteParameter.Optional }
-
                 );
 
-            config.Routes.MapHttpRoute(
+			config.Routes.MapHttpRoute(
+			   name: "AnnotationApiByUserAndPost",
+			   routeTemplate: "api/annotations/postId={postid}&userId={userid}",
+			   defaults: new { controller = "Annotations", postid = RouteParameter.Optional, userid = RouteParameter.Optional }
+
+			   );
+
+			config.Routes.MapHttpRoute(
                name: "HistoryApi",
                routeTemplate: "api/historys/{id}",
                defaults: new { controller = "Historys", id = RouteParameter.Optional }

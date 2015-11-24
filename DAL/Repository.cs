@@ -22,7 +22,14 @@ namespace DAL
 		}
 		public T GetById(long id)
 		{
-			return DataMapper.GetById(id);
+			if (DataMapper == null) {
+				return UpdatableDataMapper.GetById(id);
+			}
+			else
+			{
+				return DataMapper.GetById(id);
+			}
+				
 		}
 
 		public IEnumerable<T> GetAll(int limit = 10, int offset = 0)

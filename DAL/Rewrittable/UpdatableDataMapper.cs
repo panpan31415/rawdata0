@@ -9,13 +9,11 @@ namespace DAL.Rewrittable
 {
     public abstract class UpdatableDataMapper<T> : DataMapper<T>, IUpdatableDataMapper<T> where T : class, IIdentityField
     {
-        public UpdatableDataMapper(string connectionString) : base(connectionString)
-        { }
-		public string[] CompositeKey;
+        public UpdatableDataMapper(string connectionString) : base(connectionString){ }
         public abstract void Insert(T entity);
         public abstract void Update(T entity);
 
-		//protected T GetByCompositeKey(CompositeKey);
+ 
 
         protected int NextId()
         {
