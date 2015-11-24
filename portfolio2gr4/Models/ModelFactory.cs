@@ -7,6 +7,7 @@ using System.Web.Http.Routing;
 using DAL;
 using portfolio2gr4.Models;
 using DAL.ReadOnly;
+using DAL.Rewrittable;
 
 namespace WebService.Models
 {

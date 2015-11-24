@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace DAL
+namespace DAL.Rewrittable
+
 {
     public class Annotation: IIdentityField
     {

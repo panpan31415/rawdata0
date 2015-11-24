@@ -13,14 +13,8 @@ namespace DAL.ReadOnly
         public int Offset { get; set; }
         public string ConnectionString { get; set; }
 
-        public CommentRepository()
-        {
-            Limit = 10;
-            Offset = 0;
-            string connectionString = "server=localhost;database=stof;uid=root;pwd=panpan_7533";
-            DataMapper = new CommentMapper(connectionString);
-        }
-        public IEnumerable<Comment> getByPostId(int postId)
+        public CommentRepository(IDataMapper<Comment> dataMapper) : base(dataMapper) { }
+		public IEnumerable<Comment> getByPostId(int postId)
         {
             string sql = string.Format("select * from comment where postId = {0}", postId);
             return DataMapper.Query(new MySqlCommand(sql));

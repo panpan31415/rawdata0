@@ -7,11 +7,11 @@ using MySql.Data.MySqlClient;
 
 namespace DAL.ReadOnly
 {
-    class CommentMapper : DataMapper<Comment>
+    public class CommentMapper : DataMapper<Comment>
     {
         public CommentMapper(string connectionSting) : base(connectionSting)
         {
-            TableName = "Comment";
+            TableName = "comment";
             Attributes = new string[] { "id", "postid", "text", "creationDate", "userid" };
         }
 

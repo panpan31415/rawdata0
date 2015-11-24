@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DAL
+namespace DAL.Rewrittable
 {
    public class AnnotationMapper: DataMapper<Annotation>
     {
