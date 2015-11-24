@@ -14,8 +14,16 @@ namespace DAL.Rewrittable
 		{
             TableName = "annotation";
             Attributes = new string[] { "body", "date" };
+			//CompositeKey = new string[] { "userid", "postid" };
         }
         
+		//public override Annotation GetByCompositeKey( )
+		//{
+		//	var sql = string.Format("select {0} from {1} where postid=@postid and userid=@userid", Attributes, TableName);
+		//	var cmd = new MySqlCommand(sql);
+		//	cmd.Parameters.AddWithValue("@" + CompositeKey[0], annotation.postid);
+		//}
+
 		public override void Insert(Annotation annotation)
         {
             var sql = string.Format("insert into {0} ({1}) values({2})",

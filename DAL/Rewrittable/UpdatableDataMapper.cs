@@ -11,9 +11,11 @@ namespace DAL.Rewrittable
     {
         public UpdatableDataMapper(string connectionString) : base(connectionString)
         { }
-
+		public string[] CompositeKey;
         public abstract void Insert(T entity);
         public abstract void Update(T entity);
+
+		//protected T GetByCompositeKey(CompositeKey);
 
         protected int NextId()
         {
@@ -30,5 +32,7 @@ namespace DAL.Rewrittable
                 return 1;
             }
         }
+
+		
     }
 }

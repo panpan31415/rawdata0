@@ -34,7 +34,7 @@ namespace WebService.Models
 				Age = user.Age,
 				UpVotes = user.UpVotes,
 				DownVotes = user.DownVotes,
-				LocationId = user.LocationId
+				Location = user.Location
 
 			};
 		}
@@ -50,7 +50,7 @@ namespace WebService.Models
 				Age = model.Age,
 				UpVotes = model.UpVotes,
 				DownVotes = model.DownVotes,
-				LocationId = model.LocationId
+				Location = model.Location
 			};
 		}
 
