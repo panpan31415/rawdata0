@@ -28,6 +28,8 @@ namespace DAL.Rewrittable
 
         public override void Update(Annotation annotation)
         {
+
+			// CHANGE THIS 
             var sql = string.Format("update {0} set {1} where postid= @postid",
                 TableName, AttributeList, DecoratedAttributeList((x => x + "=@" + x)));
             //  annotation.Id = NextId();
