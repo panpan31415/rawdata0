@@ -15,7 +15,7 @@ namespace DAL
 			DataMapper = dataMapper;
 		}
 		public T GetById(long id)
-		{
+		{  
 			return DataMapper.GetById(id);
 		}
 

@@ -7,19 +7,18 @@ using MySql.Data.MySqlClient;
 
 namespace DAL.ReadOnly
 {
-    public class CommentMapper : DataMapper<Comment>
-    {
+    class CommentMapper : DataMapper<Comment>
+    {         
         public CommentMapper(string connectionSting) : base(connectionSting)
         {
-            TableName = "comment";
-            Attributes = new string[] { "postid", "text", "creationDate", "userid" };
+            TableName = "Comment";
+            Attributes = new string[] { "id", "postid", "text", "creationDate", "userid" };
         }
 
         public override Comment Map(MySqlDataReader reader)
         {
-			if (reader.HasRows && reader.Read())
-			{
-				int id = 0;
+            
+                int id = 0;
                 int postId = 0;
                 string text = "no text";
                 DateTime creationDate = DateTime.Now;
@@ -34,7 +33,8 @@ namespace DAL.ReadOnly
                     creationDate = reader.GetDateTime(3);
                 if (!reader.IsDBNull(4))
                     userid = reader.GetInt32(4);
-                var comment = new Comment
+                return new Comment
+
                 {
                     Id = id,
                     PostId = postId,
@@ -42,9 +42,7 @@ namespace DAL.ReadOnly
                     CreationDate = creationDate,
                     Userid = userid,
                 };
-				return comment;
-			}
-			return null;
-		}
+
+        }
     }
 }
