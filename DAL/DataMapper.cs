@@ -30,7 +30,11 @@ namespace DAL
 					cmd.Connection = connection;
 					using (var reader = cmd.ExecuteReader())
 					{
-						return Map(reader);
+                        if (reader.Read() && reader.HasRows)
+                        {
+                            return Map(reader);
+                        }
+						return null;
 					}
 				}
 			}
