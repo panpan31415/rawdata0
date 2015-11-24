@@ -1,4 +1,5 @@
-﻿using DAL;
+﻿
+using DAL.Rewrittable;
 using portfolio2gr4.Models;
 using System;
 using System.Collections.Generic;

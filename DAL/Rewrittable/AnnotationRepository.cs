@@ -6,7 +6,7 @@ using System.Configuration;
 using System;
 using DAL.ReadOnly;
 
-namespace DAL
+namespace DAL.Rewrittable
 {
     public class AnnotationRepository : Repository<Annotation>
     {
