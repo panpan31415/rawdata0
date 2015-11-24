@@ -16,6 +16,7 @@ namespace portfolio2gr4.Controllers
     {
         static AnnotationMapper dataMapper = new AnnotationMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
         AnnotationRepository _annoRepository = new AnnotationRepository(dataMapper);
+		//call corre constructor
         public IEnumerable<AnnotationModel> Get()
         {
             var helper = new UrlHelper(Request);

@@ -59,5 +59,27 @@ namespace DAL
 			}
 			return null;
 		}
+
+		//private string FetchLocation(int id)
+		//{
+		//	using (var connection = new MySqlConnection(ConnectionString))
+		//	{
+		//		//ask hernrik about it
+		//		connection.Open();
+		//		var cmd = new MySqlCommand();
+		//		cmd.Connection = connection;
+		//		cmd.CommandText = "select location from location where locationid = @ID";
+		//		cmd.Parameters.AddWithValue("@ID", id);
+		//		using (var reader = cmd.ExecuteReader())
+		//		{
+		//			while (reader.Read())
+		//			{
+		//				string loc = reader.GetString(0);
+		//				return loc;
+		//			}
+		//			return "unknown";
+		//		}
+		//	}
+		//}
 	}
 }

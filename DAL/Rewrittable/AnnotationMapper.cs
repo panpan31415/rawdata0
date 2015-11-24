@@ -15,23 +15,15 @@ namespace DAL.Rewrittable
             TableName = "annotation";
             Attributes = new string[] { "body", "date" };
         }
-        public override void Insert(Annotation annotation)
+        
+		public override void Insert(Annotation annotation)
         {
-            var sql = string.Format("insert into {0}(body, {1}) values(@body, {2})",
-                TableName, AttributeList, DecoratedAttributeList(x => "@" + x));
-            //  annotation.Id = NextId();
-            var cmd = new MySqlCommand(sql);
-            // "insert into post( id,  body) values( @id,  @body)");
-            //cmd.Parameters.AddWithValue("@OwnerUserId", post.OwnerId);
-            cmd.Parameters.AddWithValue("@body", annotation.Body);
-            cmd.Parameters.AddWithValue("@" + Attributes[0], annotation.Id);
-            cmd.Parameters.AddWithValue("@" + Attributes[1], annotation.Body);
-            //cmd.Parameters.AddWithValue("@score", post.Score);
-            //cmd.Parameters.AddWithValue("@body", post.Body);
-            //cmd.Parameters.AddWithValue("@title", post.Title);
-            // cmd.Parameters.AddWithValue("@postTypeID", post.PostTypeId);
-            ExecuteNonQuery(cmd);
-            // return annotation;
+            var sql = string.Format("insert into {0} ({1}) values({2})",
+				TableName, AttributeList, DecoratedAttributeList(x => "@" + x)); 
+			var cmd = new MySqlCommand(sql); 
+			cmd.Parameters.AddWithValue("@" + Attributes[0], annotation.Body);
+			cmd.Parameters.AddWithValue("@" + Attributes[1], annotation.Date);
+			ExecuteNonQuery(cmd); 
         }
 
         public override void Update(Annotation annotation)
