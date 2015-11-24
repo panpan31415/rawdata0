@@ -1,0 +1,34 @@
+﻿using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DAL.Rewrittable
+{
+    public abstract class UpdatableDataMapper<T> : DataMapper<T>, IUpdatableDataMapper<T> where T : class, IIdentityField
+    {
+        public UpdatableDataMapper(string connectionString) : base(connectionString)
+        { }
+
+        public abstract void Insert(T entity);
+        public abstract void Update(T entity);
+
+        protected int NextId()
+        {
+            using (var connection = new MySqlConnection(ConnectionString))
+            {
+                connection.Open();
+                var cmd = new MySqlCommand("select max(id) from " + TableName, connection);
+                var id = cmd.ExecuteScalar();
+                if (id != null)
+                {
+                    return int.Parse(id.ToString()) + 1;
+                }
+
+                return 1;
+            }
+        }
+    }
+}

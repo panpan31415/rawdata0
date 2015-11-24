@@ -39,6 +39,25 @@ namespace portfolio2gr4.Controllers
                 , ModelFactory.Create(annotation));
 
         }
+        public HttpResponseMessage Post([FromBody] AnnotationModel model)
+        {
+            var helper = new UrlHelper(Request);
+            var annotation = ModelFactory.Parse(model);
+            _annoRepository.Insert(annotation);
+            return Request.CreateResponse(
+                HttpStatusCode.Created
+                , ModelFactory.Create(annotation));
+        }
+
+
+        public HttpResponseMessage put(int id, [FromBody] AnnotationModel model)
+        {
+            var helper = new UrlHelper(Request);
+            var annotation = ModelFactory.Parse(model);
+            annotation.Id = id;
+            _annoRepository.Updation(annotation);
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
 
     }
 }

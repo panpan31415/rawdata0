@@ -90,6 +90,8 @@
     <Compile Include="ReadOnly\User.cs" />
     <Compile Include="ReadOnly\UserMapper.cs" />
     <Compile Include="ReadOnly\UserRepository.cs" />
+    <Compile Include="Rewrittable\IUpdatableDataMapper.cs" />
+    <Compile Include="Rewrittable\UpdatableDataMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
