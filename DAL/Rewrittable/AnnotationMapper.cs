@@ -13,7 +13,7 @@ namespace DAL.Rewrittable
         public AnnotationMapper(string connectionString) :base (connectionString)
 		{
             TableName = "annotation";
-            Attributes = new string[] { "id", "body", "date" };
+            Attributes = new string[] { "body", "date" };
         }
 
 

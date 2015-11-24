@@ -12,13 +12,14 @@ namespace DAL.ReadOnly
         public CommentMapper(string connectionSting) : base(connectionSting)
         {
             TableName = "comment";
-            Attributes = new string[] { "id", "postid", "text", "creationDate", "userid" };
+            Attributes = new string[] { "postid", "text", "creationDate", "userid" };
         }
 
         public override Comment Map(MySqlDataReader reader)
         {
-            
-                int id = 0;
+			if (reader.HasRows && reader.Read())
+			{
+				int id = 0;
                 int postId = 0;
                 string text = "no text";
                 DateTime creationDate = DateTime.Now;
@@ -33,7 +34,7 @@ namespace DAL.ReadOnly
                     creationDate = reader.GetDateTime(3);
                 if (!reader.IsDBNull(4))
                     userid = reader.GetInt32(4);
-                return new Comment
+                var comment = new Comment
                 {
                     Id = id,
                     PostId = postId,
@@ -41,7 +42,9 @@ namespace DAL.ReadOnly
                     CreationDate = creationDate,
                     Userid = userid,
                 };
-
-        }
+				return comment;
+			}
+			return null;
+		}
     }
 }
