@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using DAL.Rewrittable;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,27 @@ namespace DAL
 		{
 			DataMapper = dataMapper;
 		}
-		public T GetById(long id)
-		{  
+        public IUpdatableDataMapper<T> UpdatableDataMapper { get; set; }
+        public Repository(IUpdatableDataMapper<T> updatabledatamapper)
+        {
+            UpdatableDataMapper = updatabledatamapper;
+        }
+        public T GetById(long id)
+		{
 			return DataMapper.GetById(id);
 		}
+        public void Insert(T annotation)
+        {
+            UpdatableDataMapper.Insert(annotation);
+        }
 
-		public IEnumerable<T> GetAll(int limit= 10, int offset = 0)
+        public void Updation(T annotation)
+        {
+            UpdatableDataMapper.Update(annotation);
+
+        }
+
+        public IEnumerable<T> GetAll(int limit= 10, int offset = 0)
 		{
 			var sql = string.Format("SELECT ID, {0} FROM {1} LIMIT {2} OFFSET {3}",
 				string.Join(", ", DataMapper.Attributes),

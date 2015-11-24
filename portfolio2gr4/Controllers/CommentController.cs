@@ -11,7 +11,7 @@ namespace portfolio2gr4.Controllers
 {
     public class CommentController: BaseApiController
     {
-		static CommentMapper dataMapper = new CommentMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
+		private CommentMapper dataMapper = new CommentMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
 		private CommentRepository _commentRepository = new CommentRepository(dataMapper);
         // url = api/comments/{id}
         [HttpGet]       
