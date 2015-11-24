@@ -18,7 +18,7 @@ namespace DAL
 			ConnectionString = connectionString;
 		}
 
-		public virtual T GetById(long id)
+		public virtual T GetById(int id)
 		{
 			var sql = string.Format("SELECT ID, {0} from {1} WHERE ID = @ID", AttributeList, TableName);
 			using (var connection = new MySqlConnection(ConnectionString))
@@ -44,7 +44,7 @@ namespace DAL
 				command.Connection = connection;
 				using (var reader = command.ExecuteReader())
 				{
-					while (reader.HasRows)
+					while (reader.Read()&&reader.HasRows)
 					{
 						var element = Map(reader);
 						if (element == null)

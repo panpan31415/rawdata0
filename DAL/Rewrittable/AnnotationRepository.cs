@@ -10,6 +10,6 @@ namespace DAL.Rewrittable
 {
     public class AnnotationRepository : Repository<Annotation>
     {
-        public AnnotationRepository(IDataMapper<Annotation> dataMapper) : base(dataMapper) { }
+        public AnnotationRepository(IUpdatableDataMapper<Annotation> dataMapper) : base(dataMapper) { }
     }
 }
