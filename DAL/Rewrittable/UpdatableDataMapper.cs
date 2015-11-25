@@ -13,7 +13,7 @@ namespace DAL.Rewrittable
         public abstract void Insert(T entity);
         public abstract void Update(T entity);
 
-		public abstract Annotation GetByPostAndUser(int postid, int userid);
+		public abstract T GetByPostAndUser(int postid, int userid);
 
         protected int NextId()
         {
