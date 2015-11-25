@@ -12,10 +12,8 @@ namespace DAL.ReadOnly
 		public int Limit { get; set; }
 		public int Offset { get; set; }
 		public string ConnectionString { get; set; }
-		IDataMapper<Comment> CommentMapper { get; set; }
 		public CommentRepository(IDataMapper<Comment> commentMapper) : base(commentMapper)
 		{
-			CommentMapper = commentMapper;
 		}
 		public IEnumerable<Comment> getByPostId(int postId)
 		{
