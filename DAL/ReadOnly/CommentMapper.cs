@@ -11,21 +11,14 @@ namespace DAL.ReadOnly
 	{
 		public CommentMapper(string connectionSting) : base(connectionSting)
 		{
-<<<<<<< HEAD
-			TableName = "Comment";
-=======
+
 			TableName = "comment";
->>>>>>> 35baf06b092a8c79fccd2a4e856ebe8dcaf33a8a
 			Attributes = new string[] { "postid", "text", "creationDate", "userid" };
 		}
 
 		public override Comment Map(MySqlDataReader reader)
 		{
-<<<<<<< HEAD
-			if (reader.Read() && reader.HasRows)
-=======
 			if (reader.HasRows && reader.Read())
->>>>>>> 35baf06b092a8c79fccd2a4e856ebe8dcaf33a8a
 			{
 				int id = 0;
 				int postId = 0;
@@ -51,16 +44,7 @@ namespace DAL.ReadOnly
 					Userid = userid,
 				};
 			}
-<<<<<<< HEAD
-			else
-			{
-				return null;
-			}
-
-
-=======
 			else return null;
->>>>>>> 35baf06b092a8c79fccd2a4e856ebe8dcaf33a8a
 		}
 	}
 }

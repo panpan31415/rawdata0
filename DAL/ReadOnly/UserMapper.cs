@@ -14,11 +14,6 @@ namespace DAL
 			TableName = "user";
 			Attributes = new string[] { "displayName", "websiteUrl", "reputation", "creationDate", "age", "upVotes", "downVotes", "locationId" };
 		}
-<<<<<<< HEAD
-
-=======
->>>>>>> 35baf06b092a8c79fccd2a4e856ebe8dcaf33a8a
-
 		public override User Map(MySqlDataReader reader)
 		{
 			if (reader.HasRows && reader.Read())

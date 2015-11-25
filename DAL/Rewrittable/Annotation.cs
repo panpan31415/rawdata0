@@ -14,10 +14,5 @@ namespace DAL.Rewrittable
 		public string Body { get; set; }
 		public int UserId { get; set; }
 		public int PostId { get; set; }
-<<<<<<< HEAD
-    }
-=======
-
 	}
->>>>>>> 35baf06b092a8c79fccd2a4e856ebe8dcaf33a8a
 }
