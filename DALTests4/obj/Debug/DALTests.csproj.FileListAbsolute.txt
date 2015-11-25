@@ -1,0 +1,14 @@
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\bin\Debug\DALTests4.dll.config
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\bin\Debug\DALTests4.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\bin\Debug\DALTests4.pdb
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\bin\Debug\DAL.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\bin\Debug\EntityFramework.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\bin\Debug\MySql.Data.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\bin\Debug\DAL.pdb
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\bin\Debug\EntityFramework.xml
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\obj\Debug\DALTests.csprojResolveAssemblyReference.cache
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\obj\Debug\DALTests4.dll
+C:\Users\panpa\Documents\GitHub\rawdata0\DALTests4\obj\Debug\DALTests4.pdb

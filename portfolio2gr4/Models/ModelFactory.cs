@@ -34,7 +34,7 @@ namespace WebService.Models
 				Age = user.Age,
 				UpVotes = user.UpVotes,
 				DownVotes = user.DownVotes,
-				LocationId = user.LocationId
+				Location = user.Location
 
 			};
 		}
@@ -50,7 +50,7 @@ namespace WebService.Models
 				Age = model.Age,
 				UpVotes = model.UpVotes,
 				DownVotes = model.DownVotes,
-				LocationId = model.LocationId
+				Location = model.Location
 			};
 		}
 
@@ -101,7 +101,10 @@ namespace WebService.Models
 			{
 				Url = _urlHelper.Link("AnnotationApi", new { id = annotation.Id }),
 				Body = annotation.Body,
-				Date = annotation.Date
+				Date = annotation.Date,
+				UserId = annotation.UserId,
+				PostId = annotation.PostId
+		
 			};
 		}
 		public Annotation Parse(AnnotationModel model)
@@ -109,7 +112,9 @@ namespace WebService.Models
 			return new Annotation
 			{
 				Body = model.Body,
-				Date = model.Date
+				Date = model.Date,
+				UserId = model.UserId,
+				PostId = model.PostId
 			};
 		}
 	}

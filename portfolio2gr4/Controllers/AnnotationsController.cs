@@ -16,14 +16,13 @@ namespace portfolio2gr4.Controllers
     {
         static AnnotationMapper dataMapper = new AnnotationMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
         AnnotationRepository _annoRepository = new AnnotationRepository(dataMapper);
-        public IEnumerable<AnnotationModel> Get()
+
+		public IEnumerable<AnnotationModel> Get()
         {
             var helper = new UrlHelper(Request);
             return _annoRepository.GetAll()
                 .Select(annotation => ModelFactory.Create(annotation));
-        }
-
-
+        } 
 
         public HttpResponseMessage GetById(int id)
         {
@@ -50,7 +49,7 @@ namespace portfolio2gr4.Controllers
         }
 
 
-        public HttpResponseMessage put(int id, [FromBody] AnnotationModel model)
+        public HttpResponseMessage Put(int id, [FromBody] AnnotationModel model)
         {
             var helper = new UrlHelper(Request);
             var annotation = ModelFactory.Parse(model);

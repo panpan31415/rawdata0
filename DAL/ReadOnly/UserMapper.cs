@@ -53,11 +53,32 @@ namespace DAL
 					Age = u_age,
 					UpVotes = u_up,
 					DownVotes = u_down,
-					LocationId = u_loc
+					Location = FetchLocation(u_loc)
 				};
 				return user;
 			}
 			return null;
+		}
+
+		private string FetchLocation(int id)
+		{
+			using (var connection = new MySqlConnection(ConnectionString))
+			{
+				connection.Open();
+				var cmd = new MySqlCommand();
+				cmd.Connection = connection;
+				cmd.CommandText = "select location from location where locationid = @ID";
+				cmd.Parameters.AddWithValue("@ID", id);
+				using (var reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						string loc = reader.GetString(0);
+						return loc;
+					}
+					return "unknown";
+				}
+			}
 		}
 	}
 }

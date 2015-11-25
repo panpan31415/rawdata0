@@ -17,6 +17,6 @@ namespace DAL
 		public int Age { get; set; }
 		public int UpVotes { get; set; }
 		public int DownVotes { get; set; }
-		public int LocationId { get; set; }
+		public string Location { get; set; }
 	}
 }

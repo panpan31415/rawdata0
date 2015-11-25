@@ -9,11 +9,11 @@ namespace DAL.Rewrittable
 {
     public abstract class UpdatableDataMapper<T> : DataMapper<T>, IUpdatableDataMapper<T> where T : class, IIdentityField
     {
-        public UpdatableDataMapper(string connectionString) : base(connectionString)
-        { }
-
+        public UpdatableDataMapper(string connectionString) : base(connectionString){ }
         public abstract void Insert(T entity);
         public abstract void Update(T entity);
+
+ 
 
         protected int NextId()
         {
@@ -30,5 +30,7 @@ namespace DAL.Rewrittable
                 return 1;
             }
         }
+
+		
     }
 }
