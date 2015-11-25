@@ -20,16 +20,13 @@ namespace DAL.Rewrittable
         public void Updation(Annotation annotation)
         {
             UpdatableDataMapper.Update(annotation);
-
         }
 
-<<<<<<< HEAD
+
 		public Annotation GetByPostAndUser(int postid, int userid)
 		{
-			return new Annotation { };
+			return UpdatableDataMapper.GetByPostAndUser(postid,  userid);
+			
 		}
 	}
-=======
-    }
->>>>>>> 5dd3b2745ca244f5ae8659a35a2e882e0560e844
 }

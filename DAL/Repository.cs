@@ -13,10 +13,7 @@ namespace DAL
 		public IDataMapper<T> DataMapper { get; set; }
 
         public IUpdatableDataMapper<T> UpdatableDataMapper { get; set; }
-        //public Repository(IUpdatableDataMapper<T> updatabledatamapper)
-        //{
-        //    UpdatableDataMapper = updatabledatamapper;
-        //}
+
         public Repository(IDataMapper<T> dataMapper)
         {
             DataMapper = dataMapper;

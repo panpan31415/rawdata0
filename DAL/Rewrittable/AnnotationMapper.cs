@@ -10,17 +10,36 @@ namespace DAL.Rewrittable
 {
    public class AnnotationMapper : UpdatableDataMapper<Annotation>
     {
-        public AnnotationMapper(string connectionString) :base (connectionString)
+
+		public AnnotationMapper(string connectionString) :base (connectionString)
 		{
             TableName = "annotation";
             Attributes = new string[] { "body", "date", "postid", "userid"}; 
         }
 
-		//private Annotation GetByCompositeKey()
-		//{
-		//	var sql = string.Format("select {0} from {1} where postid=@postid and userid=@userid", Attributes, TableName);
-		//	var cmd = new MySqlCommand(sql); 
-		//}
+		public override Annotation GetByPostAndUser(int postid, int userid)
+		{
+			var sql = string.Format("SELECT ID, {0} from {1} WHERE postID = @postID and userID=@userID", AttributeList, TableName);
+			using (var connection = new MySqlConnection(ConnectionString))
+			{
+				connection.Open();
+				using (var cmd = new MySqlCommand(sql))
+				{
+					cmd.Parameters.AddWithValue("@postID", postid);
+					cmd.Parameters.AddWithValue("@userID", userid);
+					cmd.Connection = connection;
+					using (var reader = cmd.ExecuteReader())
+					{
+						if (reader.Read() && reader.HasRows)
+						{
+							return Map(reader);
+						}
+						return null;
+					}
+				}
+			}
+			 
+		}
 
 		public override void Insert(Annotation annotation)
         {
