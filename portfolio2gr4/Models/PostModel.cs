@@ -12,6 +12,6 @@ namespace portfolio2gr4.Models
 		public DateTime CreationDate { get; set; }
 		public int Score { get; set; }
 		public string Body { get; set; }
-		public string Title { get; set; }
+		
 	}
 }

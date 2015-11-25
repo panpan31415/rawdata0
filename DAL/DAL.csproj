@@ -71,6 +71,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ReadOnly\Answer.cs" />
+    <Compile Include="ReadOnly\AnswerMapper.cs" />
+    <Compile Include="ReadOnly\AnswerRepository.cs" />
     <Compile Include="ReadOnly\DataMapper.cs" />
     <Compile Include="ReadOnly\IDataMapper.cs" />
     <Compile Include="IIdentityField.cs" />

@@ -18,7 +18,7 @@ namespace portfolio2gr4.Controllers
 
 		public IEnumerable<QuestionModel> Get() {
 			var helper = new UrlHelper(Request);
-			return _questionRepository.GetAllPosts(1).Select(question => ModelFactory.Create(question));
+			return _questionRepository.GetAllQuestions().Select(question => ModelFactory.Create(question));
 		}
 
 		public HttpResponseMessage GetById(int id) {

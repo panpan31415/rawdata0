@@ -16,16 +16,11 @@ namespace DAL
 			Attributes = new string[] { "body", "score", "title", "creationDate", "ownerUserId" };
 		}
 
-		//public override Question GetById(int id)
-		//{
-			 
-		//}
-
 		public override Question Map(MySqlDataReader reader)
 		{
 			if (reader.HasRows && reader.Read())
 			{
-				int q_oid, q_id, q_score;
+				int q_id, q_score;
 				string q_body, q_title, q_owner;
 				DateTime q_date;
 
