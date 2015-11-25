@@ -5,10 +5,12 @@ using System.Web;
 
 namespace DAL
 {
-    public class History
+    public class History: IIdentityField
     {
+
         public int Id { get; set; }
-        public string Text { get; set; }
-        public DateTime SearchDate { get; set; }
+        public DateTime Date { get; set; }
+        public string Body { get; set; }
+        public int UserId { get; set; }
     }
 }
