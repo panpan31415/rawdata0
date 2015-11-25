@@ -34,7 +34,7 @@ namespace DAL
                         {
                             return Map(reader);
                         }
-						return null;
+						else return null;
 					}
 				}
 			}

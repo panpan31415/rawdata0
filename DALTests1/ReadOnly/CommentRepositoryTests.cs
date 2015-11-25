@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Configuration;
 using System.Collections.Generic;
 
 
@@ -14,8 +15,6 @@ namespace DAL.ReadOnly.Tests
 
         private void initializeTest()
         {
-            // I cannot use ComfigrationManager to get connection string here , so I just copyed the value from 
-            // web.config file to save time. if you want to run this test , you have to modify this connection string
             _connectionString = "server=localhost;database=stof;uid=root;pwd=panpan_7533";
             _commentMapper = new CommentMapper(_connectionString);
             _commentRepository = new CommentRepository(_commentMapper);
