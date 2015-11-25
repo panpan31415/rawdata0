@@ -9,12 +9,19 @@ using DAL.ReadOnly;
 
 namespace portfolio2gr4.Controllers
 {
-    public class CommentController: BaseApiController
+    public class CommentController : BaseApiController
     {
-		static CommentMapper dataMapper = new CommentMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
-		private CommentRepository _commentRepository = new CommentRepository(dataMapper);
+
+        private CommentRepository _commentRepository;
+        private IDataMapper<Comment> _dataMapper;
+
         // url = api/comments/{id}
-        [HttpGet]       
+        public CommentController() : base()
+        {
+            _dataMapper = new CommentMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
+            _commentRepository = new CommentRepository(_dataMapper);
+        }
+        [HttpGet]
         public CommentModel GetbyId(int id)
         {
             return ModelFactory.Create(_commentRepository.GetById(id));
@@ -24,8 +31,10 @@ namespace portfolio2gr4.Controllers
         [HttpGet]
         public IEnumerable<CommentModel> Get()
         {
-             
-             return _commentRepository.GetAll().Select(comment => ModelFactory.Create(comment));
+
+
+
+            return _commentRepository.GetAll().Select(comment => ModelFactory.Create(comment));
         }
         // url = api/comments/postid/{postid}
         [HttpGet]

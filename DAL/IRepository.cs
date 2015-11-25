@@ -8,8 +8,8 @@ namespace DAL
 {
 	public interface IRepository<T> where T : class, IIdentityField
 	{
-		IDataMapper<T> DataMapper { get; }
-		T GetById(long id);
+		IDataMapper<T> DataMapper { get; set; }
+		T GetById(int id);
 		IEnumerable<T> GetAll(int limit=10, int offset = 0);
 	}
 }
