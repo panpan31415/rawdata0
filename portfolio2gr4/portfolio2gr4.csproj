@@ -136,45 +136,28 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AnnotationsController.cs" />
-<<<<<<< HEAD
-    <Compile Include="Controllers\BaseApiController.cs" />
-    <Compile Include="Controllers\CommentController.cs" />
-    <Compile Include="Controllers\HistorysController.cs" />
-    <Compile Include="Controllers\PostsController.cs" />
-=======
     <Compile Include="Controllers\AnswersController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HistorysController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
->>>>>>> 712075e92a316a5e440f29bca16fa198a3a66827
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AnnotationModel.cs" />
-<<<<<<< HEAD
-=======
     <Compile Include="Models\AnswerModel.cs" />
->>>>>>> 712075e92a316a5e440f29bca16fa198a3a66827
     <Compile Include="Models\CommentModel.cs" />
     <Compile Include="Models\HistoryModel.cs" />
     <Compile Include="Models\ModelFactory.cs" />
     <Compile Include="Models\PostModel.cs" />
-<<<<<<< HEAD
-=======
     <Compile Include="Models\QuestionModel.cs" />
->>>>>>> 712075e92a316a5e440f29bca16fa198a3a66827
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-<<<<<<< HEAD
-    <Content Include="ClassDiagram1.cd" />
-=======
->>>>>>> 712075e92a316a5e440f29bca16fa198a3a66827
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -184,15 +167,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-<<<<<<< HEAD
-    <Folder Include="Views\BaseApi\" />
-    <Folder Include="Views\Comment\" />
-=======
     <Folder Include="Views\Answers\" />
     <Folder Include="Views\BaseApi\" />
     <Folder Include="Views\Comment\" />
     <Folder Include="Views\Question\" />
->>>>>>> 712075e92a316a5e440f29bca16fa198a3a66827
     <Folder Include="Views\Users\" />
   </ItemGroup>
   <ItemGroup>
