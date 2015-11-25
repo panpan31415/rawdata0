@@ -11,6 +11,7 @@ namespace DAL.ReadOnly
 	{
 		public CommentMapper(string connectionSting) : base(connectionSting)
 		{
+
 			TableName = "comment";
 			Attributes = new string[] { "postid", "text", "creationDate", "userid" };
 		}

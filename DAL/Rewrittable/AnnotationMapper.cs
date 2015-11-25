@@ -16,7 +16,6 @@ namespace DAL.Rewrittable
 			TableName = "annotation";
 			Attributes = new string[] { "body", "date", "postid", "userid" };
 		}
-
 		public override Annotation GetByPostAndUser(int postid, int userid)
 		{
 			var sql = string.Format("SELECT ID, {0} from {1} WHERE postID = @postID and userID=@userID", AttributeList, TableName);

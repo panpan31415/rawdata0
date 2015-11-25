@@ -1,3 +1,4 @@
+﻿
 ﻿using DAL.Rewrittable;
 using System;
 using portfolio2gr4.Models;
