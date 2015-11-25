@@ -54,16 +54,16 @@ namespace WebService.Models
 			};
 		}
 
-        public CommentModel Create(Comment comment)
-        {
-            return new CommentModel
-            {  
-                postId = comment.PostId,
-                creationDate = comment.CreationDate,
-                text = comment.Text,
-                userid = comment.Userid
-            };
-        }
+		public CommentModel Create(Comment comment)
+		{
+			return new CommentModel
+			{
+				postId = comment.PostId,
+				creationDate = comment.CreationDate,
+				text = comment.Text,
+				userid = comment.Userid
+			};
+		}
 
 		public PostModel Create(Post post)
 		{
@@ -93,7 +93,7 @@ namespace WebService.Models
 				Date = annotation.Date,
 				UserId = annotation.UserId,
 				PostId = annotation.PostId
-		
+
 			};
 		}
 		public Annotation Parse(AnnotationModel model)
@@ -107,26 +107,26 @@ namespace WebService.Models
 			};
 		}
 
-        public HistoryModel Create(History history)
-        {
-            return new HistoryModel
-            {
-                Url = _urlHelper.Link("HistoryApi", new { id = history.Id }),
-                Body = history.Body,
-                Date = history.Date,
-                UserId = history.UserId
+		public HistoryModel Create(History history)
+		{
+			return new HistoryModel
+			{
+				Url = _urlHelper.Link("HistoryApi", new { id = history.Id }),
+				Body = history.Body,
+				Date = history.Date,
+				UserId = history.UserId
 
-            };
-        }
-        public History Parse(HistoryModel model)
-        {
-            return new History
-            {
-                Body = model.Body,
-                Date = model.Date,
-                UserId = model.UserId,
-                
-            };
-        }
-    }
+			};
+		}
+		public History Parse(HistoryModel model)
+		{
+			return new History
+			{
+				Body = model.Body,
+				Date = model.Date,
+				UserId = model.UserId,
+
+			};
+		}
+	}
 }

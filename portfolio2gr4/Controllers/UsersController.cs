@@ -12,7 +12,7 @@ using System.Configuration;
 namespace portfolio2gr4.Controllers
 {
 	public class UsersController : BaseApiController
-    {
+	{
 		static UserMapper dataMapper = new UserMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
 		UserRepository _userRepository = new UserRepository(dataMapper);
 
