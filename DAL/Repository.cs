@@ -11,30 +11,21 @@ namespace DAL
 	public abstract class Repository<T> : IRepository<T> where T : class, IIdentityField
 	{
 		public IDataMapper<T> DataMapper { get; set; }
-<<<<<<< HEAD
+
         public IUpdatableDataMapper<T> UpdatableDataMapper { get; set; }
-        public Repository(IUpdatableDataMapper<T> updatabledatamapper)
-        {
-            UpdatableDataMapper = updatabledatamapper;
-        }
+        //public Repository(IUpdatableDataMapper<T> updatabledatamapper)
+        //{
+        //    UpdatableDataMapper = updatabledatamapper;
+        //}
         public Repository(IDataMapper<T> dataMapper)
         {
             DataMapper = dataMapper;
         }
-
-        public T GetById(int id)
-=======
-		public Repository(IDataMapper<T> dataMapper)
-		{
-			DataMapper = dataMapper;
-		}
-		public IUpdatableDataMapper<T> UpdatableDataMapper { get; set; }
 		public Repository(IUpdatableDataMapper<T> updatabledatamapper)
->>>>>>> 6bebcab7ec5cdc1d1b6b1914e04f8079a64ae4c5
 		{
 			UpdatableDataMapper = updatabledatamapper;
 		}
-		public T GetById(long id)
+		public T GetById(int id)
 		{
 			if (DataMapper == null) {
 				return UpdatableDataMapper.GetById(id);

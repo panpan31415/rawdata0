@@ -70,8 +70,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataMapper.cs" />
-    <Compile Include="IDataMapper.cs" />
+    <Compile Include="ReadOnly\DataMapper.cs" />
+    <Compile Include="ReadOnly\IDataMapper.cs" />
     <Compile Include="IIdentityField.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="ReadOnly\CommentMapper.cs" />
