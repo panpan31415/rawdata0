@@ -54,6 +54,30 @@ namespace WebService.Models
 			};
 		}
 
+		public QuestionModel Create(Question question) {
+			return new QuestionModel
+			{
+				Url = _urlHelper.Link("QuestionApi", new { id = question.Id }),
+				Body = question.Body,
+				Title = question.Title,
+				Score = question.Score,
+				CreationDate = question.CreationDate,
+				Owner = question.Owner
+			};
+		}
+
+		public AnswerModel Create(Answer answer)
+		{
+			return new AnswerModel
+			{
+				Url = _urlHelper.Link("AnswerApi", new { id = answer.Id }),
+				Body = answer.Body,
+				Score = answer.Score,
+				CreationDate = answer.CreationDate,
+				Owner = answer.Owner
+			};
+		}
+
 		public CommentModel Create(Comment comment)
 		{
 			return new CommentModel

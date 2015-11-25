@@ -57,5 +57,24 @@ namespace DAL
 				return DataMapper.Query(new MySqlCommand(sql));
 			}
 		}
+		public IEnumerable<T> GetAllQuestions( int limit = 10, int offset = 0)
+		{
+			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postTypeID=1 LIMIT {2} OFFSET {3} ",
+				string.Join(", ", DataMapper.Attributes),
+				DataMapper.TableName,
+				limit,
+				offset);
+			return DataMapper.Query(new MySqlCommand(sql));
+		}
+		public IEnumerable<T> GetAllAnswers(int qid, int limit = 10, int offset = 0)
+		{
+			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postTypeID=2 AND parentQuestionID={4} LIMIT {2} OFFSET {3} ",
+				string.Join(", ", DataMapper.Attributes),
+				DataMapper.TableName,
+				limit,
+				offset,
+				qid);
+			return DataMapper.Query(new MySqlCommand(sql));
+		}
 	}
 }

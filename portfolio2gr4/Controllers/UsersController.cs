@@ -25,7 +25,6 @@ namespace portfolio2gr4.Controllers
 
 		public HttpResponseMessage GetById(int id)
 		{
-
 			var helper = new UrlHelper(Request);
 			var user = _userRepository.GetById(id);
 			if (user == null)
