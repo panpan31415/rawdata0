@@ -26,7 +26,7 @@ namespace DAL
 			if (reader.HasRows && reader.Read())
 			{
 				int q_oid, q_id, q_score;
-				string q_body, q_title;
+				string q_body, q_title, q_owner;
 				DateTime q_date;
 
 				if (!reader.IsDBNull(0)) { q_id = reader.GetInt32(0); }
@@ -39,8 +39,8 @@ namespace DAL
 				else { q_title = "unknown"; }
 				if (!reader.IsDBNull(4)) { q_date = reader.GetDateTime(4); }
 				else { q_date = DateTime.MinValue; }
-				//if (!reader.IsDBNull(5)) { q_oid = reader.GetDateTime(4); }
-				//else { q_date = DateTime.MinValue; }
+				if (!reader.IsDBNull(5)) { q_owner = FetchOwnername(reader.GetInt32(5)); }
+				else { q_owner = "unknown"; }
 
 				var question = new Question
 				{
@@ -48,7 +48,8 @@ namespace DAL
 					Body = q_body,
 					Score = q_score,
 					Title = q_title,
-					CreationDate = q_date
+					CreationDate = q_date,
+					Owner = q_owner
 				};
 				return question;
 			}
