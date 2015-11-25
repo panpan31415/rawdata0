@@ -1,9 +1,0 @@
-C:\Users\panpa\Documents\GitHub\rawdata0\DALTests\bin\Debug\DALTests.dll
-C:\Users\panpa\Documents\GitHub\rawdata0\DALTests\bin\Debug\DALTests.pdb
-C:\Users\panpa\Documents\GitHub\rawdata0\DALTests\bin\Debug\DAL.dll
-C:\Users\panpa\Documents\GitHub\rawdata0\DALTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-C:\Users\panpa\Documents\GitHub\rawdata0\DALTests\bin\Debug\MySql.Data.dll
-C:\Users\panpa\Documents\GitHub\rawdata0\DALTests\bin\Debug\DAL.pdb
-C:\Users\panpa\Documents\GitHub\rawdata0\DALTests\obj\Debug\DALTests.csprojResolveAssemblyReference.cache
-C:\Users\panpa\Documents\GitHub\rawdata0\DALTests\obj\Debug\DALTests.dll
-C:\Users\panpa\Documents\GitHub\rawdata0\DALTests\obj\Debug\DALTests.pdb
