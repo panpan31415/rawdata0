@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DAL
 {
-	public class Post
+	public class Post:IIdentityField
 	{
 		public int OwnerId { get; set; }
 		public int Id { get; set; }

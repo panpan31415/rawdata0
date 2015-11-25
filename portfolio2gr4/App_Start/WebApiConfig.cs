@@ -58,10 +58,20 @@ namespace portfolio2gr4
 				defaults: new { controller = "Users", id = RouteParameter.Optional }
 				);
 
+			//config.Routes.MapHttpRoute(
+			//	name: "PostApi",
+			//	routeTemplate: "api/posts/{id}",
+			//	defaults: new { controller = "Posts", id = RouteParameter.Optional }
+			//);
 			config.Routes.MapHttpRoute(
-				name: "PostApi",
-				routeTemplate: "api/posts/{id}",
-				defaults: new { controller = "Posts", id = RouteParameter.Optional }
+				name: "QuestionApi",
+				routeTemplate: "api/questions/{id}",
+				defaults: new { controller = "Questions", id = RouteParameter.Optional }
+			);
+			config.Routes.MapHttpRoute(
+				name: "AnswersApi",
+				routeTemplate: "api/questions/{qid}/answers",
+				defaults: new { controller = "Answers", qid = RouteParameter.Optional }
 			);
 
 			config.Routes.MapHttpRoute(
@@ -71,11 +81,10 @@ namespace portfolio2gr4
 				);
 
 			config.Routes.MapHttpRoute(
-			   name: "AnnotationApiByUserAndPost",
-			   routeTemplate: "api/annotations/{postid}/{userid}",
-			   defaults: new { controller = "Annotations" }
-
-			   );
+				name: "AnnotationApiByUserAndPost",
+				routeTemplate: "api/annotations/{postid}/{userid}",
+				defaults: new { controller = "Annotations" }
+			);
 
 			config.Routes.MapHttpRoute(
 			   name: "HistoryApi",
