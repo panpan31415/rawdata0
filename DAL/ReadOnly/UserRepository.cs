@@ -8,6 +8,6 @@ namespace DAL
 {
 	public class UserRepository : Repository<User>
 	{
-		public UserRepository(IDataMapper<User> dataMapper) : base(dataMapper){ }
+		public UserRepository(IDataMapper<User> dataMapper) : base(dataMapper) { }
 	}
 }

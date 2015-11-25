@@ -12,17 +12,17 @@ using System.Web.Http.Routing;
 
 namespace portfolio2gr4.Controllers
 {
-    public class AnnotationsController : BaseApiController
-    {
-        static AnnotationMapper dataMapper = new AnnotationMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
-        AnnotationRepository _annoRepository = new AnnotationRepository(dataMapper);
+	public class AnnotationsController : BaseApiController
+	{
+		static AnnotationMapper dataMapper = new AnnotationMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
+		AnnotationRepository _annoRepository = new AnnotationRepository(dataMapper);
 
 		public IEnumerable<AnnotationModel> Get()
-        {
-            var helper = new UrlHelper(Request);
-            return _annoRepository.GetAll()
-                .Select(annotation => ModelFactory.Create(annotation));
-        } 
+		{
+			var helper = new UrlHelper(Request);
+			return _annoRepository.GetAll()
+				.Select(annotation => ModelFactory.Create(annotation));
+		}
 		public HttpResponseMessage GetByPostAndUser(int postid, int userid)
 		{
 			var helper = new UrlHelper(Request);
@@ -37,39 +37,39 @@ namespace portfolio2gr4.Controllers
 				, ModelFactory.Create(annotation));
 		}
 
-        public HttpResponseMessage GetById(int id)
-        {
-            var helper = new UrlHelper(Request);
-            var annotation = _annoRepository.GetById(id);
-            if (annotation == null)
-            {
-                return Request.CreateResponse(HttpStatusCode.NotFound);
+		public HttpResponseMessage GetById(int id)
+		{
+			var helper = new UrlHelper(Request);
+			var annotation = _annoRepository.GetById(id);
+			if (annotation == null)
+			{
+				return Request.CreateResponse(HttpStatusCode.NotFound);
 
-            }
-            return Request.CreateResponse(
-                HttpStatusCode.OK
-                , ModelFactory.Create(annotation));
+			}
+			return Request.CreateResponse(
+				HttpStatusCode.OK
+				, ModelFactory.Create(annotation));
 
-        }
-        public HttpResponseMessage Post([FromBody] AnnotationModel model)
-        {
-            var helper = new UrlHelper(Request);
-            var annotation = ModelFactory.Parse(model);
-            _annoRepository.Insert(annotation);
-            return Request.CreateResponse(
-                HttpStatusCode.Created
-                , ModelFactory.Create(annotation));
-        }
+		}
+		public HttpResponseMessage Post([FromBody] AnnotationModel model)
+		{
+			var helper = new UrlHelper(Request);
+			var annotation = ModelFactory.Parse(model);
+			_annoRepository.Insert(annotation);
+			return Request.CreateResponse(
+				HttpStatusCode.Created
+				, ModelFactory.Create(annotation));
+		}
 
 
-        public HttpResponseMessage Put(int id, [FromBody] AnnotationModel model)
-        {
-            var helper = new UrlHelper(Request);
-            var annotation = ModelFactory.Parse(model);
-            annotation.Id = id;
-            _annoRepository.Updation(annotation);
-            return Request.CreateResponse(HttpStatusCode.OK);
-        }
+		public HttpResponseMessage Put(int id, [FromBody] AnnotationModel model)
+		{
+			var helper = new UrlHelper(Request);
+			var annotation = ModelFactory.Parse(model);
+			annotation.Id = id;
+			_annoRepository.Updation(annotation);
+			return Request.CreateResponse(HttpStatusCode.OK);
+		}
 
-    }
+	}
 }

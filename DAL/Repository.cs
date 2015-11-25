@@ -12,31 +12,32 @@ namespace DAL
 	{
 		public IDataMapper<T> DataMapper { get; set; }
 
-        public IUpdatableDataMapper<T> UpdatableDataMapper { get; set; }
+		public IUpdatableDataMapper<T> UpdatableDataMapper { get; set; }
 
-        public Repository(IDataMapper<T> dataMapper)
-        {
-            DataMapper = dataMapper;
-        }
+		public Repository(IDataMapper<T> dataMapper)
+		{
+			DataMapper = dataMapper;
+		}
 		public Repository(IUpdatableDataMapper<T> updatabledatamapper)
 		{
 			UpdatableDataMapper = updatabledatamapper;
 		}
 		public T GetById(int id)
 		{
-			if (DataMapper == null) {
+			if (DataMapper == null)
+			{
 				return UpdatableDataMapper.GetById(id);
 			}
 			else
 			{
 				return DataMapper.GetById(id);
 			}
-				
+
 		}
 
 		public IEnumerable<T> GetAll(int limit = 10, int offset = 0)
 		{
-			if (DataMapper == null )
+			if (DataMapper == null)
 			{
 				var sql = string.Format("SELECT ID, {0} FROM {1} LIMIT {2} OFFSET {3}",
 				string.Join(", ", UpdatableDataMapper.Attributes),
@@ -45,14 +46,15 @@ namespace DAL
 				offset);
 				return UpdatableDataMapper.Query(new MySqlCommand(sql));
 			}
-			else { 
-			//somehow we need to choose between DataMapper and UpdatableDataMapper
-			var sql = string.Format("SELECT ID, {0} FROM {1} LIMIT {2} OFFSET {3}",
-				string.Join(", ", DataMapper.Attributes),
-				DataMapper.TableName,
-				limit,
-				offset);
-			return DataMapper.Query(new MySqlCommand(sql));
+			else
+			{
+				//somehow we need to choose between DataMapper and UpdatableDataMapper
+				var sql = string.Format("SELECT ID, {0} FROM {1} LIMIT {2} OFFSET {3}",
+					string.Join(", ", DataMapper.Attributes),
+					DataMapper.TableName,
+					limit,
+					offset);
+				return DataMapper.Query(new MySqlCommand(sql));
 			}
 		}
 	}

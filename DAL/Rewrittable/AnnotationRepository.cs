@@ -8,25 +8,24 @@ using DAL.ReadOnly;
 
 namespace DAL.Rewrittable
 {
-    public class AnnotationRepository : Repository<Annotation>
-    {
-        public AnnotationRepository(IUpdatableDataMapper<Annotation> dataMapper) : base(dataMapper) { }
+	public class AnnotationRepository : Repository<Annotation>
+	{
+		public AnnotationRepository(IUpdatableDataMapper<Annotation> dataMapper) : base(dataMapper) { }
 
-        public void Insert(Annotation annotation)
-        {
-            UpdatableDataMapper.Insert(annotation);
-        }
+		public void Insert(Annotation annotation)
+		{
+			UpdatableDataMapper.Insert(annotation);
+		}
 
-        public void Updation(Annotation annotation)
-        {
-            UpdatableDataMapper.Update(annotation);
-        }
-
+		public void Updation(Annotation annotation)
+		{
+			UpdatableDataMapper.Update(annotation);
+		}
 
 		public Annotation GetByPostAndUser(int postid, int userid)
 		{
-			return UpdatableDataMapper.GetByPostAndUser(postid,  userid);
-			
+			return UpdatableDataMapper.GetByPostAndUser(postid, userid);
+
 		}
 	}
 }

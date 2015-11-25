@@ -7,23 +7,21 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-	public class UserMapper : DataMapper<User> 
+	public class UserMapper : DataMapper<User>
 	{
-		public UserMapper(string connectionString) :base (connectionString)
+		public UserMapper(string connectionString) : base(connectionString)
 		{
 			TableName = "user";
-			Attributes = new string[] { "displayName", "websiteUrl", "reputation", "creationDate",  "age", "upVotes", "downVotes", "locationId" };
+			Attributes = new string[] { "displayName", "websiteUrl", "reputation", "creationDate", "age", "upVotes", "downVotes", "locationId" };
 		}
- 
 
 		public override User Map(MySqlDataReader reader)
 		{
-			if (reader.HasRows && reader.Read()) 
+			if (reader.HasRows && reader.Read())
 			{
 				int uid, u_rep, u_age, u_up, u_down;
 				string u_name, u_websiteUrl, location;
 				DateTime u_creationDate;
-
 				if (!reader.IsDBNull(0)) { uid = reader.GetInt32(0); }
 				else { uid = 0; }
 				if (!reader.IsDBNull(1)) { u_name = reader.GetString(1); }

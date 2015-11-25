@@ -8,14 +8,14 @@ using System.Web;
 
 namespace DAL
 {
-    public class HistoryRepository : Repository<History>
-    {
-        public HistoryRepository(IUpdatableDataMapper<History> dataMapper) : base(dataMapper) { }
+	public class HistoryRepository : Repository<History>
+	{
+		public HistoryRepository(IUpdatableDataMapper<History> dataMapper) : base(dataMapper) { }
 
-        public void Insert(History history)
-        {
-            UpdatableDataMapper.Insert(history);
-        }
+		public void Insert(History history)
+		{
+			UpdatableDataMapper.Insert(history);
+		}
 
-    }
+	}
 }

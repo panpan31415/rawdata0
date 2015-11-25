@@ -10,6 +10,6 @@ namespace DAL
 	{
 		IDataMapper<T> DataMapper { get; set; }
 		T GetById(int id);
-		IEnumerable<T> GetAll(int limit=10, int offset = 0);
+		IEnumerable<T> GetAll(int limit = 10, int offset = 0);
 	}
 }

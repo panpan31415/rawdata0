@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Rewrittable
 {
-    public interface IUpdatableDataMapper<T> : IDataMapper<T> where T : class, IIdentityField
-    {
-        void Insert(T entity);
-        void Update(T entity);
+	public interface IUpdatableDataMapper<T> : IDataMapper<T> where T : class, IIdentityField
+	{
+		void Insert(T entity);
+		void Update(T entity);
 		T GetByPostAndUser(int p, int u);
-    }
+	}
 }
