@@ -14,7 +14,7 @@ namespace DAL.Rewrittable.Tests
 
         private void initializeTest()
         {
-            _annotationMaper = new AnnotationMapper("server=localhost;database=stof;uid=root;pwd=panpan_7533");
+            _annotationMaper = new AnnotationMapper("server=wt-220.ruc.dk;database=raw4;uid=raw4;pwd=raw4");
             _annotationRepository = new AnnotationRepository(_annotationMaper);
         }
 

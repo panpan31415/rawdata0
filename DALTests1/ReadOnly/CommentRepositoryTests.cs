@@ -15,7 +15,7 @@ namespace DAL.ReadOnly.Tests
 
 		private void initializeTest()
 		{
-			_connectionString = "server=localhost;database=stof;uid=root;pwd=panpan_7533";
+			_connectionString = "server=wt-220.ruc.dk;database=raw4;uid=raw4;pwd=raw4";
 			_commentMapper = new CommentMapper(_connectionString);
 			_commentRepository = new CommentRepository(_commentMapper);
 		}
@@ -32,9 +32,9 @@ namespace DAL.ReadOnly.Tests
 			Assert.IsTrue(comment.Id == 14585379 && comment.PostId == 11129343 && comment.Userid == 675502);
 		}
 		/// <summary>
-		/// 1. for a specified postid = 225026, should return 3 comments .
+		/// 1. for a specified postid = 392022, should return 6 comments .
 		/// 2. check the id for each comment to see if it matches prequeried result with the given post id        
-		///    the ids are : 92449,46049005,46049006
+		///    the ids are : 219181,219191,219201,219253,5094375,40717618
 		/// the test result may different depending on your local database sample 
 		/// </summary>
 		/// 
@@ -42,29 +42,32 @@ namespace DAL.ReadOnly.Tests
 		public void getByPostIdTest_ReturnQuantity()
 		{
 			initializeTest();
-			var emume_comments = _commentRepository.getByPostId(225026);
+			var emume_comments = _commentRepository.getByPostId(392022);
 			int actual = 0;
 			foreach (var e in emume_comments) { actual++; }
-			Assert.AreEqual(3, actual);
+			Assert.AreEqual(6, actual);
 		}
 		[TestMethod()]
 		public void getByPostIdTest_CommentId()
 		{
 			initializeTest();
 			HashSet<int> ids = new HashSet<int>();
-			ids.Add(92449);
-			ids.Add(46049005);
-			ids.Add(46049006);
+			ids.Add(219181);
+			ids.Add(219191);
+			ids.Add(219201);
+			ids.Add(219253);
+			ids.Add(5094375);
+			ids.Add(40717618);
 			HashSet<int> actualIds = new HashSet<int>();
-			var emume_comments = _commentRepository.getByPostId(225026);
+			var emume_comments = _commentRepository.getByPostId(392022);
 			bool expected = false;
 			foreach (var e in emume_comments) { expected = ids.Contains(e.Id); }
 			Assert.IsTrue(expected);
 		}
 		/// <summary>
 		/// the given userid = 23153
-		/// expected returned 6 comments
-		/// their ids are :   92449,46049005,46049006,451359,451367,451373
+		/// expected returned 4 comments
+		/// their ids are :   92449,451359,451367,451373
 		/// 
 		/// </summary>
 		[TestMethod()]
@@ -73,8 +76,6 @@ namespace DAL.ReadOnly.Tests
 			initializeTest();
 			HashSet<int> ids = new HashSet<int>();
 			ids.Add(92449);
-			ids.Add(46049005);
-			ids.Add(46049006);
 			ids.Add(451359);
 			ids.Add(451367);
 			ids.Add(451373);
@@ -83,7 +84,7 @@ namespace DAL.ReadOnly.Tests
 			bool expected = false;
 			int expectedQuantity = 0;
 			foreach (var e in emume_comments) { expected = ids.Contains(e.Id); expectedQuantity++; }
-			Assert.IsTrue(expected && expectedQuantity == 6);
+			Assert.IsTrue(expected && expectedQuantity == 4);
 		}
 		/// <summary>
 		/// give keyword = "english";

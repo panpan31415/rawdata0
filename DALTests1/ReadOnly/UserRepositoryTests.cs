@@ -1,12 +1,20 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DALTests1.ReadOnly
+namespace DAL.Tests
 {
-	class UserRepositoryTests
+	[TestClass()]
+	public class UserRepositoryTests
 	{
+		[TestMethod()]
+		public void UserRepositoryTest()
+		{
+			Assert.Fail();
+		}
 	}
 }
