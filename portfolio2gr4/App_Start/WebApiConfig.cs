@@ -88,8 +88,9 @@ namespace portfolio2gr4
 
 			config.Routes.MapHttpRoute(
 			   name: "HistoryApi",
-			   routeTemplate: "api/historys/{id}",
-			   defaults: new { controller = "Historys", id = RouteParameter.Optional }
+			   routeTemplate: "api/users/{userid}/historys",
+			   //routeTemplate: "api/historys/{id}",
+			   defaults: new { controller = "Historys", }
 			  );
 			config.Routes.MapHttpRoute(
 				name: "DefaultApi",
