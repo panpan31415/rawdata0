@@ -18,10 +18,10 @@ namespace DAL
 
 		public override User Map(MySqlDataReader reader)
 		{
-			if (reader.HasRows && reader.Read())
+			if (reader.HasRows && reader.Read()) 
 			{
-				int uid, u_rep, u_age, u_up, u_down, u_loc;
-				string u_name, u_websiteUrl;
+				int uid, u_rep, u_age, u_up, u_down;
+				string u_name, u_websiteUrl, location;
 				DateTime u_creationDate;
 
 				if (!reader.IsDBNull(0)) { uid = reader.GetInt32(0); }
@@ -40,9 +40,8 @@ namespace DAL
 				else { u_up = 0; }
 				if (!reader.IsDBNull(7)) { u_down = reader.GetInt32(7); }
 				else { u_down = 0; }
-				if (!reader.IsDBNull(8)) { u_loc = reader.GetInt32(8); }
-				else { u_loc = 0; }
-
+				if (!reader.IsDBNull(8)) { location = FetchLocation(reader.GetInt32(8)); }
+				else { location = "unknown"; }
 				var user = new User
 				{
 					Id = uid,
@@ -53,7 +52,7 @@ namespace DAL
 					Age = u_age,
 					UpVotes = u_up,
 					DownVotes = u_down,
-					Location = FetchLocation(u_loc)
+					Location = location
 				};
 				return user;
 			}
@@ -76,7 +75,7 @@ namespace DAL
 						string loc = reader.GetString(0);
 						return loc;
 					}
-					return "unknown";
+					return "not found";
 				}
 			}
 		}

@@ -30,25 +30,21 @@ namespace DAL
 					cmd.Connection = connection;
 					using (var reader = cmd.ExecuteReader())
 					{
-                        if (reader.Read() && reader.HasRows)
-                        {
-                            return Map(reader);
-                        }
-						return null;
+						return Map(reader);
 					}
 				}
 			}
 		}
 
-		public IEnumerable<T> Query( MySqlCommand command)
+		public IEnumerable<T> Query(MySqlCommand command)
 		{
 			using (var connection = new MySqlConnection(ConnectionString))
 			{
-				connection.Open(); 
+				connection.Open();
 				command.Connection = connection;
 				using (var reader = command.ExecuteReader())
 				{
-					while (reader.Read()&&reader.HasRows)
+					while (reader.HasRows)
 					{
 						var element = Map(reader);
 						if (element == null)
