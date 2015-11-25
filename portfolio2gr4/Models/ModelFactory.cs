@@ -64,17 +64,6 @@ namespace WebService.Models
                 userid = comment.Userid
             };
         }
-        // we dont need this method because comment is only read only. 
-        //public Comment Parse(CommentModel model)
-        //{
-        //    return new Comment
-        //    {
-        //        userid = model.userid,
-        //        creationDate = model.creationDate,
-        //        postId = model.postId,
-        //        text = model.text
-        //    };
-        //}
 
 		public PostModel Create(Post post)
 		{
@@ -117,5 +106,27 @@ namespace WebService.Models
 				PostId = model.PostId
 			};
 		}
-	}
+
+        public HistoryModel Create(History history)
+        {
+            return new HistoryModel
+            {
+                Url = _urlHelper.Link("HistoryApi", new { id = history.Id }),
+                Body = history.Body,
+                Date = history.Date,
+                UserId = history.UserId
+
+            };
+        }
+        public History Parse(HistoryModel model)
+        {
+            return new History
+            {
+                Body = model.Body,
+                Date = model.Date,
+                UserId = model.UserId,
+                
+            };
+        }
+    }
 }

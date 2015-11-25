@@ -7,8 +7,9 @@ namespace portfolio2gr4.Models
 {
     public class HistoryModel
     {
-        public int Id { get; set; }
-        public string Text { get; set; }
-        public DateTime SearchDate { get; set; }
+        public string Url { get; set; }
+        public DateTime Date { get; set; }
+        public string Body { get; set; }
+        public int UserId { get; set; }
     }
 }
