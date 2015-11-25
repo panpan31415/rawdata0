@@ -1,14 +1,18 @@
-﻿using DAL;
+﻿using DAL.Rewrittable;
 using System;
+using portfolio2gr4.Models;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Routing;
+using DAL;
 
 namespace portfolio2gr4.Controllers
 {
-    public class HistorysController : ApiController
+    public class HistorysController : BaseApiController
     {
         static HistoryMapper dataMapper = new HistoryMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
         HistoryRepository _hisRepository = new HistoryRepository(dataMapper);
