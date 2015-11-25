@@ -59,7 +59,10 @@ namespace WebService.Models
 			{
 				Url = _urlHelper.Link("QuestionApi", new { id = question.Id }),
 				Body = question.Body,
-				Score = question.Score
+				Title = question.Title,
+				Score = question.Score,
+				CreationDate = question.CreationDate,
+				Owner = question.Owner
 			};
 		}
 

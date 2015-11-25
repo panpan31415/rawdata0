@@ -55,6 +55,26 @@ namespace DAL
 			return null;
 		}
 
-		private string 
+		private string FetchOwnername(int id)
+		{
+			using (var connection = new MySqlConnection(ConnectionString))
+			{
+				connection.Open();
+				var cmd = new MySqlCommand();
+				cmd.Connection = connection;
+				cmd.CommandText = "select displayName from user where  id= @ID";
+				cmd.Parameters.AddWithValue("@ID", id);
+				using (var reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						string uname = reader.GetString(0);
+						return uname;
+					}
+					return "unknown";
+				}
+			}
+		}
+
 	}
 }

@@ -7,7 +7,7 @@ namespace DAL
 {
 	public class Post:IIdentityField
 	{
-		public int OwnerId { get; set; }
+		public string Owner { get; set; }
 		public int Id { get; set; }
 		public DateTime CreationDate { get; set; }
 		public int Score { get; set; }

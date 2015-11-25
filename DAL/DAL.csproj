@@ -88,7 +88,6 @@
     <Compile Include="ReadOnly\Comment.cs" />
     <Compile Include="ReadOnly\CommentRepository.cs" />
     <Compile Include="ReadOnly\Post.cs" />
-    <Compile Include="ReadOnly\PostRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReadOnly\User.cs" />
     <Compile Include="Rewrittable\History.cs" />

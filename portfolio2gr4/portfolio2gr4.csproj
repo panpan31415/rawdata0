@@ -140,7 +140,6 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CommentController.cs" />
     <Compile Include="Controllers\HistorysController.cs" />
-    <Compile Include="Controllers\PostsController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
