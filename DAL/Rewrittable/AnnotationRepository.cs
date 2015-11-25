@@ -23,5 +23,9 @@ namespace DAL.Rewrittable
 
 		}
 
+		public Annotation GetByPostAndUser(int postid, int userid)
+		{
+			return new Annotation { };
+		}
 	}
 }

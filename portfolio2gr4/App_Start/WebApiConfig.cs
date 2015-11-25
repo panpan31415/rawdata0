@@ -72,8 +72,8 @@ namespace portfolio2gr4
 
 			config.Routes.MapHttpRoute(
 			   name: "AnnotationApiByUserAndPost",
-			   routeTemplate: "api/annotations/postId={postid}&userId={userid}",
-			   defaults: new { controller = "Annotations", postid = RouteParameter.Optional, userid = RouteParameter.Optional }
+			   routeTemplate: "api/annotations/{postid}/{userid}",
+			   defaults: new { controller = "Annotations" }
 
 			   );
 
