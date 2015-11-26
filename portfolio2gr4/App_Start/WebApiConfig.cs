@@ -21,9 +21,9 @@ namespace portfolio2gr4
 			);
 
 			config.Routes.MapHttpRoute(
-			name: "QuestionKeywordApi",
-			routeTemplate: "api/questions/GetByKey/{keywords}",
-			defaults: new { controller = "Questions" }
+				name: "QuestionKeywordApi",
+				routeTemplate: "api/questions/GetByKey/{keywords}",
+				defaults: new { controller = "Questions" }
 			);
 
 			config.Routes.MapHttpRoute(
@@ -72,6 +72,7 @@ namespace portfolio2gr4
 			   //routeTemplate: "api/historys/{id}",
 			   defaults: new { controller = "Historys", }
 			  );
+
 			config.Routes.MapHttpRoute(
 				name: "DefaultApi",
 				routeTemplate: "api/{controller}/{id}",
