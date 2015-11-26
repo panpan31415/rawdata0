@@ -78,14 +78,15 @@ namespace WebService.Models
 			};
 		}
 
+		
 		public CommentModel Create(Comment comment)
 		{
 			return new CommentModel
 			{
-				postId = comment.PostId,
+				//postId = comment.PostId,
 				creationDate = comment.CreationDate,
 				text = comment.Text,
-				userid = comment.Userid
+				//userid = comment.Userid
 			};
 		}
 

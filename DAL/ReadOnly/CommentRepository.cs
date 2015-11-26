@@ -9,7 +9,10 @@ namespace DAL.ReadOnly
 {
 	public class CommentRepository : Repository<Comment>
 	{
-		public int Limit { get; set; }
+		public CommentRepository(IDataMapper<Comment> dataMapper) : base(dataMapper) { }
+
+
+		/*public int Limit { get; set; }
 		public int Offset { get; set; }
 		public string ConnectionString { get; set; }
 		public CommentRepository(IDataMapper<Comment> commentMapper) : base(commentMapper)
@@ -47,7 +50,7 @@ namespace DAL.ReadOnly
 		{
 			sql += " limit " + Limit + " offset " + Offset + " ;";
 			return DataMapper.Query(new MySqlCommand(sql));
-		}
+		}*/
 
 	}
 

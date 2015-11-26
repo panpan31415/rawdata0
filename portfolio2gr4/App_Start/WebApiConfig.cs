@@ -9,7 +9,7 @@ namespace portfolio2gr4
 			// Web API configuration and services
 			// Web API routes
 			//get a singal comment by id , or return all comments
-			config.Routes.MapHttpRoute(
+		/*	config.Routes.MapHttpRoute(
 				name: "CommentApi",
 				routeTemplate: "api/comments/{id}",
 				defaults: new
@@ -17,8 +17,8 @@ namespace portfolio2gr4
 					controller = "Comment",
 					id = RouteParameter.Optional
 				}
-				);
-			config.Routes.MapHttpRoute(
+				);*/
+			/*config.Routes.MapHttpRoute(
 				name: "Comment_userid_Api",
 				routeTemplate: "api/comments/userid/{userid}",
 				defaults: new
@@ -49,7 +49,7 @@ namespace portfolio2gr4
 				{
 					controller = "Comment"
 				}
-				);
+				);*/
 
 			config.MapHttpAttributeRoutes();
 			config.Routes.MapHttpRoute(
@@ -72,6 +72,18 @@ namespace portfolio2gr4
 				name: "AnswerApi",
 				routeTemplate: "api/questions/{qid}/answers",
 				defaults: new { controller = "Answers", qid = RouteParameter.Optional }
+			);
+
+			config.Routes.MapHttpRoute(
+				name: "CommentApi",
+				routeTemplate: "api/questions/{postid}/comments",
+				defaults: new { controller = "Comments", qid = RouteParameter.Optional }
+			);
+
+			config.Routes.MapHttpRoute(
+				name: "CommentApi",
+				routeTemplate: "api/answers/{postid}/comments",
+				defaults: new { controller = "Comments", qid = RouteParameter.Optional }
 			);
 
 			config.Routes.MapHttpRoute(
