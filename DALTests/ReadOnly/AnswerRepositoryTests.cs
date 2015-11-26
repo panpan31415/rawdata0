@@ -36,7 +36,7 @@ namespace DAL.ReadOnly.Tests
 		/// parentid = 263952;
 		/// </summary>
 		[TestMethod()]
-		public void GetById()
+		public void GetByIdTest()
 		{
 			initilizeTest();
 			int expected = 263952;
@@ -44,5 +44,27 @@ namespace DAL.ReadOnly.Tests
 			int actual = answer.ParentId;
             Assert.AreEqual(expected, actual);
 		}
+
+		/// <summary>
+		/// given postid = 263952
+		/// expected answerid = 264905,266427,271436,292079
+		/// expected quantity = 4
+		/// </summary>
+		[TestMethod()]
+		public void GetByPostTest()
+		{
+			initilizeTest();
+			HashSet<int> expected = new HashSet<int>();
+			expected.Add(264905);
+			expected.Add(266427);
+			expected.Add(271436);
+			expected.Add(292079);
+			var answers = answerRepository.GetByPost(263952);
+			bool actual = false;
+			foreach (var a in answers) { actual = expected.Contains(a.Id); }
+			Assert.IsTrue(actual && (answers.Count()==4));
+		}
+
+
 	}
 }

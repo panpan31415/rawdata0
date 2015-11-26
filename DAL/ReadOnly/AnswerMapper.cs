@@ -37,7 +37,7 @@ namespace DAL.ReadOnly
 				else { a_owner = "unknown"; }
 
 				var Answer = new Answer
-				{
+				{					
 					Id = a_id,
 					Body = a_body,
 					Score = a_score,
