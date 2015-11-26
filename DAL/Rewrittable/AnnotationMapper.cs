@@ -68,7 +68,7 @@ namespace DAL.Rewrittable
 
 		public override Annotation Map(MySqlDataReader reader)
 		{
-			if (reader.HasRows && reader.Read())
+			if (reader.HasRows&&reader.Read())
 			{
 				int a_id, a_postId, a_userId;
 				string a_body;

@@ -55,7 +55,7 @@ namespace DAL.Rewrittable.Tests
 			Annotation expected = new Annotation
 			{
 				Id = id,
-				UserId=userid,
+				UserId = userid,
 				PostId = postid,
 				Body = "annotation unit test , postid = " + postid + " userid = " + userid,
 				Date = DateTime.Now
