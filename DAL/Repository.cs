@@ -35,7 +35,26 @@ namespace DAL
 
 		}
 
-		
+		public IEnumerable<T> GetAllQuestionsByKey(string key, int limit = 10, int offset = 0)
+		{ 
+			string[] stringSeparators = new string[] { " ", "," };
+			string[] words = key.Split(stringSeparators, StringSplitOptions.None);
+			string[] parsedWords = words.Select(word => "'%" + word + "%'").ToArray();
+			var sqlWhere = "WHERE body like " + parsedWords[0];
+			var w_list = new List<string>(parsedWords);
+			w_list.RemoveAt(0);
+			parsedWords = w_list.Select(word => "AND body like " + word).ToArray();
+
+			var sql = string.Format("SELECT ID, {0} FROM {1} {2} {5} LIMIT {3} OFFSET {4}",
+					string.Join(", ", DataMapper.Attributes),
+					DataMapper.TableName,
+					sqlWhere,
+					limit,
+					offset,
+					string.Join(" ", parsedWords)
+			);
+			return DataMapper.Query(new MySqlCommand(sql));
+		}
 
 		public IEnumerable<T> GetAll(int limit = 10, int offset = 0)
 		{
