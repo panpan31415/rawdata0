@@ -17,11 +17,29 @@ namespace portfolio2gr4.Controllers
 		static QuestionMapper dataMapper = new QuestionMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
 		QuestionRepository _questionRepository = new QuestionRepository(dataMapper);
 
-		public IEnumerable<QuestionModel> Get(int limit, int page) {
-			if (limit > 100) limit = 10;
-			int offset = page * limit;
+		public HttpResponseMessage Get(int size, int page) {
 			var helper = new UrlHelper(Request);
-			return _questionRepository.GetAllQuestions(limit, offset).Select(question => ModelFactory.Create(question));
+			if (size > 100) size = 10;
+			int offset = page * size;
+			int next_page = page;
+			int prev_page = page;
+			//need to count max pages from total results and implement that
+			if (page < 1) { prev_page = 0; } else { prev_page--; }
+			next_page++;
+
+			var prev = helper.Link("QuestionApi", new { size = size, page = prev_page }).ToString();
+			var next = helper.Link("QuestionApi", new { size=size, page=next_page  });
+
+			var response =  Request
+				.CreateResponse(
+				HttpStatusCode.OK,
+				_questionRepository
+				.GetAllQuestions(size, offset)
+				.Select(question => ModelFactory.Create(question)))
+				;
+			response.Headers.Add("next-page", next);
+			response.Headers.Add("prev-page", prev);
+			return response;
 		}
 
 		[AcceptVerbs("GET", "HEAD")]
