@@ -1,18 +1,45 @@
-﻿using System.Collections.Generic;
-using DAL;
-using portfolio2gr4.Models;
+﻿using DAL.Rewrittable;
 using System;
-using System.Web.Mvc;
-using System.Linq;
+using portfolio2gr4.Models;
+using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using System.Web.Http.Routing;
+using DAL;
 using DAL.ReadOnly;
 
 namespace portfolio2gr4.Controllers
 {
-	public class CommentController : BaseApiController
+	public class CommentsController : BaseApiController
 	{
+
+		static CommentMapper dataMapper = new CommentMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
+		CommentRepository _commentRepository = new CommentRepository(dataMapper);
+
+		public HttpResponseMessage GetById(int postid)
+		{
+			var helper = new UrlHelper(Request);
+			var comment = _commentRepository.GetById(postid);
+			if (comment == null)
+			{
+				return Request.CreateResponse(HttpStatusCode.NotFound);
+
+			}
+			return Request.CreateResponse(
+				HttpStatusCode.OK
+				, ModelFactory.Create(comment));
+
+		}
+
+		//panpan code
+		/*private CommentRepository _commentRepository;		
+=======
 		
 		private CommentRepository _commentRepository;		
+>>>>>>> f2d9665d428ba2efa20d18e7d2b05f9198ad51f1:portfolio2gr4/Controllers/CommentController.cs
 		public CommentController() : base()
 		{
              IDataMapper<Comment> _dataMapper = new CommentMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
@@ -56,6 +83,6 @@ namespace portfolio2gr4.Controllers
 		public IEnumerable<CommentModel> GetByCreationDate(string creationdate)
 		{
 			return _commentRepository.getBycreationDate(DateTime.Parse(creationdate)).Select(comment => ModelFactory.Create(comment));
-		}
+		}*/
 	}
 }

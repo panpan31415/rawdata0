@@ -13,38 +13,54 @@ namespace DAL.ReadOnly
 		{
 
 			TableName = "comment";
-			Attributes = new string[] { "postid", "text", "creationDate", "userid" };
+			Attributes = new string[] { "text", "creationDate" };
+		}
+		public override Comment GetById(int postid)
+		{
+			var sql = string.Format("SELECT postID, {0} from {1} WHERE postID = @postID", AttributeList, TableName);
+			using (var connection = new MySqlConnection(ConnectionString))
+			{
+				connection.Open();
+				using (var cmd = new MySqlCommand(sql))
+				{
+					cmd.Parameters.AddWithValue("@postID", postid);
+					cmd.Connection = connection;
+					using (var reader = cmd.ExecuteReader())
+					{
+						return Map(reader);
+					}
+				}
+			}
 		}
 
 		public override Comment Map(MySqlDataReader reader)
 		{
 			if (reader.HasRows && reader.Read())
 			{
-				int id = 0;
-				int postId = 0;
-				string text = "no text";
-				DateTime creationDate = DateTime.Now;
-				int userid = 0;
-				if (!reader.IsDBNull(0))
-					id = reader.GetInt32(0);
-				if (!reader.IsDBNull(1))
-					postId = reader.GetInt32(1);
-				if (!reader.IsDBNull(2))
-					text = reader.GetString(2);
-				if (!reader.IsDBNull(3))
-					creationDate = reader.GetDateTime(3);
-				if (!reader.IsDBNull(4))
-					userid = reader.GetInt32(4);
-				return new Comment
+				
+				string a_body;
+				DateTime a_date;
+
+
+				
+				if (!reader.IsDBNull(1)) { a_body = reader.GetString(1); }
+				else { a_body = "unknown"; }
+				if (!reader.IsDBNull(2)) { a_date = reader.GetDateTime(2); }
+				else { a_date = DateTime.Now; }
+				
+				var comment = new Comment
 				{
-					Id = id,
-					PostId = postId,
-					Text = text,
-					CreationDate = creationDate,
-					Userid = userid,
+					
+					Text = a_body,
+					CreationDate = a_date,
+
+			
+
 				};
+				return comment;
 			}
-			else return null;
+			return null;
 		}
+
 	}
 }
