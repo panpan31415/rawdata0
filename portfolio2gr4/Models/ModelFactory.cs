@@ -54,7 +54,8 @@ namespace WebService.Models
 			};
 		}
 
-		public QuestionModel Create(Question question) {
+		public QuestionModel Create(Question question)
+		{
 			return new QuestionModel
 			{
 				Url = _urlHelper.Link("QuestionApi", new { id = question.Id }),
@@ -82,6 +83,7 @@ namespace WebService.Models
 		{
 			return new CommentModel
 			{
+				Url = _urlHelper.Link("CommentApi", new { id = comment.Id }),
 				postId = comment.PostId,
 				creationDate = comment.CreationDate,
 				text = comment.Text,
