@@ -22,7 +22,7 @@ namespace portfolio2gr4
 
 			config.Routes.MapHttpRoute(
 			name: "QuestionKeywordApi",
-			routeTemplate: "api/questions/{action}/{keywords}",
+			routeTemplate: "api/questions/GetByKey/{keywords}",
 			defaults: new { controller = "Questions" }
 			);
 
@@ -40,7 +40,7 @@ namespace portfolio2gr4
 
 			config.Routes.MapHttpRoute(
 				name: "AnswersCommentApi",
-				routeTemplate: "api/questions/{pid}/answers/{pid}/comments",
+				routeTemplate: "api/questions/{qid}/answers/{pid}/comments",
 				defaults: new { controller = "Comments", qid = RouteParameter.Optional }
 			);
 
