@@ -18,17 +18,21 @@ namespace portfolio2gr4.Controllers
 		static HistoryMapper dataMapper = new HistoryMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
 		HistoryRepository _hisRepository = new HistoryRepository(dataMapper);
 
-		public IEnumerable<HistoryModel> Get()
-		{
-			var helper = new UrlHelper(Request);
-			return _hisRepository.GetAll()
-				.Select(history => ModelFactory.Create(history));
-		}
 
-		public HttpResponseMessage GetById(int id)
+		/*	static HistoryMapper dataMapper = new HistoryMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
+			HistoryRepository _hisRepository = new HistoryRepository(dataMapper);
+
+			public IEnumerable<HistoryModel> Get()
+			{
+				var helper = new UrlHelper(Request);
+				return _hisRepository.GetAll()
+					.Select(history => ModelFactory.Create(history));
+			}*/
+
+		public HttpResponseMessage GetById(int userid)
 		{
 			var helper = new UrlHelper(Request);
-			var history = _hisRepository.GetById(id);
+			var history = _hisRepository.GetById(userid);
 			if (history == null)
 			{
 				return Request.CreateResponse(HttpStatusCode.NotFound);
@@ -39,7 +43,7 @@ namespace portfolio2gr4.Controllers
 				, ModelFactory.Create(history));
 
 		}
-		public HttpResponseMessage Post([FromBody] HistoryModel model)
+		/*public HttpResponseMessage Post([FromBody] HistoryModel model)
 		{
 			var helper = new UrlHelper(Request);
 			var history = ModelFactory.Parse(model);
@@ -47,7 +51,7 @@ namespace portfolio2gr4.Controllers
 			return Request.CreateResponse(
 				HttpStatusCode.Created
 				, ModelFactory.Create(history));
-		}
+		}*/
 
 	}
 }
