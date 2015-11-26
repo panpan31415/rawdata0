@@ -129,7 +129,7 @@ namespace WebService.Models
 				Url = _urlHelper.Link("AnnotationApi", new { id = annotation.Id }),
 				Body = annotation.Body,
 				Date = annotation.Date,
-				UserId = annotation.UserId,
+				UserId = annotation.PostId,
 				PostId = annotation.PostId
 
 			};
