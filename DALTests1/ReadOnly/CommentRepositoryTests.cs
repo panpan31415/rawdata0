@@ -35,7 +35,7 @@ namespace DAL.ReadOnly.Tests
 		/// 1. for a specified postid = 392022, should return 6 comments .
 		/// 2. check the id for each comment to see if it matches prequeried result with the given post id        
 		///    the ids are : 219181,219191,219201,219253,5094375,40717618
-		/// the test result may different depending on your local database sample 
+		/// the test result may be different depending on your local database sample 
 		/// </summary>
 		/// 
 		[TestMethod()]

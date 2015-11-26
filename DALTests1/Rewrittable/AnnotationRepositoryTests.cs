@@ -30,11 +30,11 @@ namespace DAL.Rewrittable.Tests
 				UserId = userid,
 				PostId = postid,
 				Date = DateTime.Parse("2015-11-25 13:58:23"),
-				Body = "annotation unit test with userid = " + userid + " postid =" + postid,
+				Body = "annotation unit test with userid = " + userid + " and postid =" + postid,
 			};
             _annotationRepository.Insert(annotation);
 			Annotation annotation_Actual = _annotationRepository.GetByPostAndUser(postid, userid);
-			Assert.AreEqual(annotation, annotation_Actual);
+			Assert.AreEqual(annotation.UserId, annotation_Actual.UserId);
         }
 
         [TestMethod()]
