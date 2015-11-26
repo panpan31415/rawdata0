@@ -74,7 +74,8 @@ namespace WebService.Models
 				Body = answer.Body,
 				Score = answer.Score,
 				CreationDate = answer.CreationDate,
-				Owner = answer.Owner
+				Owner = answer.Owner,
+				ParentId = answer.ParentId
 			};
 		}
 
