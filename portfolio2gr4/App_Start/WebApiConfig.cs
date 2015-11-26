@@ -32,7 +32,7 @@ namespace portfolio2gr4
 
 			config.Routes.MapHttpRoute(
 				name: "QuestionCommentApi",
-				routeTemplate: "api/questions/{postid}/comments",
+				routeTemplate: "api/posts/{postid}/comments",
 				defaults: new { controller = "Comments", qid = RouteParameter.Optional }
 			);
 
