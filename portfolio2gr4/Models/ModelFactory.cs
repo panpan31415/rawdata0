@@ -35,7 +35,6 @@ namespace WebService.Models
 				UpVotes = user.UpVotes,
 				DownVotes = user.DownVotes,
 				Location = user.Location
-
 			};
 		}
 
@@ -54,7 +53,8 @@ namespace WebService.Models
 			};
 		}
 
-		public QuestionModel Create(Question question) {
+		public QuestionModel Create(Question question)
+		{
 			return new QuestionModel
 			{
 				Url = _urlHelper.Link("QuestionApi", new { id = question.Id }),
@@ -83,7 +83,12 @@ namespace WebService.Models
 		{
 			return new CommentModel
 			{
+<<<<<<< HEAD
 				//postId = comment.PostId,
+=======
+				Url = _urlHelper.Link("CommentApi", new { id = comment.Id }),
+				postId = comment.PostId,
+>>>>>>> f2d9665d428ba2efa20d18e7d2b05f9198ad51f1
 				creationDate = comment.CreationDate,
 				text = comment.Text,
 				//userid = comment.Userid
@@ -108,6 +113,16 @@ namespace WebService.Models
 			};
 		}
 
+		public VoteModel Create(Vote vote)
+		{
+			return new VoteModel
+			{
+				VoteType = vote.VoteType,
+				PostId = vote.PostId,
+				UserId = vote.UserId,
+				Date = vote.Date
+			};
+		}
 
 		public AnnotationModel Create(Annotation annotation)
 		{
@@ -119,6 +134,17 @@ namespace WebService.Models
 				UserId = annotation.UserId,
 				PostId = annotation.PostId
 
+			};
+		}
+
+		public Vote Parse(VoteModel model)
+		{
+			return new Vote
+			{
+				UserId = model.UserId,
+				PostId = model.PostId,
+				Date = DateTime.Now,
+				VoteType = model.VoteType
 			};
 		}
 		public Annotation Parse(AnnotationModel model)

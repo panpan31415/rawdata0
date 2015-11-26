@@ -10,6 +10,6 @@ namespace DAL.Rewrittable
 	{
 		void Insert(T entity);
 		void Update(T entity);
-		T GetByPostAndUser(int p, int u);
+		T GetByPostAndUser(int p, int u); 
 	}
 }

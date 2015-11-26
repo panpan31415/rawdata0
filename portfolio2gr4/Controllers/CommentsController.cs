@@ -15,6 +15,7 @@ namespace portfolio2gr4.Controllers
 {
 	public class CommentsController : BaseApiController
 	{
+<<<<<<< HEAD:portfolio2gr4/Controllers/CommentsController.cs
 		static CommentMapper dataMapper = new CommentMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
 		CommentRepository _commentRepository = new CommentRepository(dataMapper);
 
@@ -35,6 +36,10 @@ namespace portfolio2gr4.Controllers
 
 		//panpan code
 		/*private CommentRepository _commentRepository;		
+=======
+		
+		private CommentRepository _commentRepository;		
+>>>>>>> f2d9665d428ba2efa20d18e7d2b05f9198ad51f1:portfolio2gr4/Controllers/CommentController.cs
 		public CommentController() : base()
 		{
              IDataMapper<Comment> _dataMapper = new CommentMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
