@@ -11,9 +11,7 @@ namespace portfolio2gr4.Models
 
 		public string Url { get; set; }
 		public int postId { get; set; }
-
 		public string text { get; set; }
 		public DateTime creationDate { get; set; }
-	
 	}
 }
