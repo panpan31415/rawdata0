@@ -17,9 +17,9 @@ namespace portfolio2gr4.Controllers
 		static VoteMapper dataMapper = new VoteMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
 		VoteRepository _votesRepository = new VoteRepository(dataMapper);
 
-		public IEnumerable<VoteModel> Get(int qid) {
+		public IEnumerable<VoteModel> Get(int pid) {
 			var helper = new UrlHelper(Request);
-			return _votesRepository.GetByPost(qid).Select(vote => ModelFactory.Create(vote));
+			return _votesRepository.GetByPost(pid).Select(vote => ModelFactory.Create(vote));
 		}
 
 		public HttpResponseMessage Post([FromBody] VoteModel model )
