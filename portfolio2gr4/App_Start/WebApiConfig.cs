@@ -19,11 +19,7 @@ namespace portfolio2gr4
 				routeTemplate: "api/questions/{id}",
 				defaults: new { controller = "Questions", id = RouteParameter.Optional }
 			);
-			config.Routes.MapHttpRoute(
-				name: "VotesApi",
-				routeTemplate: "api/questions/{qid}/votes",
-				defaults: new { controller = "Votes" }
-			);
+			
 			config.Routes.MapHttpRoute(
 				name: "AnswerApi",
 				routeTemplate: "api/questions/{qid}/answers",
@@ -42,6 +38,16 @@ namespace portfolio2gr4
 				defaults: new { controller = "Comments", qid = RouteParameter.Optional }
 			);
 
+			config.Routes.MapHttpRoute(
+				name: "QuestionVotesApi",
+				routeTemplate: "api/questions/{pid}/votes",
+				defaults: new { controller = "Votes" }
+			);
+			config.Routes.MapHttpRoute(
+				name: "AnswerVotesApi",
+				routeTemplate: "api/questions/{qid}/answers/{pid}/votes",
+				defaults: new { controller = "Votes" }
+			);
 			config.Routes.MapHttpRoute(
 				name: "AnnotationApi",
 				routeTemplate: "api/annotations/{id}",
