@@ -97,6 +97,9 @@
     <Compile Include="Rewrittable\HistoryRepository.cs" />
     <Compile Include="Rewrittable\IUpdatableDataMapper.cs" />
     <Compile Include="Rewrittable\UpdatableDataMapper.cs" />
+    <Compile Include="Rewrittable\Vote.cs" />
+    <Compile Include="Rewrittable\VoteRepository.cs" />
+    <Compile Include="Rewrittable\VotesMapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -22,7 +22,7 @@ namespace DAL
 		{
 			UpdatableDataMapper = updatabledatamapper;
 		}
-		public T GetById(int id)
+		public virtual T GetById(int id)
 		{
 			if (DataMapper == null)
 			{
@@ -34,6 +34,8 @@ namespace DAL
 			}
 
 		}
+
+		
 
 		public IEnumerable<T> GetAll(int limit = 10, int offset = 0)
 		{
@@ -57,6 +59,17 @@ namespace DAL
 				return DataMapper.Query(new MySqlCommand(sql));
 			}
 		}
+
+		public IEnumerable<T> GetByPost(int postid, int limit = 10, int offset = 0) {
+			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postId={4} LIMIT {2} OFFSET {3} ",
+				string.Join(", ", UpdatableDataMapper.Attributes),
+				UpdatableDataMapper.TableName,
+				limit,
+				offset,
+				postid);
+			return UpdatableDataMapper.Query(new MySqlCommand(sql));
+		}
+
 		public IEnumerable<T> GetAllQuestions( int limit = 10, int offset = 0)
 		{
 			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postTypeID=1 LIMIT {2} OFFSET {3} ",
@@ -76,5 +89,7 @@ namespace DAL
 				qid);
 			return DataMapper.Query(new MySqlCommand(sql));
 		}
+
+
 	}
 }

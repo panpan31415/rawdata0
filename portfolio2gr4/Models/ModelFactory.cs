@@ -35,7 +35,6 @@ namespace WebService.Models
 				UpVotes = user.UpVotes,
 				DownVotes = user.DownVotes,
 				Location = user.Location
-
 			};
 		}
 
@@ -107,6 +106,16 @@ namespace WebService.Models
 			};
 		}
 
+		public VoteModel Create(Vote vote)
+		{
+			return new VoteModel
+			{
+				VoteType = vote.VoteType,
+				PostId = vote.PostId,
+				UserId = vote.UserId,
+				Date = vote.Date
+			};
+		}
 
 		public AnnotationModel Create(Annotation annotation)
 		{
@@ -118,6 +127,17 @@ namespace WebService.Models
 				UserId = annotation.UserId,
 				PostId = annotation.PostId
 
+			};
+		}
+
+		public Vote Parse(VoteModel model)
+		{
+			return new Vote
+			{
+				UserId = model.UserId,
+				PostId = model.PostId,
+				Date = DateTime.Now,
+				VoteType = model.VoteType
 			};
 		}
 		public Annotation Parse(AnnotationModel model)

@@ -69,9 +69,14 @@ namespace portfolio2gr4
 				defaults: new { controller = "Questions", id = RouteParameter.Optional }
 			);
 			config.Routes.MapHttpRoute(
+				name: "VotesApi",
+				routeTemplate: "api/questions/{qid}/votes",
+				defaults: new { controller = "Votes" }
+			);
+			config.Routes.MapHttpRoute(
 				name: "AnswerApi",
 				routeTemplate: "api/questions/{qid}/answers",
-				defaults: new { controller = "Answers", qid = RouteParameter.Optional }
+				defaults: new { controller = "Answers" }
 			);
 
 			config.Routes.MapHttpRoute(

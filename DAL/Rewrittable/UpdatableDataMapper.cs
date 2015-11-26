@@ -12,7 +12,6 @@ namespace DAL.Rewrittable
 		public UpdatableDataMapper(string connectionString) : base(connectionString) { }
 		public abstract void Insert(T entity);
 		public abstract void Update(T entity);
-
 		public abstract T GetByPostAndUser(int postid, int userid);
 
 		protected int NextId()
