@@ -14,7 +14,7 @@ namespace DAL.Rewrittable
 			TableName = "searchhistory";
 			Attributes = new string[] { "body", "searchdate", "userid" };
 		}
-		public override History GetById(int userid)
+		/*public override IEnumerable<History> GetById(int userid)
 		{
 			var sql = string.Format("SELECT userID, {0} from {1} WHERE userID = @userID", AttributeList, TableName);
 			using (var connection = new MySqlConnection(ConnectionString))
@@ -26,11 +26,11 @@ namespace DAL.Rewrittable
 					cmd.Connection = connection;
 					using (var reader = cmd.ExecuteReader())
 					{
-						return Map(reader);
+						return UpdatableDataMapper.Query(new MySqlCommand);
 					}
 				}
 			}
-		}
+		}*/
 
 		public override void Insert(History history)
 		{

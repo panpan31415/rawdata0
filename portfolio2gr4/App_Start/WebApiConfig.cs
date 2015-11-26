@@ -28,13 +28,13 @@ namespace portfolio2gr4
 
 			config.Routes.MapHttpRoute(
 				name: "QuestionCommentApi",
-				routeTemplate: "api/posts/{postid}/comments",
-				defaults: new { controller = "Comments", qid = RouteParameter.Optional }
+				routeTemplate: "api/questions/{pid}/comments",
+				defaults: new { controller = "Comments", pid = RouteParameter.Optional }
 			);
 
 			config.Routes.MapHttpRoute(
 				name: "AnswersCommentApi",
-				routeTemplate: "api/answers/{postid}/comments",
+				routeTemplate: "api/questions/{pid}/answers/{pid}/comments",
 				defaults: new { controller = "Comments", qid = RouteParameter.Optional }
 			);
 
@@ -62,7 +62,7 @@ namespace portfolio2gr4
 
 			config.Routes.MapHttpRoute(
 			   name: "HistoryApi",
-			   routeTemplate: "api/users/{userid}/historys",
+			   routeTemplate: "api/users/{uid}/historys",
 			   //routeTemplate: "api/historys/{id}",
 			   defaults: new { controller = "Historys", }
 			  );

@@ -60,14 +60,42 @@ namespace DAL
 			}
 		}
 
-		public IEnumerable<T> GetByPost(int postid, int limit = 10, int offset = 0) {
-			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postId={4} LIMIT {2} OFFSET {3} ",
+		public IEnumerable<T> GetByPost(int postid, int limit = 10, int offset = 0)
+		{
+			if (DataMapper == null)
+			{
+				var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postId={4} LIMIT {2} OFFSET {3} ",
 				string.Join(", ", UpdatableDataMapper.Attributes),
 				UpdatableDataMapper.TableName,
 				limit,
 				offset,
 				postid);
-			return UpdatableDataMapper.Query(new MySqlCommand(sql));
+				return UpdatableDataMapper.Query(new MySqlCommand(sql));
+			}
+			else
+			{
+
+				var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postId={4} LIMIT {2} OFFSET {3} ",
+				string.Join(", ", DataMapper.Attributes),
+				DataMapper.TableName,
+				limit,
+				offset,
+				postid);
+				return DataMapper.Query(new MySqlCommand(sql));
+			}
+		}
+
+		public IEnumerable<T> GetByUserId(int userid, int limit = 10, int offset = 0)
+		{
+			
+				var sql = string.Format("SELECT ID, {0} FROM {1} WHERE userId={4} LIMIT {2} OFFSET {3} ",
+				string.Join(", ", UpdatableDataMapper.Attributes),
+				UpdatableDataMapper.TableName,
+				limit,
+				offset,
+				userid);
+				return UpdatableDataMapper.Query(new MySqlCommand(sql));
+			
 		}
 
 		public IEnumerable<T> GetAllQuestions( int limit = 10, int offset = 0)

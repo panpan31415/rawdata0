@@ -15,7 +15,7 @@ namespace DAL.ReadOnly
 			TableName = "comment";
 			Attributes = new string[] { "text", "creationDate" };
 		}
-		public override Comment GetById(int postid)
+		/*public override Comment GetById(int postid)
 		{
 			var sql = string.Format("SELECT postID, {0} from {1} WHERE postID = @postID", AttributeList, TableName);
 			using (var connection = new MySqlConnection(ConnectionString))
@@ -31,7 +31,7 @@ namespace DAL.ReadOnly
 					}
 				}
 			}
-		}
+		}*/
 
 		public override Comment Map(MySqlDataReader reader)
 		{
