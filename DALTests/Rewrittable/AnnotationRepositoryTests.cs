@@ -12,11 +12,11 @@ namespace DAL.Rewrittable.Tests
 	public class AnnotationRepositoryTests
 	{
 		AnnotationRepository _annoRepository;
-        private void initiaizeTest()
+		private void initiaizeTest()
 		{
 			string connectionString = "server=wt-220.ruc.dk;database=raw4;uid=raw4;pwd=raw4";
-            AnnotationMapper dataMapper = new AnnotationMapper(connectionString);
-            _annoRepository = new AnnotationRepository(dataMapper);
+			AnnotationMapper dataMapper = new AnnotationMapper(connectionString);
+			_annoRepository = new AnnotationRepository(dataMapper);
 		}
 		/// <summary>
 		/// given id = 6;
@@ -26,7 +26,7 @@ namespace DAL.Rewrittable.Tests
 		public void getByIdTest()
 		{
 			initiaizeTest();
-            var annotation = _annoRepository.GetById(6);
+			var annotation = _annoRepository.GetById(6);
 			Assert.AreEqual(1, annotation.UserId);
 			Assert.AreEqual(7664, annotation.PostId);
 		}
@@ -38,9 +38,9 @@ namespace DAL.Rewrittable.Tests
 		public void getByPostAndUserTest()
 		{
 			initiaizeTest();
-			var annotation = _annoRepository.GetByPostAndUser(7664,1);
+			var annotation = _annoRepository.GetByPostAndUser(7664, 1);
 			var actual = annotation.Id;
-			Assert.IsTrue(6== actual);			
+			Assert.IsTrue(6 == actual);
 		}
 
 
@@ -62,16 +62,27 @@ namespace DAL.Rewrittable.Tests
 			};
 			_annoRepository.Insert(expected);
 			initiaizeTest();
-			Annotation actual = _annoRepository.GetByPostAndUser(postid,userid);
+			Annotation actual = _annoRepository.GetByPostAndUser(postid, userid);
 			Assert.IsTrue(expected.PostId == actual.PostId);
 			Assert.IsTrue(expected.UserId == actual.UserId);
 		}
 
-		//[TestMethod()]
-		//public void UpdationTest()
-		//{
-		//	Assert.Fail();
-		//}
+		/// <summary>
+		/// given annotation with userid = 3351 , postid = 1370 that saved in database before test
+		/// </summary>
+		[TestMethod()]
+		public void UpdationTest()
+		{
+			initiaizeTest();
+			Random rdm = new Random();
+			Annotation a = _annoRepository.GetByPostAndUser(1370, 3351);
+			a.Body = "new unit test with a random number = " + rdm.Next(100000);
+			_annoRepository.Updation(a);
+			Annotation actual = _annoRepository.GetByPostAndUser(1370, 3351);
+			Assert.AreEqual(a.Body, actual.Body);
+
+
+		}
 
 		//[TestMethod()]
 		//public void GetByPostAndUserTest()
