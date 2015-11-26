@@ -83,12 +83,9 @@ namespace WebService.Models
 		{
 			return new CommentModel
 			{
-<<<<<<< HEAD
 				//postId = comment.PostId,
-=======
 				Url = _urlHelper.Link("CommentApi", new { id = comment.Id }),
 				postId = comment.PostId,
->>>>>>> f2d9665d428ba2efa20d18e7d2b05f9198ad51f1
 				creationDate = comment.CreationDate,
 				text = comment.Text,
 				//userid = comment.Userid
