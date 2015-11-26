@@ -117,7 +117,7 @@ namespace DAL
 			
 		}
 
-		public IEnumerable<T> GetAllQuestions( int limit = 10, int offset = 0)
+		public IEnumerable<T> GetAllQuestions( int limit , int offset )
 		{
 			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postTypeID=1 LIMIT {2} OFFSET {3} ",
 				string.Join(", ", DataMapper.Attributes),

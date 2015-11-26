@@ -17,9 +17,11 @@ namespace portfolio2gr4.Controllers
 		static QuestionMapper dataMapper = new QuestionMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
 		QuestionRepository _questionRepository = new QuestionRepository(dataMapper);
 
-		public IEnumerable<QuestionModel> Get() {
+		public IEnumerable<QuestionModel> Get(int limit, int page) {
+			if (limit > 100) limit = 10;
+			int offset = page * limit;
 			var helper = new UrlHelper(Request);
-			return _questionRepository.GetAllQuestions().Select(question => ModelFactory.Create(question));
+			return _questionRepository.GetAllQuestions(limit, offset).Select(question => ModelFactory.Create(question));
 		}
 
 		[AcceptVerbs("GET", "HEAD")]

@@ -57,7 +57,7 @@ namespace WebService.Models
 		{
 			return new QuestionModel
 			{
-				Url = _urlHelper.Link("QuestionApi", new { id = question.Id }),
+				Url = _urlHelper.Link("QuestionByIdApi", new { id = question.Id }),
 				Body = question.Body,
 				Title = question.Title,
 				Score = question.Score,
