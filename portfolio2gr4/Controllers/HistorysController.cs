@@ -29,19 +29,10 @@ namespace portfolio2gr4.Controllers
 					.Select(history => ModelFactory.Create(history));
 			}*/
 
-		public HttpResponseMessage GetById(int userid)
+		public IEnumerable<HistoryModel> Get(int uid)
 		{
 			var helper = new UrlHelper(Request);
-			var history = _hisRepository.GetById(userid);
-			if (history == null)
-			{
-				return Request.CreateResponse(HttpStatusCode.NotFound);
-
-			}
-			return Request.CreateResponse(
-				HttpStatusCode.OK
-				, ModelFactory.Create(history));
-
+			return _hisRepository.GetByUserId(uid).Select(vote => ModelFactory.Create(vote));
 		}
 		/*public HttpResponseMessage Post([FromBody] HistoryModel model)
 		{

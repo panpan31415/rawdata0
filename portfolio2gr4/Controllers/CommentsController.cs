@@ -19,7 +19,12 @@ namespace portfolio2gr4.Controllers
 		static CommentMapper dataMapper = new CommentMapper(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
 		CommentRepository _commentRepository = new CommentRepository(dataMapper);
 
-		public HttpResponseMessage GetById(int postid)
+		public IEnumerable<CommentModel> Get(int pid)
+		{
+			var helper = new UrlHelper(Request);
+			return _commentRepository.GetByPost(pid).Select(vote => ModelFactory.Create(vote));
+		}
+		/*public HttpResponseMessage GetById(int postid)
 		{
 			var helper = new UrlHelper(Request);
 			var comment = _commentRepository.GetById(postid);
@@ -32,7 +37,7 @@ namespace portfolio2gr4.Controllers
 				HttpStatusCode.OK
 				, ModelFactory.Create(comment));
 
-		}
+		}*/
 
 		//panpan code
 		/*private CommentRepository _commentRepository;		

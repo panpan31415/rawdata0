@@ -35,7 +35,26 @@ namespace DAL
 
 		}
 
-		
+		public IEnumerable<T> GetAllQuestionsByKey(string key, int limit = 10, int offset = 0)
+		{ 
+			string[] stringSeparators = new string[] { " ", "," };
+			string[] words = key.Split(stringSeparators, StringSplitOptions.None);
+			string[] parsedWords = words.Select(word => "'%" + word + "%'").ToArray();
+			var sqlWhere = "WHERE body like " + parsedWords[0];
+			var w_list = new List<string>(parsedWords);
+			w_list.RemoveAt(0);
+			parsedWords = w_list.Select(word => "AND body like " + word).ToArray();
+
+			var sql = string.Format("SELECT ID, {0} FROM {1} {2} {5} LIMIT {3} OFFSET {4}",
+					string.Join(", ", DataMapper.Attributes),
+					DataMapper.TableName,
+					sqlWhere,
+					limit,
+					offset,
+					string.Join(" ", parsedWords)
+			);
+			return DataMapper.Query(new MySqlCommand(sql));
+		}
 
 		public IEnumerable<T> GetAll(int limit = 10, int offset = 0)
 		{
@@ -60,14 +79,42 @@ namespace DAL
 			}
 		}
 
-		public IEnumerable<T> GetByPost(int postid, int limit = 10, int offset = 0) {
-			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postId={4} LIMIT {2} OFFSET {3} ",
+		public IEnumerable<T> GetByPost(int postid, int limit = 10, int offset = 0)
+		{
+			if (DataMapper == null)
+			{
+				var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postId={4} LIMIT {2} OFFSET {3} ",
 				string.Join(", ", UpdatableDataMapper.Attributes),
 				UpdatableDataMapper.TableName,
 				limit,
 				offset,
 				postid);
-			return UpdatableDataMapper.Query(new MySqlCommand(sql));
+				return UpdatableDataMapper.Query(new MySqlCommand(sql));
+			}
+			else
+			{
+
+				var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postId={4} LIMIT {2} OFFSET {3} ",
+				string.Join(", ", DataMapper.Attributes),
+				DataMapper.TableName,
+				limit,
+				offset,
+				postid);
+				return DataMapper.Query(new MySqlCommand(sql));
+			}
+		}
+
+		public IEnumerable<T> GetByUserId(int userid, int limit = 10, int offset = 0)
+		{
+			
+				var sql = string.Format("SELECT ID, {0} FROM {1} WHERE userId={4} LIMIT {2} OFFSET {3} ",
+				string.Join(", ", UpdatableDataMapper.Attributes),
+				UpdatableDataMapper.TableName,
+				limit,
+				offset,
+				userid);
+				return UpdatableDataMapper.Query(new MySqlCommand(sql));
+			
 		}
 
 		public IEnumerable<T> GetAllQuestions( int limit = 10, int offset = 0)
