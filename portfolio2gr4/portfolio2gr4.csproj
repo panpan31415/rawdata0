@@ -127,48 +127,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="about.html" />
-    <Content Include="App\app.js" />
     <Content Include="App\main.js" />
     <Content Include="App\script.js" />
     <Content Include="Contents\styles.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\normalize.css" />
-    <Content Include="Content\site.css" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Images\Healty2.png" />
-    <Content Include="Images\sova-logo-home.png" />
     <Content Include="index.html" />
-    <Content Include="index1.html" />
-    <Content Include="Content\bootstarp-theme.css.map" />
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="Content\bootstrap-theme.css.map" />
-    <None Include="Scripts1\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts1\jquery-2.1.4.js" />
-    <Content Include="Scripts1\jquery-2.1.4.min.js" />
-    <Content Include="Scripts1\knockout-3.4.0.debug.js" />
-    <Content Include="Scripts1\knockout-3.4.0.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\cbpAnimatedHeader.js" />
-    <Content Include="Scripts\classie.js" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\knockout-3.4.0.debug.js" />
     <Content Include="Scripts\knockout-3.4.0.js" />
-    <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\plugins.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -201,7 +169,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Scripts1\jquery-2.1.4.min.map" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

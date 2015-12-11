@@ -2,23 +2,22 @@
 
 my.viewModel = (function () {
     var currentMenu = ko.observable("");
-    var menuItems = ["Orders", "Products", "Categories"],
-        currentView = ko.observable("orders_view"),
+    var menuItems = ["Users", "Annotations", "Categories"],
+        currentView = ko.observable("users_view"),
         data = ko.observableArray([]),
-        showContent = function () {
-            //var name = menu.toLowerCase();
-  //          currentView(name + "_view");
-//currentMenu(menu);
-            $.getJSON("localhost:3133/api/users" , function (result) {
+        showContent = function (menu) {
+            var name = menu.toLowerCase();
+            currentView(name + "_view");
+            currentMenu(menu);
+            $.getJSON("http://localhost:3133/api/" + name, function (result) {
                 data(result);
             });
         },
-
-        isActive = function (menu) {
+        isActive = function(menu) {
             return menu === currentMenu();
         },
     showList = ko.observable(true)
-    ;
+        ;
     return {
         showContent: showContent,
         currentView: currentView,
@@ -29,6 +28,6 @@ my.viewModel = (function () {
     };
 }());
 
-my.viewModel.showContent("Orders");
+my.viewModel.showContent("users");
 
 ko.applyBindings(my.viewModel);
