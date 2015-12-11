@@ -130,7 +130,6 @@
     <Content Include="about.html" />
     <Content Include="App\app.js" />
     <Content Include="App\main.js" />
-    <Content Include="App\main1.js" />
     <Content Include="App\script.js" />
     <Content Include="Contents\styles.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -142,6 +141,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\Healty2.png" />
+    <Content Include="Images\sova-logo-home.png" />
     <Content Include="index.html" />
     <Content Include="index1.html" />
     <Content Include="Content\bootstarp-theme.css.map" />
