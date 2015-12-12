@@ -34,9 +34,18 @@ namespace DAL
 			}
 
 		}
+		
 
+		/// <summary>
+		/// To Ionana , I think this method shouold be moved to questions repository class
+		/// Panpan suggested here . 
+		/// </summary>
+		/// <param name="key"></param>
+		/// <param name="limit"></param>
+		/// <param name="offset"></param>
+		/// <returns></returns>
 		public IEnumerable<T> GetAllQuestionsByKey(string key, int limit = 10, int offset = 0)
-		{ 
+		{
 			string[] stringSeparators = new string[] { " ", "," };
 			string[] words = key.Split(stringSeparators, StringSplitOptions.None);
 			string[] parsedWords = words.Select(word => "'%" + word + "%'").ToArray();
@@ -106,18 +115,18 @@ namespace DAL
 
 		public IEnumerable<T> GetByUserId(int userid, int limit = 10, int offset = 0)
 		{
-			
-				var sql = string.Format("SELECT ID, {0} FROM {1} WHERE userId={4} LIMIT {2} OFFSET {3} ",
-				string.Join(", ", UpdatableDataMapper.Attributes),
-				UpdatableDataMapper.TableName,
-				limit,
-				offset,
-				userid);
-				return UpdatableDataMapper.Query(new MySqlCommand(sql));
-			
+
+			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE userId={4} LIMIT {2} OFFSET {3} ",
+			string.Join(", ", UpdatableDataMapper.Attributes),
+			UpdatableDataMapper.TableName,
+			limit,
+			offset,
+			userid);
+			return UpdatableDataMapper.Query(new MySqlCommand(sql));
+
 		}
 
-		public IEnumerable<T> GetAllQuestions( int limit , int offset )
+		public IEnumerable<T> GetAllQuestions(int limit, int offset)
 		{
 			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postTypeID=1 LIMIT {2} OFFSET {3} ",
 				string.Join(", ", DataMapper.Attributes),
