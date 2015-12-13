@@ -8,11 +8,12 @@ div.suggestions div {
     cursor: default;
     padding: 0px 3px;
 }
-div.suggestions div a{
-    text-decoration:none;  
-}
+    div.suggestions div a {
+        text-decoration: none;
+        color: #3366cc;
+    }
 
-div.suggestions div:first-child{
+.selected {
     background-color: #3366cc;
-    color: white;
+    color:  white;
 }
