@@ -1,0 +1,10 @@
+{
+	"in": [
+	"dev/variables.css"	 
+	],
+
+	"out": "styles.css",
+	"browsers": ["last 3 versions", "Chrome >= 10", "Firefox >= 5", "Explorer >= 9"],
+	"next": true,
+	"sourcemaps": true
+}

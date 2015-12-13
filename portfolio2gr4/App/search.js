@@ -1,5 +1,4 @@
-﻿var stof = stof || {};
-/*******************************
+﻿/*******************************
 ****Revealing module experimen** 
 var calculator = (function () {
 
@@ -17,17 +16,22 @@ var calculator = (function () {
 
 calculator.Add(1, 1);
 ******************************/
-
+var stof = stof || {};
 stof.searchViewModel = (function () {
     var searchText = ko.observable("");
     var suggestions = ko.observableArray([]);
     var visible = ko.observable(false);
+    //var selected = false;
+    //var toggle = function (target, event) {
+    //    alert(selected);
+    //    selected=!selected;
+    //};
     var getSuggestions = function (target, event) {
         $.getJSON("api/questions/search/" + this.searchText(), function (result) {
             if (result.length >= 1) {
                 visible(true);
                 suggestions(result);
-            } else { visible(false);}
+            } else { visible(false); }
         });
 
     }
@@ -35,9 +39,18 @@ stof.searchViewModel = (function () {
         searchText: searchText,
         suggestions: suggestions,
         getSuggestions: getSuggestions,
-        visible:visible
+        visible: visible
+        //selected: selected
+        //toggle: toggle
     };
 })();
 
+
+
+
+
+
+
+
+
 ko.applyBindings(stof.searchViewModel);
-//stof.searchViewModel.searchText("panpan");

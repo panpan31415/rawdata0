@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Search Page</title>
-    <link href="Contents/search.css" rel="stylesheet" />
+    <link href="Content/search.css" rel="stylesheet" />
     <meta charset="utf-8" />
 </head>
 <body>
@@ -10,6 +10,7 @@
         <input data-bind="textInput :searchText,event: {input:getSuggestions}" placeholder="please write your quesion here " />
         <input type="button" value="Search" />
         <div class="suggestions" data-bind="foreach:suggestions,visible:visible">
+            <!--<div data-bind="event: { mouseover: $root.toggle, mouseout: $root.toggle,css:{selected:$root.selected}}">-->
             <div><a data-bind="attr:{href:$data.Url}"><span data-bind="text:$data.Title"></span></a></div>
         </div>
     </div>
