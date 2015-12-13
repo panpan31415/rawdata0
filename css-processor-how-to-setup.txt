@@ -7,6 +7,6 @@
 	3. Close and restart cmd/terminal
 	
 ** Using processor **
-	1. Open cmd/terminal and navigate to "your-projects-folder\umbraco-nordisk-kulturfond\UmbracoNkf\css";
+	1. Open cmd/terminal and navigate to css folder.
 	2. Run "pleeease watch" - to start the watcher which will recompile the css after every change detected
 	OR "pleeease compile" - to compile only once the css
