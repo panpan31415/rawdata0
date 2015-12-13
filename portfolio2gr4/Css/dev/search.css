@@ -9,10 +9,11 @@ div.suggestions div {
     padding: 0px 3px;
 }
 div.suggestions div a{
-    text-decoration:none;  
+    text-decoration:none; 
+    color:  #3366cc;
 }
 
-div.suggestions div:first-child{
+.selected{
     background-color: #3366cc;
     color: white;
 }
