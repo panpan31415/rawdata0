@@ -1,6 +1,9 @@
 {
 	"in": [
-	"dev/variables.css"	 
+		"dev/variables.css",
+		"dev/search.css",
+		"dev/header.css",
+		"dev/global.css"
 	],
 
 	"out": "styles.css",

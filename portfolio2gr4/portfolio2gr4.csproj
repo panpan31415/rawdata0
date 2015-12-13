@@ -129,6 +129,10 @@
   <ItemGroup>
     <Content Include="App\main.js" />
     <Content Include="App\script.js" />
+    <Content Include="Css\dev\global.css" />
+    <Content Include="Css\dev\header.css" />
+    <Content Include="Css\dev\search.css" />
+    <Content Include="Css\dev\variables.css" />
     <Content Include="Css\search.css" />
     <Content Include="Css\styles.css" />
     <Content Include="Global.asax" />
