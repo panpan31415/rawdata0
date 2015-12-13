@@ -1,41 +1,50 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-    <meta charset="utf-8" />
-    <link href="Contents/styles.css" rel="stylesheet" />
-    <script src="Scripts/jquery-2.1.4.js"></script>
-    <script src="Scripts/knockout-3.4.0.debug.js"></script>
-    <script src="App/script.js"></script>
+	<title></title>
+	<meta charset="utf-8" />
+	<link href="Css/styles.css" rel="stylesheet" />
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="Css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="Css/bootstrap-theme.min.css">
+	<script src="Scripts/jquery-2.1.4.js"></script>
+	<script src="Scripts/knockout-3.4.0.debug.js"></script>
+	
 </head>
 <body>
-    <div id='cssmenu'>
-        <ul data-bind="foreach: menuItems">
-            <li data-bind="css: {active: $parent.isActive($data)}">
-                <a href='' data-bind="click: $parent.showContent, text: $data"></a>
-            </li>
-        </ul>
-    </div>
-    <div data-bind="template: {name: currentView}"></div>
-    <script type="text/html" id="users_view">
-        <h2>Users</h2>
-        <div data-bind="foreach: data">
-            <div data-bind="text: Url"></div>
-        </div>
-    </script>
-    <script type="text/html" id="annotations_view">
-        <h2>Annotation</h2>
-        <input type="checkbox" data-bind="checked: showList" />
-        <div data-bind="foreach: data, visible: showList">
-            <div data-bind="text: Url"></div>
-        </div>
-    </script>
-    <script type="text/html" id="categories_view">
-        <h2>Categories</h2>
-        <div data-bind="foreach: data">
-            <div data-bind="text: name"></div>
-        </div>
-    </script>
-    <script src="App/main.js"></script>
+	<header></header>
+	<div id='cssmenu'>
+		<ul data-bind="foreach: menuItems">
+			<li data-bind="css: {active: $parent.isActive($data)}">
+				<a href='' data-bind="click: $parent.showContent, text: $data"></a>
+			</li>
+		</ul>
+	</div>
+	<div data-bind="template: {name: currentView}"></div>
+	<script type="text/html" id="users_view">
+		<h2>Users</h2>
+		<div data-bind="foreach: data">
+			<div data-bind="text: Url"></div>
+		</div>
+	</script>
+	<script type="text/html" id="annotations_view">
+		<h2>Annotation</h2>
+		<input type="checkbox" data-bind="checked: showList" />
+		<div data-bind="foreach: data, visible: showList">
+			<div data-bind="text: Url"></div>
+		</div>
+	</script>
+	<script type="text/html" id="categories_view">
+		<h2>Categories</h2>
+		<div data-bind="foreach: data">
+			<div data-bind="text: name"></div>
+		</div>
+	</script>
+	<footer></footer>
+
+	<script src="Scripts/bootstrap.min.js"></script>
+	<script src="App/script.js"></script>
+	<script src="App/main.js"></script>
 </body>
 </html>

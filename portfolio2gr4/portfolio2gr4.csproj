@@ -129,8 +129,8 @@
   <ItemGroup>
     <Content Include="App\main.js" />
     <Content Include="App\script.js" />
-    <Content Include="Contents\search.css" />
-    <Content Include="Contents\styles.css" />
+    <Content Include="Css\search.css" />
+    <Content Include="Css\styles.css" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
@@ -173,6 +173,7 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+    <Content Include="Views\menu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -182,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Contents\" />
     <Folder Include="Views\Answers\" />
     <Folder Include="Views\BaseApi\" />
     <Folder Include="Views\Comment\" />
