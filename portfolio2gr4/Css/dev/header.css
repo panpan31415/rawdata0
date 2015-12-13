@@ -1,0 +1,7 @@
+.navbar-default { 
+	background-color:var(--rose-quartz);
+	
+}
+.navbar-default .navbar-brand {
+	color:var(--serenity);
+}

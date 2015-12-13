@@ -1,13 +1,12 @@
 {
 	"in": [
 		"dev/variables.css",
-		"dev/search.css",
+		"dev/global.css",
 		"dev/header.css",
-		"dev/global.css"
+		"dev/search.css"
 	],
-
 	"out": "styles.css",
 	"browsers": ["last 3 versions", "Chrome >= 10", "Firefox >= 5", "Explorer >= 9"],
 	"next": true,
-	"sourcemaps": true
+	"sourcemaps": true 
 }

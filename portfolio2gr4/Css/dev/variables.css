@@ -1,6 +1,7 @@
-/* Variables */
+
 :root {
-	--main-font-family: Arial, sans-serif;
+	--main-font:Arial, sans-serif;
+	--red:#f00;
 	--rose-quartz:#F2DDDE;
 	--serenity:#89ABE3;
 }
