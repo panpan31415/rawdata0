@@ -29,8 +29,10 @@ stof.searchViewModel = (function () {
     var getSuggestions = function (target, event) {
         $.getJSON("api/questions/search/" + this.searchText(), function (result) {
             if (result.length >= 1) {
-                visible(true);
-                suggestions(result);
+            	visible(true);
+            	
+            	suggestions(result);
+            	console.log(suggestions());
             } else { visible(false); }
         });
 

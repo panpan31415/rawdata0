@@ -46,6 +46,7 @@
 		<h2>Users</h2>
 		<div data-bind="foreach: data">
 			<div data-bind="text: Url"></div>
+			<div data-bind="text: CreationDate"></div>
 		</div>
 	</script>
 	<script type="text/html" id="annotations_view">
@@ -53,12 +54,21 @@
 		<input type="checkbox" data-bind="checked: showList" />
 		<div data-bind="foreach: data, visible: showList">
 			<div data-bind="text: Url"></div>
+			@*<div data-bind="text: Body"></div>*@
 		</div>
 	</script>
 	<script type="text/html" id="categories_view">
 		<h2>Categories</h2>
 		<div data-bind="foreach: data">
 			<div data-bind="text: name"></div>
+		</div>
+	</script>
+	<script type="text/html" id="history_view">
+		<h2>History</h2>
+		<div data-bind="foreach: history">
+			<div data-bind="text: Url"></div>
+			<div data-bind="text: body"></div>
+			<div data-bind="text: userId"></div>
 		</div>
 	</script>
 	<footer></footer>
