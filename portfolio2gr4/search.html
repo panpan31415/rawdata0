@@ -7,12 +7,14 @@
 </head>
 <body>
     <div>
-        <input data-bind="textInput :searchText,event: {input:getSuggestions}" placeholder="please write your quesion here " />
-        <input type="button" value="Search" />
-        <div class="suggestions" data-bind="foreach:suggestions,visible:visible">
-            <!--<div data-bind="event: { mouseover: $root.toggle, mouseout: $root.toggle,css:{selected:$root.selected}}">-->
+        <input type="search" autocomplete="on" list="suggestionList" data-bind="textInput :searchText,event: {input:getSuggestions}" placeholder="Search " />
+        <datalist id="suggestionList" data-bind="foreach:suggestions">
+            <option data-bind="value:$data.Title"></option>
+        </datalist>
+        <!--<div class="suggestions" data-bind="foreach:suggestions,visible:visible">
+            <div data-bind="event: { mouseover: $root.toggle, mouseout: $root.toggle,css:{selected:$root.selected}}">
             <div><a data-bind="attr:{href:$data.Url}"><span data-bind="text:$data.Title"></span></a></div>
-        </div>
+        </div>-->
     </div>
     <script src="Scripts/knockout-3.4.0.js"></script>
     <script src="Scripts/jquery-2.1.4.js"></script>
