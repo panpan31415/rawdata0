@@ -135,7 +135,7 @@
     <Content Include="Css\dev\variables.css" />
     <Content Include="Css\styles.css" />
     <Content Include="Global.asax" />
-    <Content Include="index.html" />
+    <None Include="Views\Home\index.cshtml" />
     <Content Include="Css\.pleeeaserc" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
@@ -156,6 +156,7 @@
     <Compile Include="Controllers\BaseApiController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HistorysController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VotesController.cs" />
