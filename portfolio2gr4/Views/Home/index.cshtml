@@ -45,16 +45,19 @@
 	<script type="text/html" id="users_view">
 		<h2>Users</h2>
 		<div data-bind="foreach: data">
-			<div data-bind="text: Url"></div>
-			<div data-bind="text: CreationDate"></div>
+			<div data-bind="text: $data.Url"></div>
+			<div data-bind="text: $data.CreationDate"></div>
+            <div data-bind="text: $data.Location"></div>
+            <div data-bind="text: $data.Name"></div>
 		</div>
 	</script>
 	<script type="text/html" id="annotations_view">
 		<h2>Annotation</h2>
 		<input type="checkbox" data-bind="checked: showList" />
 		<div data-bind="foreach: data, visible: showList">
-			<div data-bind="text: Url"></div>
-			@*<div data-bind="text: Body"></div>*@
+			<div data-bind="text: $data.Url"></div>
+			<div data-bind="text: $data.Body"></div>
+            <div data-bind="text: $data.Date"></div>
 		</div>
 	</script>
 	<script type="text/html" id="categories_view">
