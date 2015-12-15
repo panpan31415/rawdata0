@@ -12,12 +12,13 @@ my.viewModel = (function () {
 			currentMenu(menu);
 			if (name === "history") {
 				name = "users/108/historys";
+				history([]);
 				$.getJSON("http://localhost:3133/api/" + name, function (result) {
- 
+					
 					for(var i=0;i<result.length;i++){
 						history.push(new HistoryItem(result[i]));
-						console.log("res:");
-						console.log(history());
+						//console.log("res:");
+						//console.log(history());
 					};
 					 
 				});
