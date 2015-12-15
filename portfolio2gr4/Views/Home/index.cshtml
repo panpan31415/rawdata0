@@ -44,11 +44,11 @@
 	<div data-bind="template: {name: currentView}"></div>
 	<script type="text/html" id="users_view">
 		<h2>Users</h2>
-		<div data-bind="foreach: data">
-			<div data-bind="text: $data.Url"></div>
-			<div data-bind="text: $data.CreationDate"></div>
-            <div data-bind="text: $data.Location"></div>
-            <div data-bind="text: $data.Name"></div>
+		<div data-bind="foreach: users">
+			<div data-bind="text: Url"></div>
+			<div data-bind="text: CreationDate"></div>
+            <div data-bind="text: Location"></div>
+            <div data-bind="text: Name"></div>
 		</div>
 	</script>
 	<script type="text/html" id="annotations_view">
@@ -74,6 +74,18 @@
 			<div data-bind="text: userId"></div>
 		</div>
 	</script>
+    <script type="text/html" id="questions_view">
+        <h2>Questions</h2>
+        <div data-bind="foreach: questions">
+            <div data-bind="text: Url"></div>
+            <div data-bind="text: CreationDate"></div>
+            <div data-bind="text: Body"></div>
+            <div><a data-bind="text: Title"></a></div>
+        </div>
+    </script>
+
+
+
 	<footer></footer>
 
 	<script src="Scripts/bootstrap.min.js"></script>
