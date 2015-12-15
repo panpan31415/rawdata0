@@ -20,7 +20,7 @@ namespace DAL
 		/// <returns></returns>
 		public IEnumerable<Question> GetByFullTextSearch(string searchText, string columns, int limit = 10, int offset = 0)
 		{
-			var condition = "where match (" + columns + ") " + "against( '" + searchText + "') ORDER BY title_relevance DESC ";
+			var condition = "where match (" + columns + ") " + "against( '" + searchText + "') ORDER BY Title ASC ";
 			var sql = string.Format("SELECT ID, {0}{1} FROM {2} {3} limit {4} offset {5} ",
 				string.Join(", ", DataMapper.Attributes),
 				",match (" + columns + ")" + "against ('" + searchText + "') AS title_relevance",
