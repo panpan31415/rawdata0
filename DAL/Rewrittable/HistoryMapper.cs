@@ -11,7 +11,7 @@ namespace DAL.Rewrittable
 	{
 		public HistoryMapper(string connectionString) : base(connectionString)
 		{
-			TableName = "searchhistory";
+			TableName = "SearchHistory";
 			Attributes = new string[] { "body", "searchdate", "userid" };
 		}
 		/*public override IEnumerable<History> GetById(int userid)

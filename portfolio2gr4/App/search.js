@@ -30,12 +30,14 @@ stof.searchViewModel = (function () {
     var getSuggestions = function (target, event) {
         $.getJSON("api/questions/search/" + searchText(), function (result) {            
             if (result.length >= 1) {
+
                
                 var titles = $.map(result, function (q) {
                     return q.Title;
                 });
                 suggestions(result);
             }
+
         });
         ;
     };
