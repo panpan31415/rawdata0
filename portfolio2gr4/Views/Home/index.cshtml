@@ -8,43 +8,72 @@
 	<!-- Optional theme -->
  
 	<link rel="stylesheet" href="Css/styles.css" />
-	<script src="Scripts/jquery-2.1.4.js"></script>
-	<script src="Scripts/knockout-3.4.0.debug.js"></script>
-
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 </head>
 <body>
-	<!-- NAVIGATION -->
-	<header class="navbar navbar-static-top">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">SOVA</a>
-				</div>
+	
+   
+        <header class="navbar navbar-static-top">
+            <div id="navigation-container"  data-bind="with: navigationViewModel"><!-- NAVIGATION -->
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <a class="navbar-brand" href="#">SOVA</a>
+                        </div>
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="navbar-collapse"> 
-					<ul class="nav navbar-nav navbar-right" data-bind="foreach: menuItems">
-						<li data-bind="css: {active: $parent.isActive($data)}">
-							<a href='' data-bind="click: $parent.showContent, text: $data"></a>
-						</li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-			</div><!-- /.container-fluid -->
-		</nav>
-	</header>
-	<!-- NAVIGATION ENDS -->
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="navbar-collapse">
+                            <ul class="nav navbar-nav navbar-right" data-bind="foreach: menuItems">
+                                <li data-bind="css: {active: $parent.isActive($data)}">
+                                    <a href='' data-bind="click: $parent.showContent, text: $data"></a>
+                                </li>
+                            </ul>
+                        </div><!-- /.navbar-collapse -->
+                    </div><!-- /.container-fluid -->
+                </nav>
+            </div><!-- NAVIGATION ENDS -->
+            <!--Search Start-->
+            <form class="form-search">
+                <div class="container"  data-bind="with: searchViewModel">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div id="custom-search-input">
+                                <div class="input-group col-md-12">
+                                    <input type="text" list="suggestionList" class="form-control input-lg" placeholder="Search" data-bind="textInput:searchText, event: {input:getSuggestions}" />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-info btn-lg" type="button">
+                                            <i class="glyphicon glyphicon-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <datalist id="suggestionList" data-bind="foreach:suggestions">
+                                        <option data-bind="value:$data.Title"></option>
+                                    </datalist>
+                                </div>
 
-	<div data-bind="template: {name: currentView}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!--Search End-->
+</header>
+    
+	
+
+	<div data-bind= "template: {name: navigationViewModel.currentView}" ></div>
 	<script type="text/html" id="users_view">
 		<h2>Users</h2>
-		<div data-bind="foreach: data">
+		<div data-bind="foreach: navigationViewModel.data">
 			<div data-bind="text: $data.Url"></div>
 			<div data-bind="text: $data.CreationDate"></div>
             <div data-bind="text: $data.Location"></div>
@@ -75,8 +104,11 @@
 		</div>
 	</script>
 	<footer></footer>
-
+    <script src="Scripts/jquery-2.1.4.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/knockout-3.4.0.js"></script>    
 	<script src="Scripts/bootstrap.min.js"></script>
+    <script src="~/App/search.js"></script>
 	<!--<script src="App/script.js"></script>-->
 	<script src="App/main.js"></script>
 </body>

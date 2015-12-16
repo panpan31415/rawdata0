@@ -1,5 +1,5 @@
 ﻿/*******************************
-****Revealing module experimen** 
+***Revealing module experiment** 
 var calculator = (function () {
 
     function add(a, b) {
@@ -16,9 +16,7 @@ var calculator = (function () {
 
 calculator.Add(1, 1);
 ******************************/
-
-var stof = stof || {};
-stof.searchViewModel = (function () {
+var searchViewModel = (function () {
     var searchText = ko.observable("");
     var suggestions = ko.observableArray([]);
     //var visible = ko.observable(false);
@@ -30,8 +28,6 @@ stof.searchViewModel = (function () {
     var getSuggestions = function (target, event) {
         $.getJSON("api/questions/search/" + searchText(), function (result) {            
             if (result.length >= 1) {
-
-               
                 var titles = $.map(result, function (q) {
                     return q.Title;
                 });
@@ -51,8 +47,8 @@ stof.searchViewModel = (function () {
         //toggle: toggle
     };
 })();
-var viewModel = stof.searchViewModel;
-ko.applyBindings(viewModel);
+//ko.applyBindings(searchViewModel);
+
 //var substringMatcher = function (strs) {
 //    return function findMatches(q, cb) {
 //        var matches, substringRegex;
