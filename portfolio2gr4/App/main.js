@@ -19,6 +19,7 @@ var navigationViewModel = (function () {
             var name = menu.toLowerCase();
             currentView(name + "_view");
             currentMenu(menu);
+            $("#search_textbox").attr("placeholder", "Search " + currentMenu());
 
             if (name === "history") {
                 name = "users/108/historys";
@@ -46,7 +47,7 @@ var navigationViewModel = (function () {
 		    return menu === currentMenu();
 		},
 	showList = ko.observable(true);
-    
+
 
     function HistoryItem(data) {
         var self = this;
@@ -58,6 +59,7 @@ var navigationViewModel = (function () {
 
     };
     return {
+        currentMenu:currentMenu,
         showContent: showContent,
         currentView: currentView,
         data: data,
@@ -71,5 +73,7 @@ var navigationViewModel = (function () {
 }());
 
 navigationViewModel.showContent("users");
-
 ko.applyBindings(masterVM);
+
+   
+

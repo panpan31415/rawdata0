@@ -47,6 +47,8 @@ var searchViewModel = (function () {
         //toggle: toggle
     };
 })();
+
+
 //ko.applyBindings(searchViewModel);
 
 //var substringMatcher = function (strs) {
