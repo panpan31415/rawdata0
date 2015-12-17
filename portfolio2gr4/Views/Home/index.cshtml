@@ -19,6 +19,7 @@
             <nav class="navbar navbar-default ">
                 <div class="container-fluid">
 
+                   
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" id="navbar-toggle-button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
@@ -48,7 +49,7 @@
 
                     <div id="custom-search-input">
                         <div class="input-group ">
-                            <input type="text" id="search_textbox"list="suggestionList" class="form-control input-lg"  data-bind="textInput:searchText, event: {input:getSuggestions}" />
+                            <input type="text" id="search_textbox" list="suggestionList" class="form-control input-lg" data-bind="textInput:searchText, event: {input:getSuggestions}" />
                             <span class="input-group-btn">
                                 <button class="btn btn-info btn-lg" type="button">
                                     <i class="glyphicon glyphicon-search"></i>
@@ -70,22 +71,19 @@
 
         <div id="body_container" data-bind="template: {name: navigationViewModel.currentView}"></div>
     </div>
-    <script type="text/html" id="questions_view">
-        <h2>Questions</h2>
-    </script>
     <script type="text/html" id="users_view">
         <h2>Users</h2>
-        <div data-bind="foreach: navigationViewModel.data">
-            <div data-bind="text: $data.Url"></div>
-            <div data-bind="text: $data.CreationDate"></div>
-            <div data-bind="text: $data.Location"></div>
-            <div data-bind="text: $data.Name"></div>
+        <div data-bind="foreach: navigationViewModel.users">
+            <div data-bind="text: Url"></div>
+            <div data-bind="text: CreationDate"></div>
+            <div data-bind="text: Location"></div>
+            <div data-bind="text: Name"></div>
         </div>
     </script>
     <script type="text/html" id="annotations_view">
         <h2>Annotation</h2>
-        <input type="checkbox" data-bind="checked: showList" />
-        <div data-bind="foreach: data, visible: showList">
+        <input type="checkbox" data-bind="checked: navigationViewModel.showList" />
+        <div data-bind="foreach: navigationViewModel.data, visible: navigationViewModel.showList">
             <div data-bind="text: $data.Url"></div>
             <div data-bind="text: $data.Body"></div>
             <div data-bind="text: $data.Date"></div>
@@ -93,18 +91,28 @@
     </script>
     <script type="text/html" id="categories_view">
         <h2>Categories</h2>
-        <div data-bind="foreach: data">
+        <div data-bind="foreach: navigationViewModel.data">
             <div data-bind="text: name"></div>
         </div>
     </script>
     <script type="text/html" id="history_view">
         <h2>History</h2>
-        <div data-bind="foreach: history">
+        <div data-bind="foreach: navigationViewModel.history">
             <div data-bind="text: Url"></div>
             <div data-bind="text: body"></div>
             <div data-bind="text: userId"></div>
         </div>
     </script>
+    <script type="text/html" id="questions_view">
+        <h2>Questions</h2>
+        <div data-bind="foreach: navigationViewModel.questions">
+            <div data-bind="text: Url"></div>
+            <div data-bind="text: CreationDate"></div>
+            <div data-bind="text: Body"></div>
+            <div><a data-bind="text: Title"></a></div>
+        </div>
+    </script>
+
     <footer></footer>
 
     <script src="Scripts/jquery-2.1.4.js"></script>
