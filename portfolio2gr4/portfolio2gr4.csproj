@@ -128,23 +128,21 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="addanno.html" />
+    <Content Include="App\JavaScript.js" />
     <Content Include="App\main.js" />
     <Content Include="App\script.js" />
-
     <Content Include="Css\bootstrap.min.css" />
-
     <Content Include="Css\dev\global.css" />
     <Content Include="Css\dev\header.css" />
     <Content Include="Css\dev\search.css" />
     <Content Include="Css\dev\variables.css" />
     <Content Include="Css\styles.css" />
     <Content Include="Global.asax" />
-
     <Content Include="Css\bootstrap.min.css.map" />
-
     <None Include="Views\Home\index.cshtml" />
     <Content Include="Css\.pleeeaserc" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
