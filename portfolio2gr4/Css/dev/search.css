@@ -3,6 +3,8 @@
     border: solid 1px #E4E4E4;
     border-radius: 6px;
     background-color: #fff;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 #custom-search-input input{
@@ -29,3 +31,12 @@
 #custom-search-input .glyphicon-search{
     font-size: 23px;
 }
+#body_container{
+    margin-top:150px;
+    margin-left:10px;
+    margin-right:10px;
+}
+.search { margin-top: 0px;
+    margin-bottom: 100px;
+    margin-right: 2px;
+    margin-left: 2px; }
