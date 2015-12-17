@@ -11,7 +11,22 @@ var navigationViewModel = (function () {
         data = ko.observableArray([]),
         questions = ko.observableArray([]),
 		users = ko.observableArray([]),
-		history = ko.observableArray([]),
+		history = ko.observableArray([]);
+  
+         //to get specific question
+        goTo = function () {
+            //return "http://localhost:3133/api/questions/7664";
+
+
+
+            $.getJSON("http://localhost:3133/api/questions/7664", function (result) {
+
+                data(result);
+
+
+            });
+
+        };
         showContent = function (menu) {
             var toggle = $("#navbar-toggle-button").attr("aria-expanded");
             if (toggle = (toggle === "true")) {
@@ -73,6 +88,7 @@ var navigationViewModel = (function () {
             }
 
         },
+       
         //add annotation button
         AddData = function () {
             $.ajax({
@@ -136,6 +152,7 @@ showList = ko.observable(true);
         questions: questions,
         Body: Body,
         AddData: AddData,
+        goTo: goTo
     };
 }());
 
