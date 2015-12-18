@@ -128,7 +128,7 @@ namespace DAL
 
 		public IEnumerable<T> GetAllQuestions(int limit, int offset)
 		{
-			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postTypeID=1 LIMIT {2} OFFSET {3} ",
+			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postTypeID=1 order by creationDate DESC LIMIT {2} OFFSET {3}  ",
 				string.Join(", ", DataMapper.Attributes),
 				DataMapper.TableName,
 				limit,
@@ -146,6 +146,18 @@ namespace DAL
 			return DataMapper.Query(new MySqlCommand(sql));
 		}
 
-
+		public IEnumerable<T> GetByFullTextSearch(string searchText, string columns, int limit = 10, int offset = 0, string orderby = "relevance", string ASC_DESC = "DESC")
+		{
+			var condition = "where match (" + columns + ") " + "against( '" + searchText + "') ORDER BY " + orderby + " " + ASC_DESC;
+			var sql = string.Format("SELECT ID, {0}{1} FROM {2} {3} limit {4} offset {5} ",
+				string.Join(", ", DataMapper.Attributes),
+				",match (" + columns + ")" + "against ('" + searchText + "') AS relevance",
+				DataMapper.TableName,
+				condition,
+				limit,
+				offset
+				);
+			return DataMapper.Query(new MySqlCommand(sql));
+		}
 	}
 }

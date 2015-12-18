@@ -18,35 +18,86 @@ calculator.Add(1, 1);
 ******************************/
 var searchViewModel = (function () {
     var searchText = ko.observable("");
-    var suggestions = ko.observableArray([]);
+    var suggestions = ko.observableArray([]);// for searchbar
+    var searchResult=ko.observableArray([]);// for page body
     //var visible = ko.observable(false);
     //var selected = false;
     //var toggle = function (target, event) {
     //    alert(selected);
     //    selected=!selected;
     //};
-    var getSuggestions = function (target, event) {
-        $.getJSON("api/questions/search/" + searchText(), function (result) {            
-            if (result.length >= 1) {
-                var titles = $.map(result, function (q) {
-                    return q.Title;
-                });
-                suggestions(result);
-            }
 
-        });
-        ;
+
+    var getSuggestions = function (target, event) {
+        switch (navigationViewModel.currentMenu()) {
+            case "Users":
+                //not implemented yet
+                break;
+            case "Annotations":
+                //not implemented yet
+                break;
+            case "Questions":
+                $.getJSON("api/questions/search_title/" + searchText(), function (result) {
+                    if (result.length >= 1) {
+                        var titles = $.map(result, function (q) {
+                            return { Title: q.Title, Url: q.Url };
+                        });
+                        suggestions(titles);
+                    }
+                });
+                break;
+            case "History":
+                //not implemented yet
+                break;
+        }
+    };
+    var searchFor = function (target, event) {
+        alert("hello");
+        switch (navigationViewModel.currentMenu()) {
+            case "Users":
+                //not implemented yet
+                break;
+            case "Annotations":
+                //not implemented yet
+                break;
+            case "Questions":
+                $.getJSON("api/questions/search/" + searchText(), function (result) {
+                    if (result.length >= 1) {
+                        //var titles = $.map(result, function (q) {
+                        //    return q.Title;
+                        //});
+                        searchResult(result);
+                        navigationViewModel.currentView("questions_search_view");
+                    } else {
+                        alert("no result found!");
+                    }
+                });
+                break;
+            case "History":
+                //not implemented yet
+                break;
+        }
     };
 
     return {
         searchText: searchText,
         suggestions: suggestions,
         getSuggestions: getSuggestions,
+        searchFor:searchFor,
+        searchResult: searchResult
         //visible: visible
         //selected: selected
         //toggle: toggle
     };
 })();
+var QuestionViewModel = function () {
+    var title;
+    var question_owner;
+    var question_Url;
+    var question_body;
+    var question_creationDate;
+    var comments = [];
+}();
 
 
 //ko.applyBindings(searchViewModel);

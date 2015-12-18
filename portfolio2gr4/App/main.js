@@ -126,6 +126,7 @@ showList = ko.observable(true);
         self.CreationDate = data.CreationDate;
         self.Location = data.Location;
         self.Name = data.Name;
+        
 
     };
 
@@ -136,6 +137,7 @@ showList = ko.observable(true);
         self.CreationDate = data.CreationDate;
         self.Body = data.Body;
         self.Title = data.Title;
+        self.Owner = data.Owner;
 	    
 
     };

@@ -50,7 +50,6 @@ namespace DAL
 			}
 			return null;
 		}
-
 		private string FetchOwnername(int id)
 		{
 			using (var connection = new MySqlConnection(ConnectionString))
@@ -71,6 +70,27 @@ namespace DAL
 				}
 			}
 		}
-
+		// need to be changed 
+		public User GetOwner(int ownerid)
+		{
+			using (var connection = new MySqlConnection(ConnectionString))
+			{
+				connection.Open();
+				var cmd = new MySqlCommand();
+				cmd.Connection = connection;
+				cmd.CommandText = "select * from user where  id= @ID";
+				cmd.Parameters.AddWithValue("@ID", ownerid);
+				using (var reader = cmd.ExecuteReader())
+				{
+					while (reader.Read())
+					{
+						string uname = reader.GetString(0);
+						//return uname;
+					}
+					//return "unknown";
+				}
+			}
+			return null;
+		}
 	}
 }
