@@ -90,14 +90,24 @@ var searchViewModel = (function () {
         //toggle: toggle
     };
 })();
-var QuestionViewModel = function () {
-    var title;
-    var question_owner;
-    var question_Url;
-    var question_body;
-    var question_creationDate;
-    var comments = [];
-}();
+//var QuestionViewModel = function () {
+//    var title = ko.observable("");
+//    var question_owner = ko.observable("");
+//    var question_Url = ko.observable("");
+//    var question_body = ko.observable("");
+//    var question_creationDate = ko.observable("");
+//    var comments = ko.observableArray([]);
+//    var answers = ko.observableArray([]);
+//    var getQuestionByUrl = function (url){
+//        $.getJSON(url + searchText(), function (result) {
+//            title = result.Title;
+//            question_owner = ;
+//        });
+//    };
+//    var getOwnerByOwnerId = function(ownerUserId){
+
+//    };
+//}();
 
 
 //ko.applyBindings(searchViewModel);

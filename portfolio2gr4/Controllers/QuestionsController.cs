@@ -60,8 +60,6 @@ namespace portfolio2gr4.Controllers
 			var helper = new UrlHelper(Request);// I don't need url helper here 
 			return _questionRepository.GetByFullTextSearch(searchText, "title,body", 10, 0).Select(question => ModelFactory.Create(question));
 		}
-
-
 		public HttpResponseMessage GetById(int id) {
 			var helper = new UrlHelper(Request);
 			var question = _questionRepository.GetById(id);

@@ -128,6 +128,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="addanno.html" />
+    <Content Include="App\JavaScript.js" />
     <Content Include="App\main.js" />
     <Content Include="App\script.js" />
     <Content Include="Css\bootstrap.min.css" />
@@ -141,7 +142,7 @@
     <None Include="Views\Home\index.cshtml" />
     <Content Include="Css\.pleeeaserc" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="img\user.png" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
