@@ -23,7 +23,6 @@ var navigationViewModel = (function () {
         showContent = function (menu) {
             var toggle = $("#navbar-toggle-button").attr("aria-expanded");
             if (toggle = (toggle === "true")) {
-                //alert(toggle);
                 $("#navbar-collapse").click(function () {
                     $("#navbar-toggle-button").trigger('click');
                 });
@@ -64,7 +63,7 @@ var navigationViewModel = (function () {
             } else if (name === "questions") {
                 name = "questions/10-1";
                 questions([]);
-                $("#suggestionList option").attr(" data-bind", "value:$data.Title");
+               // $("#suggestionList option").attr(" data-bind", "value:$data.Title");
                 $.getJSON("http://localhost:3133/api/" + name, function (result) {
 
                     for (var i = 0; i < result.length; i++) {
@@ -155,8 +154,9 @@ showList = ko.observable(true);
     };
 }());
 
-navigationViewModel.showContent("users");
+//navigationViewModel.showContent("users");
 ko.applyBindings(masterVM);
-
+$("#Users_menu").trigger('click');
+alert("clicked");
    
 

@@ -34,7 +34,7 @@
                     <div class="collapse navbar-collapse" id="navbar-collapse" data-bind="with: navigationViewModel">
                         <ul class="nav navbar-nav navbar-right" data-bind="foreach: menuItems">
                             <li data-bind="css: {active: $parent.isActive($data)}">
-                                <a href='' data-bind="click: $parent.showContent, text: $data"></a>
+                                <a href='' data-bind="click: $parent.showContent, text: $data,attr: {id: ($data)+'_menu'}" ></a>
                             </li>
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -55,9 +55,24 @@
                                 </button>
                             </span>
                         </div>
-                        <div class="row">
+                        <div class="row" id="question_suggestions">
                             <datalist id="suggestionList" data-bind="foreach:suggestions">
                                 <option data-bind="value:$data.Title"></option>
+                            </datalist>
+                        </div>
+                        <div class="row" id="user_suggestions">
+                            <datalist id="suggestionList" data-bind="foreach:suggestions">
+                                <option data-bind="value:$data.Name"></option>
+                            </datalist>
+                        </div>
+                        <div class="row" id="Annotation_suggestions">
+                            <datalist id="suggestionList" data-bind="foreach:suggestions">
+                                <option data-bind="value:$data.Body"></option>
+                            </datalist>
+                        </div>
+                        <div class="row" id="history_suggestions">
+                            <datalist id="suggestionList" data-bind="foreach:suggestions">
+                                <option data-bind="value:$data.Body"></option>
                             </datalist>
                         </div>
 
