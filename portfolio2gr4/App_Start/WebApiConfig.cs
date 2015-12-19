@@ -15,7 +15,7 @@ namespace portfolio2gr4
 				);
 			config.Routes.MapHttpRoute(
 				name: "UserSearch",
-				routeTemplate: "api/users/search/{searchText_Name}",
+				routeTemplate: "api/users/GetByKey/{searchText_Name}",
 				defaults: new { controller = "Users" }
 			);
 

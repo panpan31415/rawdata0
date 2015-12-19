@@ -31,7 +31,14 @@ var searchViewModel = (function () {
     var getSuggestions = function (target, event) {
         switch (navigationViewModel.currentMenu()) {
             case "Users":
-                //not implemented yet
+                $.getJSON("/api/users/GetByKey/" + searchText(), function (result) {
+                    if (result.length >= 1) {
+                        var names = $.map(result, function (n) {
+                            return { Title: n.Title, Url: n.Url };
+                        });
+                        suggestions(names);
+                    }
+                });
                 break;
             case "Annotations":
                 //not implemented yet
@@ -60,7 +67,7 @@ var searchViewModel = (function () {
                 //not implemented yet
                 break;
             case "Questions":
-                $.getJSON("api/questions/search/" + searchText(), function (result) {
+                $.getJSON("api/questions/search_title/" + searchText(), function (result) {
                     if (result.length >= 1) {
                         //var titles = $.map(result, function (q) {
                         //    return q.Title;

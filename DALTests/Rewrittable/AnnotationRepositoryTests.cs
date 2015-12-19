@@ -87,8 +87,6 @@ namespace DAL.Rewrittable.Tests
 			initiaizeTest();
             Annotation actual = _annoRepository.GetByPostAndUser(105975, 72);
 			Assert.AreEqual(a.Body, actual.Body);
-
-
 		}
 
 		//[TestMethod()]

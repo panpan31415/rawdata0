@@ -5,14 +5,13 @@ var masterVM = masterVM || (function () {
 })();
 var navigationViewModel = (function () {
     var Body = ko.observable("Default");
-    var currentMenu = ko.observable(""); 
+    var currentMenu = ko.observable("");
     var menuItems = ["Users", "Annotations", "Questions", "History"],
         currentView = ko.observable("users_view"),
         data = ko.observableArray([]),
         questions = ko.observableArray([]),
 		users = ko.observableArray([]),
-		history = ko.observableArray([]);
-   
+		history = ko.observableArray([]);  
     GoTo = function( ) {     
             $.getJSON("http://localhost:3133/api/questions/7664" , function (result) {
                 questions([]);
@@ -35,6 +34,7 @@ var navigationViewModel = (function () {
             $("#search_textbox").attr("placeholder", "Search " + currentMenu());
             if (name === "history") {
                 name = "users/108/historys";
+                //$("#suggestionList option").attr(" data-bind", "value:$data.Title");
                 history([]);
                 $.getJSON("http://localhost:3133/api/" + name, function (result) {
 					
@@ -48,6 +48,7 @@ var navigationViewModel = (function () {
             } else if (name === "users") {
                 name = "users";
                 users([]);
+                //$("#suggestionList option").attr(" data-bind", "value:$data.Title");
                 $.getJSON("http://localhost:3133/api/" + name, function (result) {
 					
                     for(var i=0;i<result.length;i++){
@@ -63,6 +64,7 @@ var navigationViewModel = (function () {
             } else if (name === "questions") {
                 name = "questions/10-1";
                 questions([]);
+                $("#suggestionList option").attr(" data-bind", "value:$data.Title");
                 $.getJSON("http://localhost:3133/api/" + name, function (result) {
 
                     for (var i = 0; i < result.length; i++) {
