@@ -52,7 +52,6 @@ var searchViewModel = (function () {
         }
     };
     var searchFor = function (target, event) {
-        alert("hello");
         switch (navigationViewModel.currentMenu()) {
             case "Users":
                 //not implemented yet
