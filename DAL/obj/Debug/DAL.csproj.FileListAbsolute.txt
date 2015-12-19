@@ -59,3 +59,18 @@ C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\nunit.core.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\nunit.core.interfaces.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\nunit.util.dll
 C:\Users\panpa\Documents\GitHub\rawdata0\DAL\bin\Debug\NUnit.VisualStudio.TestAdapter.dll
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\bin\Debug\DAL.dll.config
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\bin\Debug\DAL.dll
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\bin\Debug\DAL.pdb
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\bin\Debug\MySql.Data.dll
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\bin\Debug\nunit.core.dll
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\bin\Debug\nunit.core.interfaces.dll
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\bin\Debug\nunit.util.dll
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\bin\Debug\NUnit.VisualStudio.TestAdapter.dll
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\obj\Debug\DAL.dll
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\DAL\obj\Debug\DAL.pdb
