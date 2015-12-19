@@ -157,6 +157,6 @@ showList = ko.observable(true);
 //navigationViewModel.showContent("users");
 ko.applyBindings(masterVM);
 $("#Users_menu").trigger('click');
-alert("clicked");
+
    
 
