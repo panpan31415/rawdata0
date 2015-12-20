@@ -48,7 +48,7 @@
 
                     <div id="custom-search-input">
                         <div class="input-group ">
-                            <input type="text" id="search_textbox" list="suggestionList" class="form-control input-lg" data-bind="textInput:searchText, event: {input:getSuggestions}" />
+                            <input type="text" id="search_textbox" list class="form-control input-lg" data-bind="textInput:searchText, event: {input:getSuggestions}" />
                             <span class="input-group-btn">
                                 <button class="btn btn-info btn-lg" type="button" data-bind="click:searchFor">
                                     <i class="glyphicon glyphicon-search"></i>
@@ -56,22 +56,22 @@
                             </span>
                         </div>
                         <div class="row" id="question_suggestions">
-                            <datalist id="suggestionList" data-bind="foreach:suggestions">
+                            <datalist id="question_suggestionList" data-bind="foreach:suggestions">
                                 <option data-bind="value:$data.Title"></option>
                             </datalist>
                         </div>
                         <div class="row" id="user_suggestions">
-                            <datalist id="suggestionList" data-bind="foreach:suggestions">
+                            <datalist id="user_suggestionsList" data-bind="foreach:suggestions">
                                 <option data-bind="value:$data.Name"></option>
                             </datalist>
                         </div>
                         <div class="row" id="Annotation_suggestions">
-                            <datalist id="suggestionList" data-bind="foreach:suggestions">
+                            <datalist id="Annotation_suggestionsList" data-bind="foreach:suggestions">
                                 <option data-bind="value:$data.Body"></option>
                             </datalist>
                         </div>
                         <div class="row" id="history_suggestions">
-                            <datalist id="suggestionList" data-bind="foreach:suggestions">
+                            <datalist id="history_suggestionsList" data-bind="foreach:suggestions">
                                 <option data-bind="value:$data.Body"></option>
                             </datalist>
                         </div>
@@ -94,10 +94,26 @@
             <div data-bind="text: Name"></div>
         </div>
     </script>
+    <script type="text/html" id="users_search_view">
+        <h2>Users : Search Result</h2>
+        <div data-bind="foreach: searchViewModel.searchResult">
+            <div data-bind="text: Url"></div>
+            <div data-bind="text: CreationDate"></div>
+            <div data-bind="text: Location"></div>
+            <div data-bind="text: Name"></div>
+        </div>
+    </script>
     <script type="text/html" id="annotations_view">
         <h2>Annotation</h2>
-        <input type="checkbox" data-bind="checked: navigationViewModel.showList" />
         <div data-bind="foreach: navigationViewModel.data, visible: navigationViewModel.showList">
+            <div data-bind="text: $data.Url"></div>
+            <div data-bind="text: $data.Body"></div>
+            <div data-bind="text: $data.Date"></div>
+        </div>
+    </script>
+    <script type="text/html" id="annotations_search_view">
+        <h2>Annotation : Search Result</h2>
+        <div data-bind="foreach: searchViewModel.searchResult">
             <div data-bind="text: $data.Url"></div>
             <div data-bind="text: $data.Body"></div>
             <div data-bind="text: $data.Date"></div>
@@ -112,6 +128,14 @@
     <script type="text/html" id="history_view">
         <h2>History</h2>
         <div data-bind="foreach: navigationViewModel.history">
+            <div data-bind="text: Url"></div>
+            <div data-bind="text: body"></div>
+            <div data-bind="text: userId"></div>
+        </div>
+    </script>
+    <script type="text/html" id="history_search_view">
+        <h2>History</h2>
+        <div data-bind="foreach: foreach: searchViewModel.searchResult">
             <div data-bind="text: Url"></div>
             <div data-bind="text: body"></div>
             <div data-bind="text: userId"></div>

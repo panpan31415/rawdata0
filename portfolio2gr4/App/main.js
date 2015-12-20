@@ -11,8 +11,9 @@ var navigationViewModel = (function () {
         data = ko.observableArray([]),
         questions = ko.observableArray([]),
 		users = ko.observableArray([]),
-		history = ko.observableArray([]);  
-    GoTo = function( ) {     
+		history = ko.observableArray([]);
+    var uid = "";
+    var GoTo = function( ) {     
             $.getJSON("http://localhost:3133/api/questions/7664" , function (result) {
                 questions([]);
                 questions.push(new QuesItem(result));
@@ -149,7 +150,8 @@ showList = ko.observable(true);
         questions: questions,
         Body: Body,
         AddData: AddData,
-        GoTo: GoTo
+        GoTo: GoTo,
+        uid:uid
  
     };
 }());

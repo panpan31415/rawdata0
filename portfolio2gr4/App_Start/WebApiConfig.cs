@@ -82,7 +82,7 @@ namespace portfolio2gr4
 				);
 			config.Routes.MapHttpRoute(
 				name: "AnnotationSearch",
-				routeTemplate: "api/annotations/search/{searchText_Annotation}",
+				routeTemplate: "api/annotations/search/{searchText_Annotation}-{uid}",
 				defaults: new { controller = "Annotations" }
 			);
 			config.Routes.MapHttpRoute(
@@ -94,6 +94,12 @@ namespace portfolio2gr4
 			config.Routes.MapHttpRoute(
 			   name: "HistoryApi",
 			   routeTemplate: "api/users/{uid}/historys",
+			   //routeTemplate: "api/historys/{id}",
+			   defaults: new { controller = "Historys", }
+			  );
+			config.Routes.MapHttpRoute(
+			   name: "HistorySearchByKey",
+			   routeTemplate: "api/historys/search/{searchText_history}-{uid}",
 			   //routeTemplate: "api/historys/{id}",
 			   defaults: new { controller = "Historys", }
 			  );

@@ -10,6 +10,7 @@ namespace DAL
 {
 	public abstract class Repository<T> : IRepository<T> where T : class, IIdentityField
 	{
+		
 		public IDataMapper<T> DataMapper { get; set; }
 
 		public IUpdatableDataMapper<T> UpdatableDataMapper { get; set; }
@@ -46,6 +47,15 @@ namespace DAL
 		/// <returns></returns>
 		public IEnumerable<T> GetAllQuestionsByKey(string key, int limit = 10, int offset = 0)
 		{
+			IDataMapper<T> mapper;
+			if(DataMapper == null)
+			{
+				mapper = UpdatableDataMapper;
+				mapper = (IUpdatableDataMapper<T>)mapper;
+            }
+			else {
+				mapper = DataMapper;
+			}
 			string[] stringSeparators = new string[] { " ", "," };
 			string[] words = key.Split(stringSeparators, StringSplitOptions.None);
 			string[] parsedWords = words.Select(word => "'%" + word + "%'").ToArray();
@@ -55,8 +65,8 @@ namespace DAL
 			parsedWords = w_list.Select(word => "AND body like " + word).ToArray();
 
 			var sql = string.Format("SELECT ID, {0} FROM {1} {2} {5} LIMIT {3} OFFSET {4}",
-					string.Join(", ", DataMapper.Attributes),
-					DataMapper.TableName,
+					string.Join(", ", mapper.Attributes),
+					mapper.TableName,
 					sqlWhere,
 					limit,
 					offset,
@@ -178,16 +188,56 @@ namespace DAL
 		/// <returns></returns>
 		public virtual IEnumerable<T> GetByFullTextSearch(string searchText, string columns, int limit = 10, int offset = 0, string orderby = "relevance", string ASC_DESC = "DESC")
 		{
+			IDataMapper<T> mapper;
+			if (DataMapper == null)
+			{
+				mapper = UpdatableDataMapper;
+				mapper = (IUpdatableDataMapper<T>)mapper;
+			}
+			else
+			{
+				mapper = DataMapper;
+			}
 			var condition = "where match (" + columns + ") " + "against( '" + searchText + "') ORDER BY " + orderby + " " + ASC_DESC;
 			var sql = string.Format("SELECT ID, {0}{1} FROM {2} {3} limit {4} offset {5} ",
-				string.Join(", ", DataMapper.Attributes),
+				string.Join(", ", mapper.Attributes),
 				",match (" + columns + ")" + "against ('" + searchText + "') AS relevance",
-				DataMapper.TableName,
+				mapper.TableName,
 				condition,
 				limit,
 				offset
 				);
-			return DataMapper.Query(new MySqlCommand(sql));
+			return mapper.Query(new MySqlCommand(sql));
+		}
+		public IEnumerable<T> GetByKeyWords(string key, string column, int UserID, int limit = 10, int offset = 0)
+		{
+			IDataMapper<T> mapper;
+			if (DataMapper == null)
+			{
+				mapper = UpdatableDataMapper;
+				mapper = (IUpdatableDataMapper<T>)mapper;
+			}
+			else
+			{
+				mapper = DataMapper;
+			}
+			string[] stringSeparators = new string[] { " ", "," };
+			string[] words = key.Split(stringSeparators, StringSplitOptions.None);
+			string[] parsedWords = words.Select(word => "'%" + word + "%'").ToArray();
+			var sqlWhere = "WHERE " + column + " like " + parsedWords[0];
+			var w_list = new List<string>(parsedWords);
+			w_list.RemoveAt(0);
+			parsedWords = w_list.Select(word => "AND " + column + " like " + word).ToArray();
+			var sql = string.Format("SELECT ID, {0} FROM {1} {2} {5} AND userID = {6} LIMIT {3} OFFSET {4}",
+					string.Join(", ", mapper.Attributes),//0
+					mapper.TableName,//1
+					sqlWhere,//2
+					limit,//3
+					offset,//4
+					parsedWords.Length == 0 ? "" : string.Join(" ", parsedWords),//5
+					UserID//6
+			);
+			return mapper.Query(new MySqlCommand(sql));
 		}
 	}
 }

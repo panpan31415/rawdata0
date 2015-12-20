@@ -29,17 +29,18 @@ namespace portfolio2gr4.Controllers
 					.Select(history => ModelFactory.Create(history));
 			}*/
 
-		public IEnumerable<HistoryModel> Get(int uid)
+		public IEnumerable<HistoryModel> Get()
 		{
 			var helper = new UrlHelper(Request);
-			return _hisRepository.GetByUserId(uid).Select(vote => ModelFactory.Create(vote));
+			return _hisRepository.GetAll().Select(history => ModelFactory.Create(history));
 		}
-		public IEnumerable<HistoryModel> GetBySearchName(string searchText_History)
+		public IEnumerable<HistoryModel> GetBySearch(string searchText_History , int uid)
 		{
 			var helper = new UrlHelper(Request);// I don't need url helper here 
-			return _hisRepository.GetByFullTextSearch(searchText_History, "body", 1000, 0).Select(annotation => ModelFactory.Create(annotation));
+			return _hisRepository.GetByKeyWords(searchText_History,"body",uid,1000,0).Select(history => ModelFactory.Create(history));
+			//return _hisRepository.GetByFullTextSearch(searchText_History, "body", 1000, 0).Select(annotation => ModelFactory.Create(annotation));
 		}
-		/*public HttpResponseMessage Post([FromBody] HistoryModel model)
+		public HttpResponseMessage Post([FromBody] HistoryModel model)
 		{
 			var helper = new UrlHelper(Request);
 			var history = ModelFactory.Parse(model);
@@ -47,7 +48,7 @@ namespace portfolio2gr4.Controllers
 			return Request.CreateResponse(
 				HttpStatusCode.Created
 				, ModelFactory.Create(history));
-		}*/
+		}
 
 	}
 }

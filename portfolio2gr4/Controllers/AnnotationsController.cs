@@ -69,9 +69,9 @@ namespace portfolio2gr4.Controllers
 			_annoRepository.Updation(annotation);
 			return Request.CreateResponse(HttpStatusCode.OK);
 		}
-		public IEnumerable<AnnotationModel> GetByKeyWords(string searchText_Annotation)
+		public IEnumerable<AnnotationModel> GetByKeyWords(string searchText_Annotation , int uid)
 		{
-			return _annoRepository.GetByKeyWords(searchText_Annotation,"body",4,1000,0).Select(annotation => ModelFactory.Create(annotation));
+			return _annoRepository.GetByKeyWords(searchText_Annotation,"body", uid, 1000,0).Select(annotation => ModelFactory.Create(annotation));
 		}
 	}
 }
