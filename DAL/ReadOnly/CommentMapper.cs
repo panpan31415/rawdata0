@@ -39,14 +39,14 @@ namespace DAL.ReadOnly
 			{
 				
 				string a_body;
-				DateTime a_date;
+				string a_date;
 
 
 				
 				if (!reader.IsDBNull(1)) { a_body = reader.GetString(1); }
 				else { a_body = "unknown"; }
-				if (!reader.IsDBNull(2)) { a_date = reader.GetDateTime(2); }
-				else { a_date = DateTime.Now; }
+				if (!reader.IsDBNull(2)) { a_date = reader.GetString(2); }
+				else { a_date = DateTime.Now.ToString(); }
 				
 				var comment = new Comment
 				{

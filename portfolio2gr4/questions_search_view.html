@@ -1,0 +1,15 @@
+﻿<div class="col-sm-12">
+    <div class="page-header text-muted">
+        <h2>Questions: Search Result</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-10" data-bind="foreach: searchViewModel.searchResult">
+        <div class="search-content">
+            <a data-bind="attr:{href:Url}"><h3 data-bind="text:Title"></h3></a>
+            <h4><span class="label label-default" data-bind="text:Owner"></span></h4><h4>
+                <small class="text-muted">CreationDate :<span data-bind="text:CreationDate"></span> • <a data-bind="attr:{href:Url}" class="text-muted">Read More</a></small>
+            </h4>
+        </div>
+    </div>
+</div>

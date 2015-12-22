@@ -128,9 +128,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="addanno.html" />
-    <Content Include="App\JavaScript.js" />
-    <Content Include="App\main.js" />
-    <Content Include="App\script.js" />
+    <Content Include="annotations_search_view.html" />
+    <Content Include="annotations_view.html" />
+    <Content Include="App\masterViewModel.js" />
+    <Content Include="App\loginViewModel.js" />
+    <Content Include="App\navigationViewModel.js" />
+    <Content Include="App\validatorViewModel.js" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Css\dev\global.css" />
     <Content Include="Css\dev\header.css" />
@@ -142,19 +145,27 @@
     <None Include="Views\Home\index.cshtml" />
     <Content Include="Css\.pleeeaserc" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
+    <Content Include="history_search_view.html" />
+    <Content Include="history_view.html" />
     <Content Include="HtmlPage1.html" />
+    <Content Include="main.html" />
+    <Content Include="questions_search_view.html" />
+    <Content Include="questions_view.html" />
+    <Content Include="question_view.html" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\knockout-3.4.0.debug.js" />
     <Content Include="Scripts\knockout-3.4.0.js" />
-    <Content Include="App\search.js" />
+    <Content Include="App\searchViewModel.js" />
     <Content Include="Scripts\typeahead.bundle.js" />
     <Content Include="Scripts\typeahead.js" />
-    <Content Include="search.css" />
+    <Content Include="Scripts\validator.js" />
     <Content Include="search.html" />
-    <Content Include="styles.css" />
+    <Content Include="users_search_view.html" />
+    <Content Include="users_view.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

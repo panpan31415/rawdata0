@@ -10,7 +10,6 @@ namespace DAL
 {
 	public abstract class Repository<T> : IRepository<T> where T : class, IIdentityField
 	{
-		
 		public IDataMapper<T> DataMapper { get; set; }
 
 		public IUpdatableDataMapper<T> UpdatableDataMapper { get; set; }
@@ -35,7 +34,7 @@ namespace DAL
 			}
 
 		}
-		
+
 
 		/// <summary>
 		/// To Ionana , I think this method shouold be moved to questions repository class or atleast you should change method name 
@@ -47,15 +46,6 @@ namespace DAL
 		/// <returns></returns>
 		public IEnumerable<T> GetAllQuestionsByKey(string key, int limit = 10, int offset = 0)
 		{
-			IDataMapper<T> mapper;
-			if(DataMapper == null)
-			{
-				mapper = UpdatableDataMapper;
-				mapper = (IUpdatableDataMapper<T>)mapper;
-            }
-			else {
-				mapper = DataMapper;
-			}
 			string[] stringSeparators = new string[] { " ", "," };
 			string[] words = key.Split(stringSeparators, StringSplitOptions.None);
 			string[] parsedWords = words.Select(word => "'%" + word + "%'").ToArray();
@@ -65,8 +55,8 @@ namespace DAL
 			parsedWords = w_list.Select(word => "AND body like " + word).ToArray();
 
 			var sql = string.Format("SELECT ID, {0} FROM {1} {2} {5} LIMIT {3} OFFSET {4}",
-					string.Join(", ", mapper.Attributes),
-					mapper.TableName,
+					string.Join(", ", DataMapper.Attributes),
+					DataMapper.TableName,
 					sqlWhere,
 					limit,
 					offset,
@@ -74,13 +64,13 @@ namespace DAL
 			);
 			return DataMapper.Query(new MySqlCommand(sql));
 		}
-		
-		public virtual IEnumerable<T> GetByKeyWords(string key,string column, int limit = 10, int offset = 0)
+
+		public virtual IEnumerable<T> GetByKeyWords(string key, string column, int limit = 10, int offset = 0)
 		{
 			string[] stringSeparators = new string[] { " ", "," };
 			string[] words = key.Split(stringSeparators, StringSplitOptions.None);
 			string[] parsedWords = words.Select(word => "'%" + word + "%'").ToArray();
-			var sqlWhere = "WHERE "+ column + " like " + parsedWords[0];
+			var sqlWhere = "WHERE " + column + " like " + parsedWords[0];
 			var w_list = new List<string>(parsedWords);
 			w_list.RemoveAt(0);// why ?
 			parsedWords = w_list.Select(word => "AND " + column + " like " + word).ToArray();
@@ -117,6 +107,26 @@ namespace DAL
 					offset);
 				return DataMapper.Query(new MySqlCommand(sql));
 			}
+		}
+		public IEnumerable<T> GetAll(int uid, int limit = 10, int offset = 0)
+		{
+			IDataMapper<T> mapper;
+			if (DataMapper == null)
+			{
+				mapper = UpdatableDataMapper;
+			}
+			else
+			{
+				mapper = DataMapper;
+			}
+			var sql = string.Format("SELECT ID, {0} FROM {1} where userId = {4} LIMIT {2} OFFSET {3}",
+				string.Join(", ", mapper.Attributes),
+				mapper.TableName,
+				limit,
+				offset,
+				uid);
+			return mapper.Query(new MySqlCommand(sql));
+
 		}
 
 		public IEnumerable<T> GetByPost(int postid, int limit = 10, int offset = 0)
@@ -192,7 +202,6 @@ namespace DAL
 			if (DataMapper == null)
 			{
 				mapper = UpdatableDataMapper;
-				mapper = (IUpdatableDataMapper<T>)mapper;
 			}
 			else
 			{

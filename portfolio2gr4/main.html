@@ -1,0 +1,70 @@
+﻿
+<header class="navbar navbar-fixed-top">
+
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-default ">
+        <div class="container-fluid">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" id="navbar-toggle-button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">SOVA</a>
+
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-collapse" data-bind="with: navigationViewModel">
+                <ul class="nav navbar-nav navbar-right" data-bind="foreach: menuItems">
+                    <li data-bind="css: {active: $parent.isActive($data)}">
+                        <a href='' data-bind="click: $parent.showContent, text: $data,attr: {id: ($data)+'_menu'}"></a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <!-- NAVIGATION ENDS -->
+    <!--Search Start-->
+    <form class="form-search search">
+        <div data-bind="with: searchViewModel">
+            <!--<div class="row">-->
+
+            <div id="custom-search-input">
+                <div class="input-group ">
+                    <input type="text" id="search_textbox"  class="form-control input-lg" data-bind="textInput:searchText, event: {input:getSuggestions}" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-lg" type="button" data-bind="click:searchFor">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="row" id="question_suggestions">
+                    <datalist id="question_suggestionList" data-bind="foreach:suggestions">
+                        <option data-bind="value:$data.Title"></option>
+                    </datalist>
+                </div>
+                <div class="row" id="user_suggestions">
+                    <datalist id="user_suggestionsList" data-bind="foreach:suggestions">
+                        <option data-bind="value:$data.Name"></option>
+                    </datalist>
+                </div>
+                <div class="row" id="Annotation_suggestions">
+                    <datalist id="Annotation_suggestionsList" data-bind="foreach:suggestions">
+                        <option data-bind="value:$data.Body"></option>
+                    </datalist>
+                </div>
+                <div class="row" id="history_suggestions">
+                    <datalist id="history_suggestionsList" data-bind="foreach:suggestions">
+                        <option data-bind="value:$data.Body"></option>
+                    </datalist>
+                </div>
+
+                <!--</div>-->
+            </div>
+        </div>
+    </form>
+    <!--Search End-->
+</header>

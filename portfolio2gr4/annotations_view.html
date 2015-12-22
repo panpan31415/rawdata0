@@ -1,0 +1,6 @@
+﻿<h2>Annotation</h2>
+<div data-bind="foreach: navigationViewModel.data, visible: navigationViewModel.showList">
+    <div data-bind="text: $data.Url"></div>
+    <div data-bind="text: $data.Body"></div>
+    <div data-bind="text: $data.Date"></div>
+</div>

@@ -32,7 +32,8 @@
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="navbar-collapse" data-bind="with: navigationViewModel">
-                        <ul class="nav navbar-nav navbar-right" data-bind="foreach: menuItems">
+                        <ul id="Login_menu" class="nav navbar-nav navbar-right login " href='' ><li><a data-bind="text:loginViewModel.displaytext,click:loginViewModel.setLoginInfo"></a></li></ul>
+                        <ul class="nav navbar-nav navbar-right" data-bind="foreach: menuItems">                            
                             <li data-bind="css: {active: $parent.isActive($data)}">
                                 <a href='' data-bind="click: $parent.showContent, text: $data,attr: {id: ($data)+'_menu'}" ></a>
                             </li>
@@ -48,7 +49,7 @@
 
                     <div id="custom-search-input">
                         <div class="input-group ">
-                            <input type="text" id="search_textbox" list class="form-control input-lg" data-bind="textInput:searchText, event: {input:getSuggestions}" />
+                            <input type="text" id="search_textbox"  class="form-control input-lg" data-bind="textInput:searchText, event: {input:getSuggestions}" />
                             <span class="input-group-btn">
                                 <button class="btn btn-info btn-lg" type="button" data-bind="click:searchFor">
                                     <i class="glyphicon glyphicon-search"></i>
@@ -210,18 +211,19 @@
 
         </div>
     </script>
-
-
-
-
     <footer></footer>
-
+    
     <script src="Scripts/jquery-2.1.4.js"></script>
     <script src="Scripts/bootstrap.js"></script>
     <script src="Scripts/knockout-3.4.0.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
-    <script src="~/App/search.js"></script>
-    <!--<script src="App/script.js"></script>-->
-    <script src="App/main.js"></script>
+    <script src="~/Scripts/validator.js"></script>
+    <script src="~/Scripts/bootbox.min.js"></script>
+    <script src="~/App/searchViewModel.js"></script>
+    <script src="~/App/navigationViewModel.js"></script>
+    <script src="~/App/loginViewModel.js"></script>
+    <script src="~/App/validatorViewModel.js"></script>
+    <script src="~/App/masterViewModel.js"></script>
+
 </body>
 </html>

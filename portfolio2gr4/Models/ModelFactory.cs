@@ -26,7 +26,7 @@ namespace WebService.Models
 		{
 			return new UserModel
 			{
-				Url = _urlHelper.Link("UserApi", new { Id = user.Id }), //HERE
+				Url = _urlHelper.Link("UserByIdApi", new { Id = user.Id }), //HERE
 				Name = user.Name,
 				WebsiteUrl = user.WebsiteUrl,
 				Reputation = user.Reputation,
@@ -87,7 +87,7 @@ namespace WebService.Models
 				//postId = comment.PostId,
 				//Url = _urlHelper.Link("QuestionCommentApi", new { id = comment.Id }),
 				postId = comment.PostId,
-				creationDate = comment.CreationDate,
+				creationDate = comment.CreationDate.ToString(),
 				text = comment.Text,
 				//userid = comment.Userid
 			};
@@ -155,7 +155,7 @@ namespace WebService.Models
 				PostId = model.PostId
 			};
 		}
-
+		
 		public HistoryModel Create(History history)
 		{
 			return new HistoryModel

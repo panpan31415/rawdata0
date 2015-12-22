@@ -1,8 +1,4 @@
-
-var masterVM = masterVM || (function () {
-    this.navigationViewModel = navigationViewModel;
-    this.searchViewModel = searchViewModel;
-})();
+﻿
 var navigationViewModel = (function () {
     var Body = ko.observable("Default");
     var currentMenu = ko.observable("");
@@ -12,15 +8,16 @@ var navigationViewModel = (function () {
         questions = ko.observableArray([]),
 		users = ko.observableArray([]),
 		history = ko.observableArray([]);
-    var uid = "";
-    var GoTo = function( ) {     
-            $.getJSON("http://localhost:3133/api/questions/7664" , function (result) {
-                questions([]);
-                questions.push(new QuesItem(result));
-                    
-            });
-        
-        },
+    var uid = ko.observable("");
+    var page = ko.observable(1);
+    var size = ko.observable(10);
+    var GoTo = function () {
+        $.getJSON("http://localhost:3133/api/questions/7664", function (result) {
+            questions([]);
+            questions.push(new QuesItem(result));
+
+        });
+    },
         showContent = function (menu) {
             var toggle = $("#navbar-toggle-button").attr("aria-expanded");
             if (toggle = (toggle === "true")) {
@@ -37,34 +34,34 @@ var navigationViewModel = (function () {
                 //$("#suggestionList option").attr(" data-bind", "value:$data.Title");
                 history([]);
                 $.getJSON("http://localhost:3133/api/" + name, function (result) {
-					
-                    for(var i=0;i<result.length;i++){
+
+                    for (var i = 0; i < result.length; i++) {
                         history.push(new HistoryItem(result[i]));
                         //console.log("res:");
                         //console.log(history());
                     };
-					 
+
                 });
             } else if (name === "users") {
-                name = "users";
+                name = "users/10-1";
                 users([]);
                 //$("#suggestionList option").attr(" data-bind", "value:$data.Title");
                 $.getJSON("http://localhost:3133/api/" + name, function (result) {
-					
-                    for(var i=0;i<result.length;i++){
+
+                    for (var i = 0; i < result.length; i++) {
                         users.push(new UsersItem(result[i]));
                         //console.log("res:");
                         //console.log(history());
                         function uri() {
 
-                        } 
+                        }
                     };
-					 
+
                 });
             } else if (name === "questions") {
                 name = "questions/10-1";
                 questions([]);
-               // $("#suggestionList option").attr(" data-bind", "value:$data.Title");
+                // $("#suggestionList option").attr(" data-bind", "value:$data.Title");
                 $.getJSON("http://localhost:3133/api/" + name, function (result) {
 
                     for (var i = 0; i < result.length; i++) {
@@ -84,13 +81,13 @@ var navigationViewModel = (function () {
             }
 
         },
-       
+
         //add annotation button
         AddData = function () {
             $.ajax({
                 type: "POST",
                 url: "http://localhost:3133/api/annotations",
-                data: ko.toJSON({Body: this.Body }),
+                data: ko.toJSON({ Body: this.Body }),
                 contentType: "application/json; charset=utf-8",
                 success: function (data) {
                     alert("added");
@@ -113,7 +110,7 @@ showList = ko.observable(true);
         self.userId = data.UserId;
         self.body = data.Body;
         self.searchDate = data.SearchDate;
-		
+
     };
     function UsersItem(data) {
         var self = this;
@@ -122,7 +119,7 @@ showList = ko.observable(true);
         self.CreationDate = data.CreationDate;
         self.Location = data.Location;
         self.Name = data.Name;
-        
+
 
     };
 
@@ -134,11 +131,11 @@ showList = ko.observable(true);
         self.Body = data.Body;
         self.Title = data.Title;
         self.Owner = data.Owner;
-	    
+
 
     };
     return {
-        currentMenu:currentMenu,
+        currentMenu: currentMenu,
         showContent: showContent,
         currentView: currentView,
         data: data,
@@ -151,14 +148,10 @@ showList = ko.observable(true);
         Body: Body,
         AddData: AddData,
         GoTo: GoTo,
-        uid:uid
- 
+        uid: uid
+
     };
 }());
 
 //navigationViewModel.showContent("users");
-ko.applyBindings(masterVM);
 $("#Users_menu").trigger('click');
-
-   
-

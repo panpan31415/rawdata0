@@ -44,7 +44,7 @@ namespace DAL
 				command.Connection = connection;
 				using (var reader = command.ExecuteReader())
 				{
-					while (reader.HasRows)
+					while (reader.HasRows&& reader.Read())
 					{
 						var element = Map(reader);
 						if (element == null)
