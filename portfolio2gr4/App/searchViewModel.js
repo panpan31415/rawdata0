@@ -4,10 +4,9 @@ var searchViewModel = (function () {
     var suggestions = ko.observableArray([]);// for searchbar
     var searchResult = ko.observableArray([]);// for page body
     var getSuggestions = function (target, event) {
-
-        switch (currentMenu()) {
+        switch (navigationViewModel.currentMenu()) {
             case "Users":
-                $.getJSON("/api/users/GetByKey/" + searchText()+"-10-1", function (result) {
+                $.getJSON("/api/users/GetByKey/" + searchText() + "-" + navigationViewModel.size()+"-"+navigationViewModel.page(), function (result) {
                     if (result.length >= 1) {
                         var user_names = $.map(result, function (n) {
                             return { Name: n.Name, Url: n.Url };
@@ -17,8 +16,8 @@ var searchViewModel = (function () {
                 });
                 break;
             case "Annotations":
-                if (navigationViewModel.uid().length > 0) {
-                    $.getJSON("/api/annotations/search/" + searchText() + "-" + navigationViewModel.uid()+"-10-1", function (result) {
+                if (loginViewModel.loginStatus()) {
+                    $.getJSON("/api/annotations/search/" + searchText() + "-" + loginViewModel.uid() + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
                         if (result.length >= 1) {
                             var annotation_bodies = $.map(result, function (n) {
                                 return { Body: n.Body, Url: n.Url };
@@ -29,7 +28,7 @@ var searchViewModel = (function () {
                 }
                 break;
             case "Questions":
-                $.getJSON("api/questions/search_title/" + searchText()+"-10-1", function (result) {
+                $.getJSON("api/questions/search_title/" + searchText(), function (result) {
                     if (result.length >= 1) {
                         var question_titles = $.map(result, function (q) {
                             return { Title: q.Title, Url: q.Url };
@@ -39,8 +38,8 @@ var searchViewModel = (function () {
                 });
                 break;
             case "History":
-                if (navigationViewModel.uid().length > 0) {
-                    $.getJSON("api/historys/search/" + searchText() + "-" + navigationViewModel.uid() + "-10-1", function (result) {
+                if (loginViewModel.loginStatus()) {
+                    $.getJSON("api/historys/search/" + searchText() + "-" + loginViewModel.uid() + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
                         if (result.length >= 1) {
                             var titles = $.map(result, function (q) {
                                 return { Body: q.Body, Url: q.Url };
@@ -52,13 +51,13 @@ var searchViewModel = (function () {
                 }
                 break;
         }
-        selecte_suggestion(currentMenu());// display the correct suggestion list based on current menu
+        selecte_suggestion(navigationViewModel.currentMenu());// display the correct suggestion list based on current menu
     };
     // this function provide search result for search button 
     var searchFor = function (target, event) {
-        switch (currentMenu()) {
+        switch (navigationViewModel.currentMenu()) {
             case "Users":
-                $.getJSON("/api/users/GetByKey/" + searchText() + "-" + size() + "-" + page(), function (result) {
+                $.getJSON("/api/users/GetByKey/" + searchText() + "-" + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
                     if (result.length >= 1) {
                         searchResult(result);
                         currentView("users_search_view");
@@ -72,7 +71,7 @@ var searchViewModel = (function () {
                     var u = prompt("Fake login , Please enter your user id !", "9903");
                     navigationViewModel.uid() = u;
                 }
-                $.getJSON("/api/annotations/search/" + searchText() + "-" + navigationViewModel.uid() + "-" + size() + "-" + page(), function (result) {
+                $.getJSON("/api/annotations/search/" + searchText() + "-" + navigationViewModel.uid() + "-" + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
                     if (result.length >= 1) {
                         searchResult(result);
                         currentView("annotations_search_view");
@@ -82,7 +81,7 @@ var searchViewModel = (function () {
                 });
                 break;
             case "Questions":
-                $.getJSON("api/questions/search_title/" + searchText() + "-" + size() + "-" + page(), function (result) {
+                $.getJSON("api/questions/search_title/" + searchText() + "-" + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
                     if (result.length >= 1) {
                         searchResult(result);
                         currentView("questions_search_view");
@@ -96,7 +95,7 @@ var searchViewModel = (function () {
                     var u = prompt("Fake login , Please enter your user id !", "9903");
                     navigationViewModel.uid() = u;
                 }
-                $.getJSON("api/historys/search/" + searchText() + "-" + navigationViewModel.uid() + "-" + size() + "-" + page(), function (result) {
+                $.getJSON("api/historys/search/" + searchText() + "-" + navigationViewModel.uid() + "-" + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
                     if (result.length >= 1) {
                         searchResult(result);
                         currentView("history_search_view");
@@ -146,7 +145,8 @@ var searchViewModel = (function () {
         suggestions: suggestions,
         getSuggestions: getSuggestions,
         searchFor: searchFor,
-        searchResult: searchResult
+        searchResult: searchResult,
+        selecte_suggestion: selecte_suggestion
         
     };
 })();

@@ -22,7 +22,7 @@ namespace DAL
 
 		public override Question Map(MySqlDataReader reader)
 		{
-			if (reader.Read() && reader.HasRows)
+			if (reader.HasRows)
 			{
 				int q_id, q_score;
 				string q_body, q_title, q_owner;
@@ -40,7 +40,7 @@ namespace DAL
 				else { q_date = DateTime.MinValue; }
 				if (!reader.IsDBNull(5)) { q_owner = FetchOwnername(reader.GetInt32(5)); }
 				else { q_owner = "unknown"; }
-				
+
 				var question = new Question
 				{
 					Id = q_id,

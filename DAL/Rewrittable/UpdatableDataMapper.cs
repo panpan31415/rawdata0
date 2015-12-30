@@ -12,24 +12,6 @@ namespace DAL.Rewrittable
 		public UpdatableDataMapper(string connectionString) : base(connectionString) { }
 		public abstract int Insert(T entity);
 		public abstract int Update(T entity);
-		public abstract T GetByPostAndUser(int postid, int userid);
-
-		protected int NextId()// purpose ?
-		{
-			using (var connection = new MySqlConnection(ConnectionString))
-			{
-				connection.Open();
-				var cmd = new MySqlCommand("select max(id) from " + TableName, connection);
-				var id = cmd.ExecuteScalar();
-				if (id != null)
-				{
-					return int.Parse(id.ToString()) + 1;
-				}
-
-				return 1;
-			}
-		}
-
-
+		//public abstract IEnumerable<T> GetByPostAndUser(int postid, int userid);
 	}
 }

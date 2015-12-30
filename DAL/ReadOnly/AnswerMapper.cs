@@ -14,10 +14,9 @@ namespace DAL.ReadOnly
 			TableName = "post";
 			Attributes = new string[] { "body", "score", "title", "creationDate", "ownerUserId", "parentQuestionID" };
 		}
-
 		public override Answer Map(MySqlDataReader reader)
 		{
-			if (reader.Read()&&reader.HasRows)
+			if (reader.HasRows)
 			{
 				int a_id, a_score, a_parent;
 				string a_body, a_title, a_owner;
@@ -35,11 +34,11 @@ namespace DAL.ReadOnly
 				else { a_date = DateTime.MinValue; }
 				if (!reader.IsDBNull(5)) { a_owner = FetchOwnername(reader.GetInt32(5)); }
 				else { a_owner = "unknown"; }
-				if (!reader.IsDBNull(6)) { a_parent =  reader.GetInt32(6); }
+				if (!reader.IsDBNull(6)) { a_parent = reader.GetInt32(6); }
 				else { a_parent = 0; }
 
 				var Answer = new Answer
-				{					
+				{
 					Id = a_id,
 					Body = a_body,
 					Score = a_score,

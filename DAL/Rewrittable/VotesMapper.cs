@@ -15,11 +15,6 @@ namespace DAL.Rewrittable
 			Attributes = new string[] { "postId", "voteTypeId", "creationDate", "userId"};
 		}
 
-		public override Vote GetByPostAndUser(int postId, int userId)
-		{
-			return new Vote { };
-		}
-
 		public override int Insert(Vote vote) { throw new NotImplementedException("not supported in this project"); }
 		public override int Update(Vote vote) { throw new NotImplementedException("not supported in this project"); }
 

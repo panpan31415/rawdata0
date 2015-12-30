@@ -13,7 +13,7 @@ namespace DAL.ReadOnly
 		{
 
 			TableName = "comment";
-			Attributes = new string[] { "postId","text", "creationDate","Userid" };
+			Attributes = new string[] { "postId", "text", "creationDate", "Userid" };
 		}
 		/*public override Comment GetById(int postid)
 		{
@@ -35,26 +35,26 @@ namespace DAL.ReadOnly
 
 		public override Comment Map(MySqlDataReader reader)
 		{
-			if (reader.Read()&& reader.HasRows)
+			if (reader.HasRows)
 			{
-				
+
 				string a_body;
 				string a_date;
 
 
-				
+
 				if (!reader.IsDBNull(1)) { a_body = reader.GetString(1); }
 				else { a_body = "unknown"; }
 				if (!reader.IsDBNull(2)) { a_date = reader.GetString(2); }
 				else { a_date = DateTime.Now.ToString(); }
-				
+
 				var comment = new Comment
 				{
-					
+
 					Text = a_body,
 					CreationDate = a_date,
 
-			
+
 
 				};
 				return comment;

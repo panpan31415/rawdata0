@@ -34,10 +34,11 @@ namespace portfolio2gr4.Controllers
 			var helper = new UrlHelper(Request);
 			return _hisRepository.GetAll().Select(history => ModelFactory.Create(history));
 		}
-		public IEnumerable<HistoryModel> GetBySearch(string searchText_History , int uid)
+		public IEnumerable<HistoryModel> GetBySearch(string searchText_history, int uid,int size,int page)
 		{
+			page--;
 			var helper = new UrlHelper(Request);// I don't need url helper here 
-			return _hisRepository.GetByKeyWords(searchText_History,"body",uid,1000,0).Select(history => ModelFactory.Create(history));
+			return _hisRepository.GetByKeyWords(searchText_history, "body",uid,size,page).Select(history => ModelFactory.Create(history));
 			//return _hisRepository.GetByFullTextSearch(searchText_History, "body", 1000, 0).Select(annotation => ModelFactory.Create(annotation));
 		}
 		public HttpResponseMessage Post([FromBody] HistoryModel model)

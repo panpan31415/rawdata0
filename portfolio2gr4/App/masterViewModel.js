@@ -5,3 +5,4 @@
     this.validatorViewModel = validatorViewModel;
 })();
 ko.applyBindings(masterViewModel);
+$("#Users_menu").trigger('click');

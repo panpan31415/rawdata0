@@ -11,12 +11,12 @@ namespace DAL.Rewrittable
 	public class AnnotationMapper : UpdatableDataMapper<Annotation>
 	{
 		public UserMapper userMapper { get; set; }
-		public AnnotationMapper(string connectionString) : base(connectionString)
+		public AnnotationMapper(string connectionString):base(connectionString)
 		{
 			TableName = "annotation";
 			Attributes = new string[] { "body", "date", "postid", "userid" };
 		}
-		public override Annotation GetByPostAndUser(int postid, int userid)
+		public  IEnumerable<Annotation>  GetByPostAndUser(int postid, int userid)
 		{
 			var sql = string.Format("SELECT ID, {0} from {1} WHERE postID = @postID and userID=@userID", AttributeList, TableName);
 			using (var connection = new MySqlConnection(ConnectionString))
@@ -29,11 +29,11 @@ namespace DAL.Rewrittable
 					cmd.Connection = connection;
 					using (var reader = cmd.ExecuteReader())
 					{
-						if (reader.HasRows)
+						while (reader.Read())
 						{
-							return Map(reader);
+							yield return Map(reader);
 						}
-						return null;
+						yield return null;
 					}
 				}
 			}
@@ -52,39 +52,21 @@ namespace DAL.Rewrittable
 			return ExecuteNonQuery(cmd);
 		}
 
-		/**
-		*   I am sorry that to commend out your code ioana. I know you have implemented 
-		*   very fancy function here , but it can not pass my test and I need this function 
-		*   to work for the displaying data on webpage.
-		*   panpan wrote . 
-		public override void Update(Annotation annotation)
-		{
-			// CHANGE THIS 
-			var sql = string.Format("update {0} set {1} where postid= @postid",
-				TableName, AttributeList, DecoratedAttributeList((x => x + "=@" + x)));
-			//  annotation.Id = NextId();
-			var cmd = new MySqlCommand(sql);
-			cmd.Parameters.AddWithValue("@postid", annotation.Id);
-			cmd.Parameters.AddWithValue("@" + Attributes[0], annotation.Body);
-			ExecuteNonQuery(cmd);
 
-		}*/
 
 		public override int Update(Annotation a)
 		{
-			var sql = "update " + TableName + " set body = '" + a.Body + "' and date ='" + DateTime.Now.ToString("s") + "'  where postID =" + a.PostId + " and userID=" + a.UserId;
+			var sql = "update " + TableName + " set body = '" + a.Body + "' , date ='" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'  where postID =" + a.PostId + " and userID=" + a.UserId;
 			var cmd = new MySqlCommand(sql);
 			return ExecuteNonQuery(cmd);
 		}
 		public override Annotation Map(MySqlDataReader reader)
 		{
-			if (reader.Read())
+			if (reader.HasRows)
 			{
 				int a_id, a_postId, a_userId;
 				string a_body;
 				DateTime a_date;
-
-
 				if (!reader.IsDBNull(0)) { a_id = reader.GetInt32(0); }
 				else { a_id = 0; }
 				if (!reader.IsDBNull(1)) { a_body = reader.GetString(1); }

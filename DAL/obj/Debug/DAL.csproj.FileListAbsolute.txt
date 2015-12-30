@@ -25,6 +25,5 @@ C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\rawdata0\DAL\bin\Debug\nunit.uti
 C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\rawdata0\DAL\bin\Debug\NUnit.VisualStudio.TestAdapter.dll
 C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\rawdata0\DAL\bin\Debug\EntityFramework.xml
 C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\rawdata0\DAL\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\rawdata0\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
 C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\rawdata0\DAL\obj\Debug\DAL.dll
 C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\rawdata0\DAL\obj\Debug\DAL.pdb

@@ -18,7 +18,7 @@ namespace DAL
 			ConnectionString = connectionString;
 		}
 
-		public virtual T GetById(int id)
+		public T GetById(int id)
 		{
 			var sql = string.Format("SELECT ID, {0} from {1} WHERE ID = @ID", AttributeList, TableName);
 			using (var connection = new MySqlConnection(ConnectionString))
@@ -30,12 +30,12 @@ namespace DAL
 					cmd.Connection = connection;
 					using (var reader = cmd.ExecuteReader())
 					{
+						reader.Read();
 						return Map(reader);
 					}
 				}
 			}
 		}
-
 		public IEnumerable<T> Query(MySqlCommand command)
 		{
 			using (var connection = new MySqlConnection(ConnectionString))
@@ -44,7 +44,7 @@ namespace DAL
 				command.Connection = connection;
 				using (var reader = command.ExecuteReader())
 				{
-					while (reader.HasRows&& reader.Read())
+					while (reader.Read())
 					{
 						var element = Map(reader);
 						if (element == null)
@@ -56,9 +56,7 @@ namespace DAL
 				}
 			}
 		}
-
 		public abstract T Map(MySqlDataReader reader);
-
 		protected int ExecuteNonQuery(MySqlCommand command)
 		{
 			using (var connection = new MySqlConnection(ConnectionString))

@@ -42,14 +42,9 @@ namespace DAL.Rewrittable
 			cmd.Parameters.AddWithValue("@" + Attributes[2], history.UserId);
 			return ExecuteNonQuery(cmd);
 		}
-		public override History GetByPostAndUser(int post, int user)
-		{
-			return new History { };
-		}
-
 		public override History Map(MySqlDataReader reader)
 		{
-			if (reader.Read() && reader.HasRows)
+			if ( reader.HasRows)
 			{
 				int a_id, a_userId;
 				string a_body;

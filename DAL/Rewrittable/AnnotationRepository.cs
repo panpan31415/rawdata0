@@ -10,7 +10,8 @@ namespace DAL.Rewrittable
 {
 	public class AnnotationRepository : Repository<Annotation>
 	{
-		public AnnotationRepository(string connectionString) : base(new AnnotationMapper(connectionString)) { }
+		public AnnotationRepository(string connectionString) : base(new AnnotationMapper(connectionString))
+		{ }
 
 		public int Insert(Annotation annotation)
 		{
@@ -22,12 +23,12 @@ namespace DAL.Rewrittable
 			return UpdatableDataMapper.Update(annotation);
 		}
 
-		public Annotation GetByPostAndUser(int postid, int userid)
+		public IEnumerable<Annotation>  GetByPostAndUser(int postid, int userid)
 		{
-			return UpdatableDataMapper.GetByPostAndUser(postid, userid);
+			return ((AnnotationMapper)UpdatableDataMapper).GetByPostAndUser(postid, userid);
 		}
 
 
-		
+
 	}
 }

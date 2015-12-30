@@ -8,7 +8,6 @@ var navigationViewModel = (function () {
         questions = ko.observableArray([]),
 		users = ko.observableArray([]),
 		history = ko.observableArray([]);
-    var uid = ko.observable("");
     var page = ko.observable(1);
     var size = ko.observable(10);
     var GoTo = function () {
@@ -30,16 +29,14 @@ var navigationViewModel = (function () {
             currentMenu(menu);
             $("#search_textbox").attr("placeholder", "Search " + currentMenu());
             if (name === "history") {
-                name = "users/108/historys";
                 //$("#suggestionList option").attr(" data-bind", "value:$data.Title");
                 history([]);
-                $.getJSON("http://localhost:3133/api/" + name, function (result) {
-
-                    for (var i = 0; i < result.length; i++) {
-                        history.push(new HistoryItem(result[i]));
-                        //console.log("res:");
-                        //console.log(history());
-                    };
+                $.getJSON("api/historys/search/" + searchText() + "-" + navigationViewModel.uid() + "-" + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
+                    if (result.length >= 1) {
+                        history(result);
+                    } else {
+                        alert("no result found!");
+                    }
 
                 });
             } else if (name === "users") {
@@ -148,10 +145,9 @@ showList = ko.observable(true);
         Body: Body,
         AddData: AddData,
         GoTo: GoTo,
-        uid: uid
+        page: page,
+        size: size
 
     };
 }());
 
-//navigationViewModel.showContent("users");
-$("#Users_menu").trigger('click');

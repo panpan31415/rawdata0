@@ -25,15 +25,15 @@ namespace portfolio2gr4.Controllers
 		public HttpResponseMessage GetByPostAndUser(int postid, int userid)
 		{
 			var helper = new UrlHelper(Request);
-			var annotation = _annoRepository.GetByPostAndUser(postid, userid);
-			if (annotation == null)
+			IEnumerable< AnnotationModel > annotations = _annoRepository.GetByPostAndUser(postid, userid).Select(a=> ModelFactory.Create(a));
+			if (annotations.Count()==0)
 			{
 				return Request.CreateResponse(HttpStatusCode.NotFound);
 
 			}
 			return Request.CreateResponse(
 				HttpStatusCode.OK
-				, ModelFactory.Create(annotation));
+				, annotations);
 		}
 
 		public HttpResponseMessage GetById(int id)

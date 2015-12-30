@@ -61,13 +61,11 @@
         }
 
     };
-
-
-
-
     return {
         displaytext: displaytext,
-        setLoginInfo: setLoginInfo
+        setLoginInfo: setLoginInfo,
+        loginStatus: loginStatus,
+        uid: uid
     };
 
 })();
