@@ -27,3 +27,4 @@ C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\rawdata0\DAL\bin\Debug\EntityFra
 C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\rawdata0\DAL\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\rawdata0\DAL\obj\Debug\DAL.dll
 C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\rawdata0\DAL\obj\Debug\DAL.pdb
+C:\Users\Panpan Zhang\Documents\GitHub\rawdata0\rawdata0\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache

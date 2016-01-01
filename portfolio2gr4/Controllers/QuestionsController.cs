@@ -15,7 +15,7 @@ namespace portfolio2gr4.Controllers
 	public class QuestionsController : BaseApiController
 	{		
 		private QuestionRepository _questionRepository = new QuestionRepository(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
-		public HttpResponseMessage Get(int size, int page) {
+		public HttpResponseMessage Get(int size=10, int page=1) {
 			var helper = new UrlHelper(Request);
 			if (size > 100) size = 10;
 			int offset = page * size;

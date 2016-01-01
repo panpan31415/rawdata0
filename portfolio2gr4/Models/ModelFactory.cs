@@ -62,7 +62,7 @@ namespace WebService.Models
 				Title = question.Title,
 				Score = question.Score,
 				CreationDate = question.CreationDate,
-				Owner = question.Owner
+				OwnerId = question.OwnerId
 			};
 		}
 
@@ -74,7 +74,7 @@ namespace WebService.Models
 				Body = answer.Body,
 				Score = answer.Score,
 				CreationDate = answer.CreationDate,
-				Owner = answer.Owner,
+				OwnerId = answer.OwnerId,
 				ParentId = answer.ParentId
 			};
 		}

@@ -26,7 +26,7 @@ namespace portfolio2gr4
 			//users - End
 			config.Routes.MapHttpRoute(
 				name: "QuestionApi",
-				routeTemplate: "api/questions/{size}-{page}",
+				routeTemplate: "api/questions/",
 				defaults: new { controller = "Questions" }
 			);
 			config.Routes.MapHttpRoute(

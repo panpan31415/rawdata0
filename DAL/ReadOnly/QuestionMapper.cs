@@ -24,8 +24,8 @@ namespace DAL
 		{
 			if (reader.HasRows)
 			{
-				int q_id, q_score;
-				string q_body, q_title, q_owner;
+				int q_id, q_score, q_owner_id;
+				string q_body, q_title;
 				DateTime q_date;
 
 				if (!reader.IsDBNull(0)) { q_id = reader.GetInt32(0); }
@@ -38,8 +38,8 @@ namespace DAL
 				else { q_title = "unknown"; }
 				if (!reader.IsDBNull(4)) { q_date = reader.GetDateTime(4); }
 				else { q_date = DateTime.MinValue; }
-				if (!reader.IsDBNull(5)) { q_owner = FetchOwnername(reader.GetInt32(5)); }
-				else { q_owner = "unknown"; }
+				if (!reader.IsDBNull(5)) { q_owner_id = reader.GetInt32(5); }
+				else { q_owner_id = 0; }
 
 				var question = new Question
 				{
@@ -48,32 +48,32 @@ namespace DAL
 					Score = q_score,
 					Title = q_title,
 					CreationDate = q_date,
-					Owner = q_owner
+					OwnerId = q_owner_id
 				};
 				return question;
 			}
 			return null;
 		}
-		private string FetchOwnername(int id)
-		{
-			using (var connection = new MySqlConnection(ConnectionString))
-			{
-				connection.Open();
-				var cmd = new MySqlCommand();
-				cmd.Connection = connection;
-				cmd.CommandText = "select displayName from user where  id= @ID";
-				cmd.Parameters.AddWithValue("@ID", id);
-				using (var reader = cmd.ExecuteReader())
-				{
-					while (reader.Read())
-					{
-						string uname = reader.GetString(0);
-						return uname;
-					}
-					return "unknown";
-				}
-			}
-		}
+		//private string FetchOwnername(int id)
+		//{
+		//	using (var connection = new MySqlConnection(ConnectionString))
+		//	{
+		//		connection.Open();
+		//		var cmd = new MySqlCommand();
+		//		cmd.Connection = connection;
+		//		cmd.CommandText = "select displayName from user where  id= @ID";
+		//		cmd.Parameters.AddWithValue("@ID", id);
+		//		using (var reader = cmd.ExecuteReader())
+		//		{
+		//			while (reader.Read())
+		//			{
+		//				string uname = reader.GetString(0);
+		//				return uname;
+		//			}
+		//			return "unknown";
+		//		}
+		//	}
+		//}
 
 	
 	}

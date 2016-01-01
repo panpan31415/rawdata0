@@ -130,6 +130,9 @@
     <Content Include="App\masterViewModel.js" />
     <Content Include="App\loginViewModel.js" />
     <Content Include="App\navigationViewModel.js" />
+    <Content Include="App\QuestionModel.js" />
+    <Content Include="App\QuestionViewModel.js" />
+    <Content Include="App\UserModel.js" />
     <Content Include="App\validatorViewModel.js" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Css\dev\global.css" />
