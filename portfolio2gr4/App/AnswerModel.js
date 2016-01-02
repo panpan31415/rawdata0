@@ -11,6 +11,6 @@
         });
     };
 
-    return { getCommentsByQuestionID: getCommentsByQuestionID };
+    return { getCommentsByAnswerId: getCommentsByAnswerId, getAnswersByQuestionId: getAnswersByQuestionId };
 })();
 

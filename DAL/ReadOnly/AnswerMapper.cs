@@ -20,7 +20,7 @@ namespace DAL.ReadOnly
 			{
 				int a_id, a_score, a_parent, a_owner_ID;
 				string a_body, a_title;
-				DateTime a_date;
+				string a_date;
 
 				if (!reader.IsDBNull(0)) { a_id = reader.GetInt32(0); }
 				else { a_id = 0; }
@@ -30,8 +30,8 @@ namespace DAL.ReadOnly
 				else { a_score = 0; }
 				if (!reader.IsDBNull(3)) { a_title = reader.GetString(3); }
 				else { a_title = "unknown"; }
-				if (!reader.IsDBNull(4)) { a_date = reader.GetDateTime(4); }
-				else { a_date = DateTime.MinValue; }
+				if (!reader.IsDBNull(4)) { a_date = reader.GetString(4); }
+				else { a_date = "unknown"; }
 				if (!reader.IsDBNull(5)) { a_owner_ID = reader.GetInt32(5); }
 				else { a_owner_ID = 0; }
 				if (!reader.IsDBNull(6)) { a_parent = reader.GetInt32(6); }

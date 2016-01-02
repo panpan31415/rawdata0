@@ -43,7 +43,7 @@ namespace DAL
 			var sql = string.Format("SELECT ID, {0} FROM {1} {2} LIMIT {3} OFFSET {4}",
 					string.Join(", ", commentMapper.Attributes),//0
 					commentMapper.TableName,//1
-					"where postID = "+ PostID,//2
+					"where postID = "+ PostID + " order by creationDate ASC",//2
 					limit,//3
 					offset//4
 			);

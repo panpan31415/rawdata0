@@ -63,6 +63,7 @@ namespace WebService.Models
 				Score = question.Score,
 				CreationDate = question.CreationDate,
 				OwnerId = question.OwnerId,
+				Id=question.Id,
 				answerCount= question.answerCount
 			};
 		}

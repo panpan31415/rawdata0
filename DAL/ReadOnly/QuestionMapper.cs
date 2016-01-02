@@ -26,7 +26,7 @@ namespace DAL
 			{
 				int q_id, q_score, q_owner_id;
 				string q_body, q_title;
-				DateTime q_date;
+				string q_date;
 				int answerCount;
 
 				if (!reader.IsDBNull(0)) { q_id = reader.GetInt32(0); }
@@ -37,8 +37,8 @@ namespace DAL
 				else { q_score = 0; }
 				if (!reader.IsDBNull(3)) { q_title = reader.GetString(3); }
 				else { q_title = "unknown"; }
-				if (!reader.IsDBNull(4)) { q_date = reader.GetDateTime(4); }
-				else { q_date = DateTime.MinValue; }
+				if (!reader.IsDBNull(4)) { q_date = reader.GetString(4); }
+				else { q_date = "unknown"; }
 				if (!reader.IsDBNull(5)) { q_owner_id = reader.GetInt32(5); }
 				else { q_owner_id = 0; }
 				if (!reader.IsDBNull(6)) { answerCount = reader.GetInt32(6); }
