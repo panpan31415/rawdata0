@@ -58,6 +58,18 @@ small.text-muted {
     padding-left: 15px;
     border-radius: 6px;
 }
-.login li{
-     cursor:pointer;
+
+.login li {
+    cursor: pointer;
+}
+
+.comments {
+    margin: 0;
+    padding: 0;
+}
+.signiture {
+    text-align: right;
+}
+small {
+    align-self:flex-end;
 }

@@ -1,4 +1,5 @@
 ﻿using DAL;
+using portfolio2gr4.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -66,6 +67,10 @@ namespace portfolio2gr4.Controllers
 				return Request.CreateResponse(HttpStatusCode.NotFound);
 			}
 			return Request.CreateResponse(HttpStatusCode.OK, ModelFactory.Create(question));
+		}
+		public IEnumerable<CommentModel> GetCommentsByQuestionID(int questionID)
+		{
+			return _questionRepository.getCommentsByPostID(questionID).Select(comment => ModelFactory.Create(comment));            
 		}
 	}
 }

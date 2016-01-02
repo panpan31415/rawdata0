@@ -12,11 +12,15 @@ namespace portfolio2gr4.Controllers
 	public class AnswersController : BaseApiController
 	{		
 		private AnswerRepository _answerRepository = new AnswerRepository(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
-		public IEnumerable<AnswerModel> Get(int qid)
+		public IEnumerable<AnswerModel> Get(int questionID)
 		{
 			var helper = new UrlHelper(Request);
-			return _answerRepository.GetAllAnswers(qid).Select(answer => ModelFactory.Create(answer));
+			return _answerRepository.GetAllAnswers(questionID).Select(answer => ModelFactory.Create(answer));
 		}
-		//public string Get(int qid) { return "fd"; }
+		public IEnumerable<CommentModel> GetCommentsByQuestionID(int AnswerID)
+		{
+			return _answerRepository.getCommentsByPostID(AnswerID).Select(comment => ModelFactory.Create(comment));
+		}
+		
 	}
 }

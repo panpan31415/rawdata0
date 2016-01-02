@@ -127,6 +127,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App\AnswerModel.js" />
     <Content Include="App\masterViewModel.js" />
     <Content Include="App\loginViewModel.js" />
     <Content Include="App\navigationViewModel.js" />

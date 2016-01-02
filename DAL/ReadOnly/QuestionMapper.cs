@@ -16,7 +16,7 @@ namespace DAL
 		public QuestionMapper(string connectionString) : base(connectionString)
 		{
 			TableName = "post";
-			Attributes = new string[] { "body", "score", "title", "creationDate", "ownerUserId" };
+			Attributes = new string[] { "body", "score", "title", "creationDate", "ownerUserId" , "answerCount" };
 			UserMapper = new UserMapper(connectionString);
         }
 
@@ -27,6 +27,7 @@ namespace DAL
 				int q_id, q_score, q_owner_id;
 				string q_body, q_title;
 				DateTime q_date;
+				int answerCount;
 
 				if (!reader.IsDBNull(0)) { q_id = reader.GetInt32(0); }
 				else { q_id = 0; }
@@ -40,6 +41,8 @@ namespace DAL
 				else { q_date = DateTime.MinValue; }
 				if (!reader.IsDBNull(5)) { q_owner_id = reader.GetInt32(5); }
 				else { q_owner_id = 0; }
+				if (!reader.IsDBNull(6)) { answerCount = reader.GetInt32(6); }
+				else { answerCount = 0; }
 
 				var question = new Question
 				{
@@ -48,8 +51,9 @@ namespace DAL
 					Score = q_score,
 					Title = q_title,
 					CreationDate = q_date,
-					OwnerId = q_owner_id
-				};
+					OwnerId = q_owner_id,
+                    answerCount=answerCount
+                };
 				return question;
 			}
 			return null;

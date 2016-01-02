@@ -13,6 +13,6 @@ namespace portfolio2gr4.Models
 		public int postId { get; set; }
 		public string text { get; set; }
 		public string creationDate { get; set; }
-		public string UserId { get; set; }
+		public int UserId { get; set; }
 	}
 }

@@ -37,29 +37,34 @@ namespace DAL.ReadOnly
 		{
 			if (reader.HasRows)
 			{
-
-				string a_body;
-				string a_date;
-
-
-
-				if (!reader.IsDBNull(1)) { a_body = reader.GetString(1); }
-				else { a_body = "unknown"; }
-				if (!reader.IsDBNull(2)) { a_date = reader.GetString(2); }
-				else { a_date = DateTime.Now.ToString(); }
+				int Id;
+				int PostId;
+				string Text;
+				string CreationDate;
+				int UserId;
+				if (!reader.IsDBNull(0)) { Id = reader.GetInt32(0); }
+				else { Id = 0; }
+				if (!reader.IsDBNull(1)) { PostId = reader.GetInt32(1); }
+				else { PostId = 0; }
+				if (!reader.IsDBNull(2)) { Text = reader.GetString(2); }
+				else { Text = "Data Lost!"; }
+				if (!reader.IsDBNull(3)) { CreationDate = reader.GetString(3); }
+				else { CreationDate = "Data Lost!"; }
+				if (!reader.IsDBNull(4)) { UserId = reader.GetInt32(4); }
+				else { UserId = 0; }
 
 				var comment = new Comment
 				{
-
-					Text = a_body,
-					CreationDate = a_date,
-
-
-
+					Id = Id,
+					PostId = PostId,
+					Text = Text,
+					CreationDate = CreationDate,
+					UserId = UserId
 				};
 				return comment;
 			}
-			return null;
+			else { return null; }
+
 		}
 
 	}

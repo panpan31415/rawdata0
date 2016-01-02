@@ -13,7 +13,7 @@ namespace DAL
 	{
 		public IDataMapper<T> DataMapper { get; set; }
 		public IUpdatableDataMapper<T> UpdatableDataMapper { get; set; }
-		private DataMapper<T> _dataMapper;
+		public DataMapper<T> _dataMapper;
 		public Repository(IDataMapper<T> dataMapper)
 		{
 			DataMapper = dataMapper;
@@ -27,27 +27,6 @@ namespace DAL
 		public T GetById(int id)
 		{
 			return _dataMapper.GetById(id);
-		}
-
-		public IEnumerable<T> GetAllQuestionsByKey(string key, int limit = 10, int offset = 0)
-		{
-			string[] stringSeparators = new string[] { " ", "," };
-			string[] words = key.Split(stringSeparators, StringSplitOptions.None);
-			string[] parsedWords = words.Select(word => "'%" + word + "%'").ToArray();
-			var sqlWhere = "WHERE body like " + parsedWords[0];
-			var w_list = new List<string>(parsedWords);
-			w_list.RemoveAt(0);
-			parsedWords = w_list.Select(word => "AND body like " + word).ToArray();
-
-			var sql = string.Format("SELECT ID, {0} FROM {1} {2} {5} LIMIT {3} OFFSET {4}",
-					string.Join(", ", _dataMapper.Attributes),
-					_dataMapper.TableName,
-					sqlWhere,
-					limit,
-					offset,
-					string.Join(" ", parsedWords)
-			);
-			return _dataMapper.Query(new MySqlCommand(sql));
 		}
 
 		public IEnumerable<T> GetByKeyWords(string key, string column, int limit = 10, int offset = 0)

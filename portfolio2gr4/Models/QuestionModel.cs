@@ -6,6 +6,6 @@ namespace WebService.Models
 	{
 		public string Title { get; set; }
 		public int AcceptedAnswerId { get; set; }
-		public AnswerModel[] Answers { get; set; }
+		public int answerCount { get; set; }
 	}
 }

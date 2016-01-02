@@ -50,10 +50,15 @@ namespace portfolio2gr4
 				routeTemplate: "api/questions/search/{searchText}-{size}-{page}",
 				defaults: new { controller = "Questions" }
 			);
+			config.Routes.MapHttpRoute(
+				name: "show comments for a specific question",
+				routeTemplate: "api/question/comments/{questionId}",
+				defaults: new { controller = "Questions" }
+			);
 			// questions - End
 			config.Routes.MapHttpRoute(
 				name: "AnswerApi",
-				routeTemplate: "api/questions/{qid}/answers",
+				routeTemplate: "api/question/answers/{questionID}",
 				defaults: new { controller = "Answers" }
 			);
 
@@ -64,9 +69,9 @@ namespace portfolio2gr4
 			);
 
 			config.Routes.MapHttpRoute(
-				name: "AnswersCommentApi",
-				routeTemplate: "api/questions/{qid}/answers/{pid}/comments",
-				defaults: new { controller = "Comments", qid = RouteParameter.Optional }
+				name: "show comments for a specific answer",
+				routeTemplate: "api/answer/comments/{answerID}",
+				defaults: new { controller = "Answers" }
 			);
 
 			config.Routes.MapHttpRoute(

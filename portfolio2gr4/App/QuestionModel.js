@@ -10,8 +10,10 @@
         });
     };
     var getCommentsByQuestionID = function (questionID, callback) {
-
+        $.getJSON("/api/question/comments/" + questionID, function (result) {
+            callback(result);
+        });
     };
-    return { getById: getById, getByUrl:getByUrl };
+    return { getById: getById, getByUrl: getByUrl, getCommentsByQuestionID: getCommentsByQuestionID };
 })();
 

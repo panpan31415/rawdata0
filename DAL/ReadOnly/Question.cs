@@ -10,6 +10,6 @@ namespace DAL
 	{
 		public string Title { get; set; }
 		public int AcceptedAnswerId { get; set; }
-		public Answer[] Answers { get; set; }
+		public int answerCount { get; set; }
 	}
 }

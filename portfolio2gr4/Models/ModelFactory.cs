@@ -62,7 +62,8 @@ namespace WebService.Models
 				Title = question.Title,
 				Score = question.Score,
 				CreationDate = question.CreationDate,
-				OwnerId = question.OwnerId
+				OwnerId = question.OwnerId,
+				answerCount= question.answerCount
 			};
 		}
 
@@ -70,12 +71,12 @@ namespace WebService.Models
 		{
 			return new AnswerModel
 			{
-				Url = _urlHelper.Link("AnswerApi", new { id = answer.Id }),
+				Id =answer.Id ,
 				Body = answer.Body,
 				Score = answer.Score,
 				CreationDate = answer.CreationDate,
 				OwnerId = answer.OwnerId,
-				ParentId = answer.ParentId
+				ParentId = answer.ParentId,
 			};
 		}
 
@@ -84,12 +85,10 @@ namespace WebService.Models
 		{
 			return new CommentModel
 			{
-				//postId = comment.PostId,
-				//Url = _urlHelper.Link("QuestionCommentApi", new { id = comment.Id }),
 				postId = comment.PostId,
 				creationDate = comment.CreationDate.ToString(),
 				text = comment.Text,
-				//userid = comment.Userid
+				UserId = comment.UserId
 			};
 		}
 
