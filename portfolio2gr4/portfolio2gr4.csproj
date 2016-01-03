@@ -135,6 +135,10 @@
     <Content Include="App\QuestionViewModel.js" />
     <Content Include="App\UserModel.js" />
     <Content Include="App\validatorViewModel.js" />
+    <Content Include="bootstrap-theme.css" />
+    <Content Include="bootstrap-theme.min.css" />
+    <Content Include="bootstrap.css" />
+    <Content Include="bootstrap.min.css" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Css\dev\global.css" />
     <Content Include="Css\dev\header.css" />
@@ -144,6 +148,10 @@
     <Content Include="Global.asax" />
     <Content Include="Css\bootstrap.min.css.map" />
     <Content Include="Css\.pleeeaserc" />
+    <Content Include="bootstrap-theme.css.map" />
+    <Content Include="bootstrap-theme.min.css.map" />
+    <Content Include="bootstrap.css.map" />
+    <Content Include="bootstrap.min.css.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -154,6 +162,8 @@
     <Content Include="Scripts\knockout-3.4.0.js" />
     <Content Include="App\searchViewModel.js" />
     <Content Include="Scripts\validator.js" />
+    <Content Include="search.css" />
+    <Content Include="styles.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
