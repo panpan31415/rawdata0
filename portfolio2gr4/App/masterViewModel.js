@@ -4,7 +4,11 @@
     this.loginViewModel = loginViewModel;
     this.validatorViewModel = validatorViewModel;
     //this.UserModel = UserModel;
+    this.UserViewModel = UserViewModel;
     this.QuestionViewModel = QuestionViewModel;
+    this.PaginationViewModel = PaginationViewModel;
 })();
 ko.applyBindings(masterViewModel);
-$("#Users_menu").trigger('click');
+QuestionModel.question_short_template = $("#questions_short").html;
+UserModel.user_short_template = $("#users_short").html;
+

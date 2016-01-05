@@ -13,11 +13,31 @@ var navigationViewModel = (function () {
         var name = menu.toLowerCase();
         currentMenu(menu);
         $("#search_textbox").attr("placeholder", "Search " + currentMenu());
-        currentView("questions" + "_view");
-        QuestionViewModel.loadQuestionTitles();
+        loaddata(currentMenu());
     };
+    var loaddata = function (currentMenu)
+    {
+        clearPagination();
+        switch (currentMenu)
+        {
+            case "Questions":
+                
+                QuestionViewModel.loadQuestionTitles();               
+                break;
+            case "Users":
+                UserViewModel.loadUserShort();                
+                break;
 
-    isActive = function (menu) {
+        }
+    };
+    var clearPagination = function()
+    {
+        $('#pagination').removeData("twbs-pagination");
+        $('#pagination').unbind("page");
+        $('#paginationholder').html('');
+        $('#paginationholder').html('<ul id="pagination" class="pagination-sm"></ul>');
+    }
+    var isActive = function (menu) {
         return menu === currentMenu();
     };
     return {

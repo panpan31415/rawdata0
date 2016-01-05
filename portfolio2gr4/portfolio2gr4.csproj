@@ -17,9 +17,10 @@
     <AssemblyName>portfolio2gr4</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
+    <IISExpressSSLPort>
+    </IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
@@ -128,17 +129,22 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\AnswerModel.js" />
+    <Content Include="App\jquery.twbsPagination.js" />
     <Content Include="App\masterViewModel.js" />
     <Content Include="App\loginViewModel.js" />
     <Content Include="App\navigationViewModel.js" />
+    <Content Include="App\PaginationViewModel.js" />
     <Content Include="App\QuestionModel.js" />
     <Content Include="App\QuestionViewModel.js" />
     <Content Include="App\UserModel.js" />
+    <Content Include="App\UserViewModel.js" />
     <Content Include="App\validatorViewModel.js" />
-    <Content Include="bootstrap-theme.css" />
-    <Content Include="bootstrap-theme.min.css" />
-    <Content Include="bootstrap.css" />
-    <Content Include="bootstrap.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\search.css" />
+    <Content Include="Content\styles.css" />
     <Content Include="Css\bootstrap.min.css" />
     <Content Include="Css\dev\global.css" />
     <Content Include="Css\dev\header.css" />
@@ -148,10 +154,10 @@
     <Content Include="Global.asax" />
     <Content Include="Css\bootstrap.min.css.map" />
     <Content Include="Css\.pleeeaserc" />
-    <Content Include="bootstrap-theme.css.map" />
-    <Content Include="bootstrap-theme.min.css.map" />
-    <Content Include="bootstrap.css.map" />
-    <Content Include="bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -177,6 +183,7 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HistorysController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IPagination.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VotesController.cs" />

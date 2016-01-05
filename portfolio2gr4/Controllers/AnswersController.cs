@@ -17,6 +17,7 @@ namespace portfolio2gr4.Controllers
 			var helper = new UrlHelper(Request);
 			return _answerRepository.GetAllAnswers(questionID).Select(answer => ModelFactory.Create(answer));
 		}
+
 		public IEnumerable<CommentModel> GetCommentsByQuestionID(int AnswerID)
 		{
 			return _answerRepository.getCommentsByPostID(AnswerID).Select(comment => ModelFactory.Create(comment));

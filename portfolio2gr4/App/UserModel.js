@@ -9,6 +9,18 @@
             callback(result);
         });
     };
-    return { getById: getById, getByUrl: getByUrl };
+    var getUsers_short = function (callback)
+    {
+        $.ajax({
+            url: "/api/users/",
+            type: 'GET',
+            dataType: 'json',
+            success: callback,
+            error: function () { alert('boo!'); },//for testing purpose
+            beforeSend: PaginationViewModel.setRequestHeader
+        });
+    }
+    var user_short_template;
+    return { getById: getById, getByUrl: getByUrl, user_short_template: user_short_template, getUsers_short: getUsers_short };
 })();
 

@@ -14,6 +14,7 @@ namespace DAL
 		public IDataMapper<T> DataMapper { get; set; }
 		public IUpdatableDataMapper<T> UpdatableDataMapper { get; set; }
 		public DataMapper<T> _dataMapper;
+		public int QueryResultNumber { get; set; }
 		public Repository(IDataMapper<T> dataMapper)
 		{
 			DataMapper = dataMapper;
@@ -26,7 +27,12 @@ namespace DAL
 		}
 		public T GetById(int id)
 		{
-			return _dataMapper.GetById(id);
+			var sql = string.Format("SELECT ID, {0} FROM {1} where id = {2}",
+					string.Join(", ", _dataMapper.Attributes),
+					_dataMapper.TableName, id
+					);
+			QueryResultNumber = 1;
+			return _dataMapper.Query(new MySqlCommand(sql)).First();
 		}
 
 		public IEnumerable<T> GetByKeyWords(string key, string column, int limit = 10, int offset = 0)
@@ -47,75 +53,45 @@ namespace DAL
 					offset,
 					string.Join(" ", parsedWords)
 			);
+			var removingString = string.Format("limit {0} offset {1}", limit, offset);
+			var sql_short = sql.Substring(0, sql.Length - removingString.Length -2);
+			var sql_count = "SELECT COUNT(*) FROM ( " + sql_short + " )AS Q";
+			QueryResultNumber = _dataMapper.QueryCount(new MySqlCommand(sql_count));
 			return _dataMapper.Query(new MySqlCommand(sql));
 		}
 
 		public IEnumerable<T> GetAll(int limit = 10, int offset = 0)
 		{
-				var sql = string.Format("SELECT ID, {0} FROM {1} LIMIT {2} OFFSET {3}",
-					string.Join(", ", _dataMapper.Attributes),
-					_dataMapper.TableName,
-					limit,
-					offset);
-				return _dataMapper.Query(new MySqlCommand(sql));
-			
-		}
-		public IEnumerable<T> GetAll(int uid, int limit = 10, int offset = 0)
-		{
-
-			var sql = string.Format("SELECT ID, {0} FROM {1} where userId = {4} LIMIT {2} OFFSET {3}",
-				string.Join(", ", _dataMapper.Attributes),
-				_dataMapper.TableName,
-				limit,
-				offset,
-				uid);
-			return _dataMapper.Query(new MySqlCommand(sql));
-
-		}
-
-		public IEnumerable<T> GetByPost(int postid, int limit = 10, int offset = 0)
-		{
-				var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postId={4} LIMIT {2} OFFSET {3} ",
-				string.Join(", ", _dataMapper.Attributes),
-				_dataMapper.TableName,
-				limit,
-				offset,
-				postid);
-				return _dataMapper.Query(new MySqlCommand(sql));
-		}
-
-		public IEnumerable<T> GetByUserId(int userid, int limit = 10, int offset = 0)
-		{
-
-			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE userId={4} LIMIT {2} OFFSET {3} ",
-			string.Join(", ", _dataMapper.Attributes),
-			_dataMapper.TableName,
-			limit,
-			offset,
-			userid);
-			return _dataMapper.Query(new MySqlCommand(sql));
-
-		}
-
-		public IEnumerable<T> GetAllQuestions(int limit, int offset)
-		{
-			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postTypeID=1 order by creationDate DESC LIMIT {2} OFFSET {3}  ",
+			var sql = string.Format("SELECT ID, {0} FROM {1} LIMIT {2} OFFSET {3}",
 				string.Join(", ", _dataMapper.Attributes),
 				_dataMapper.TableName,
 				limit,
 				offset);
+			var removingString = string.Format("LIMIT {0} OFFSET {1}", limit, offset);
+			var sql_short = sql.Substring(0, sql.Length - removingString.Length );
+			var sql_count = "SELECT COUNT(*) FROM ( " + sql_short + " )AS Q";
+			QueryResultNumber = _dataMapper.QueryCount(new MySqlCommand(sql_count));
 			return _dataMapper.Query(new MySqlCommand(sql));
+
 		}
-		public IEnumerable<T> GetAllAnswers(int qid, int limit = 10, int offset = 0)
-		{
-			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postTypeID=2 AND parentQuestionID={4} LIMIT {2} OFFSET {3} ",
-				string.Join(", ", _dataMapper.Attributes),
-				_dataMapper.TableName,
-				limit,
-				offset,
-				qid);
-			return _dataMapper.Query(new MySqlCommand(sql));
-		}
+
+		
+
+		//public IEnumerable<T> GetByUserId(int userid, int limit = 10, int offset = 0)
+		//{
+
+		//	var sql = string.Format("SELECT ID, {0} FROM {1} WHERE userId={4} LIMIT {2} OFFSET {3} ",
+		//	string.Join(", ", _dataMapper.Attributes),
+		//	_dataMapper.TableName,
+		//	limit,
+		//	offset,
+		//	userid);
+		//	return _dataMapper.Query(new MySqlCommand(sql));
+
+		//}
+
+
+
 		/// <summary>
 		/// a search solution use full text search 
 		/// </summary>
@@ -137,6 +113,10 @@ namespace DAL
 				limit,
 				offset
 				);
+			var removingString = string.Format("limit {0} offset {1}", limit, offset);
+			var sql_short = sql.Substring(0, sql.Length - removingString.Length -2);
+			var sql_count = "SELECT COUNT(*) FROM ( "+ sql_short + " )AS Q";
+			QueryResultNumber = _dataMapper.QueryCount(new MySqlCommand(sql_count));
 			return _dataMapper.Query(new MySqlCommand(sql));
 		}
 		public IEnumerable<T> GetByKeyWords(string key, string column, int UserID, int limit = 10, int offset = 0)
@@ -157,6 +137,10 @@ namespace DAL
 					parsedWords.Length == 0 ? "" : string.Join(" ", parsedWords),//5
 					UserID//6
 			);
+			var removingString = string.Format("limit {0} offset {1}", limit, offset);
+			var sql_short = sql.Substring(0, sql.Length - removingString.Length -2);
+			var sql_count = "SELECT COUNT(*) FROM ( " + sql_short + " )AS Q";
+			QueryResultNumber = _dataMapper.QueryCount(new MySqlCommand(sql_count));
 			return _dataMapper.Query(new MySqlCommand(sql));
 		}
 

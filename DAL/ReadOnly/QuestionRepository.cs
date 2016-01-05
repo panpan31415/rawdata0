@@ -16,6 +16,21 @@ namespace DAL
 			this.connectionString = connectionString;
         }
 
+		public IEnumerable<Question> GetAllQuestions(int limit, int offset)
+		{
+			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postTypeID=1 order by creationDate DESC LIMIT {2} OFFSET {3}  ",
+				string.Join(", ", _dataMapper.Attributes),
+				_dataMapper.TableName,
+				limit,
+				offset);
+			var removingString = string.Format("limit {0} offset {1}", limit, offset);
+			var sql_short = sql.Substring(0, sql.Length - removingString.Length -2);			
+			var sql_count = "SELECT COUNT(*) FROM ( " + sql_short + " )AS Q";
+			QueryResultNumber = _dataMapper.QueryCount(new MySqlCommand(sql_count));
+			return _dataMapper.Query(new MySqlCommand(sql));
+		}
+
+
 		public IEnumerable<Question> GetAllQuestionsByKey(string key, int limit = 10, int offset = 0)
 		{
 			string[] stringSeparators = new string[] { " ", "," };
@@ -34,20 +49,25 @@ namespace DAL
 					offset,
 					string.Join(" ", parsedWords)
 			);
+			var removingString = string.Format("limit {0} offset {1}", limit, offset);
+			var sql_short = sql.Substring(0, sql.Length - removingString.Length -2);
+			var sql_count = "SELECT COUNT(*) FROM ( " + sql_short + " )AS Q";
+			QueryResultNumber = _dataMapper.QueryCount(new MySqlCommand(sql_count));
 			return _dataMapper.Query(new MySqlCommand(sql));
 		}
 
-		public IEnumerable<Comment> getCommentsByPostID(int PostID, int limit = 10, int offset = 0)
+		public IEnumerable<Comment> getCommentsByPostID(int PostID)
 		{
 			CommentMapper commentMapper = new CommentMapper(connectionString);
-			var sql = string.Format("SELECT ID, {0} FROM {1} {2} LIMIT {3} OFFSET {4}",
+			var sql = string.Format("SELECT ID, {0} FROM {1} {2} ",
 					string.Join(", ", commentMapper.Attributes),//0
 					commentMapper.TableName,//1
-					"where postID = "+ PostID + " order by creationDate ASC",//2
-					limit,//3
-					offset//4
+					"where postID = "+ PostID + " order by creationDate ASC"//2
+					
 			);
 			return commentMapper.Query(new MySqlCommand(sql));
 		}
+
+	
 	}
 }

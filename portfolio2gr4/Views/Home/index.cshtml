@@ -9,13 +9,14 @@
     <link rel="stylesheet" href="Css/styles.css" />
     <link href="Content/bootstrap.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
 </head>
 <body>
 
     <header class="navbar navbar-fixed-top">
 
         <!-- NAVIGATION -->
-        <nav class="navbar navbar-default ">
+        <nav id="navbar-top" class="navbar navbar-default ">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
@@ -88,15 +89,28 @@
         <!--Search End-->
     </header>
 
-    <div id="body_container" data-bind="template:{name: navigationViewModel.currentView}"></div>
+    <div id="body_container" class="col-sm-12" data-bind="template:{name: navigationViewModel.currentView}"></div>
 
     <script type="text/html" id="users_view">
         <h2>Users</h2>
-        <div data-bind="foreach: navigationViewModel">
-            <div data-bind="text: Url"></div>
-            <div data-bind="text: CreationDate"></div>
-            <div data-bind="text: Location"></div>
-            <div data-bind="text: Name"></div>
+        <div class="container-fluid" data-bind="with:UserViewModel">
+            <div class="row users" id="users_short" data-bind="foreach:users_short">
+                <div class="col-sm-4">
+                    <table>
+                        <tr>
+                            <td><h4><a data-bind="text:$data.Name"></a></h4></td>
+                            <td><smal data-bind="text:$data.Age"></smal></td>
+                            <td><h5 data-bind="text:$data.Reputation"></h5></td>
+                        </tr>
+                        <tr>
+                            <td><smal data-bind="text:$data.CreationDate"></smal></td>
+                            <td><smal data-bind="text:$data.DownVotes"></smal></td>
+                            <td><smal data-bind="text:$data.UpVotes">>Up</smal></td>
+                            <td><smal data-bind="text:$data.CreationDate"></smal></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
         </div>
     </script>
     <script type="text/html" id="users_search_view">
@@ -153,7 +167,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-10" data-bind="foreach: searchViewModel.searchResult">
+            <div class="col-sm-12" data-bind="foreach: searchViewModel.searchResult">
                 <div class="search-content">
                     <a data-bind="attr:{href:Url}"><h3 data-bind="text:Title"></h3></a>
                     <h4><span class="label label-default" data-bind="text:Owner"></span></h4><h4>
@@ -165,9 +179,9 @@
     </script>
     <script type="text/html" id="questions_view">
         <div data-bind="with:QuestionViewModel">
-            <div class="col-sm-10"><h2>Questions</h2></div>
-            <div data-bind="foreach:questions_short">
-                <div class="col-sm-10 search-content">
+            <div class="col-sm-12"><h2>Questions</h2></div>
+            <div id="questions_short" data-bind="foreach:questions_short">
+                <div class="col-sm-12 search-content">
                     <a data-bind="event:{click:function(){$parent.showQuestion_full($data.Url);}}"><h3 data-bind="text:$data.Title"></h3></a>
                     <h4><a data-bind="attr:{href:$data.UserUrl}"><span class="label label-default" data-bind="text:$data.UserName"></span></a></h4><h4>
                         <small class="text-muted">
@@ -182,9 +196,10 @@
     <!--showing a specific question-->
     <script type="text/html" id="question_view">
         <div data-bind="with:QuestionViewModel">
-            <div class="col-sm-10 search-content">
-                <div><!--question start-->                    
-                    <a data-bind="attr:{href:question_full().Url}"><h3 data-bind="text:question_full().Title"></h3></a>
+            <div class="col-sm-12 search-content">
+                <div>
+                    <!--question start-->
+                    <a><h3 data-bind="text:question_full().Title"></h3></a>
                     <div title="question" data-bind="html:question_full().Body"></div>
                     <h4>
                         <small class="text-muted signiture">
@@ -192,19 +207,21 @@
                         </small>
                     </h4>
                     <!--question comments start-->
-                    <hr />                    
+                    <hr />
                     <div title="comment" class="comments" data-bind="foreach:commentsOfQestion">
                         <p data-bind="text:$data.CommentBody"></p>
                         <small class="text-muted">
                             <span data-bind="text:$data.CommentDate"></span> • <a data-bind="attr:{href:$data.CommentOwnerUrl}"><span data-bind="text:$data.CommentOwnerName"></span></a>
                         </small>
                         <hr />
-                    </div><!--question comments end-->                   
+                    </div><!--question comments end-->
                 </div><!--question end-->
                 <h4 data-bind="text:question_full().answerCount+' Answer'"></h4><!--answer start-->
-                <hr />               
-                <div title="answers"  data-bind="foreach:answersOfQestion"><!--answers start-->
-                    <div class="search-content"><!--a single question with comments start-->
+                <hr />
+                <div title="answers" data-bind="foreach:answersOfQestion">
+                    <!--answers start-->
+                    <div class="search-content">
+                        <!--a single question with comments start-->
                         <div data-bind="html:AnswerBody"></div>
                         <h4>
                             <small class="text-muted signiture">
@@ -227,7 +244,11 @@
         </div>
     </script>
     <footer class="col-sm-12">
-        <div class="row footer"><div><h5>footer</h5></div></div>
+        <div class="row footer">
+            <div id="paginationholder">
+                <ul class="pagination pagination-sm" id="pagination"></ul>
+            </div>
+        </div>
     </footer>
 
     <script src="Scripts/jquery-2.1.4.js"></script>
@@ -243,6 +264,10 @@
     <script src="~/App/UserModel.js"></script>
     <script src="~/App/AnswerModel.js"></script>
     <script src="~/App/QuestionModel.js"></script>
+    <script src="~/Scripts/validator.js"></script>
+    <script src="~/App/jquery.twbsPagination.js"></script>
+    <script src="~/App/PaginationViewModel.js"></script>
+    <script src="~/App/UserViewModel.js"></script>
     <script src="~/App/QuestionViewModel.js"></script>
     <script src="~/App/masterViewModel.js"></script>
 

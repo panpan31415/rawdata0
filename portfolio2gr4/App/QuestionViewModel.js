@@ -1,11 +1,15 @@
-﻿var QuestionViewModel = (function () {// 
+﻿var QuestionViewModel = (function () {
+    var self = this;
     /****List titles of questions (questions_short)***/
     var questions_short = ko.observableArray();
     var loadQuestionTitles = function () {
         if (questions_short().length > 0) {
             questions_short.removeAll();
+            $("#questions_short").empty();
+            $("#questions_short").append(QuestionModel.question_short_template);
         }
-        $.getJSON("/api/questions/", function (result) {
+
+        QuestionModel.getQuestions_short(function (result, status, xhr) {
             if (result.length >= 1) {
                 $.map(result, function (q) {
                     var UserName = ko.observable();
@@ -14,13 +18,12 @@
                         UserName(user.Name); UserUrl(user.Url);
                         questions_short.push({ Title: q.Title, Url: q.Url, CreationDate: q.CreationDate, UserName: UserName(), UserUrl: UserUrl() });
                     });
-
                 });
             }
+            PaginationViewModel.initialize(xhr, loadQuestionTitles);
+            navigationViewModel.currentView("questions" + "_view");
         });
-
     };
-
     /***show a specific question (question_full)****/
     var question_full = ko.observable();
     var showQuestion_full = function (url) {
@@ -99,6 +102,7 @@
             }
         });
     };
+
     return {
         loadQuestionTitles: loadQuestionTitles,
         questions_short: questions_short,

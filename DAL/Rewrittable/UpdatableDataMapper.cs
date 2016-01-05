@@ -13,5 +13,14 @@ namespace DAL.Rewrittable
 		public abstract int Insert(T entity);
 		public abstract int Update(T entity);
 		//public abstract IEnumerable<T> GetByPostAndUser(int postid, int userid);
+		protected int ExecuteNonQuery(MySqlCommand command)
+		{
+			using (var connection = new MySqlConnection(ConnectionString))
+			{
+				connection.Open();
+				command.Connection = connection;
+				return command.ExecuteNonQuery();
+			}
+		}
 	}
 }

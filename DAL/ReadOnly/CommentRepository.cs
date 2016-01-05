@@ -11,7 +11,14 @@ namespace DAL.ReadOnly
 	{
 		public CommentRepository(string connectionString) : base(new CommentMapper(connectionString)) { }
 
-
+		public IEnumerable<Comment> GetByPost(int postid)
+		{
+			var sql = string.Format("SELECT ID, {0} FROM {1} WHERE postId={4} LIMIT {2} OFFSET {3} ",
+			string.Join(", ", _dataMapper.Attributes),
+			_dataMapper.TableName,
+			postid);
+			return _dataMapper.Query(new MySqlCommand(sql));
+		}
 		/*public int Limit { get; set; }
 		public int Offset { get; set; }
 		public string ConnectionString { get; set; }
