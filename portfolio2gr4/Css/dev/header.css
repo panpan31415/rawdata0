@@ -1,6 +1,31 @@
 .navbar-default { 
-	background-color:var(--rose-quartz);
+	background-color:#89c3f6;
 }
 .navbar-default .navbar-brand {
-	color:var(--serenity);
+    color: #286090; 
+}
+.navbar-brand>a:hover {
+    background-color: #FFF;
+}
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: #286090;
+}
+.navbar-default .navbar-toggle {
+    border-color: #286090;
+}
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    text-decoration-color:#FFF;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #286090;
+}
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:focus, .navbar-default .navbar-nav>.active>a:hover {
+    color: #FFF;
+    background-color: #286090;
+}
+.form-control {
+    color: #286090;
+}
+.form-control::-webkit-input-placeholder {
+    color:#d9edf7;
 }

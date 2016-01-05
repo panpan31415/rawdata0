@@ -6,8 +6,6 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="Css/bootstrap.min.css">
     <!-- Optional theme -->
-    <link rel="stylesheet" href="Css/styles.css" />
-    <link href="Content/bootstrap.css" rel="stylesheet" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
 
 </head>
@@ -89,24 +87,26 @@
         <!--Search End-->
     </header>
 
-    <div id="body_container" class="col-sm-12" data-bind="template:{name: navigationViewModel.currentView}"></div>
+    <div id="body_container" class="col-md-12" data-bind="template:{name: navigationViewModel.currentView}"></div>
 
     <script type="text/html" id="users_view">
         <h2>Users</h2>
         <div class="container-fluid" data-bind="with:UserViewModel">
-            <div class="row users" id="users_short" data-bind="foreach:users_short">
-                <div class="col-sm-4">
-                    <table>
-                        <tr>
-                            <td><h4><a data-bind="text:$data.Name"></a></h4></td>
-                            <td><smal data-bind="text:$data.Age"></smal></td>
-                            <td><h5 data-bind="text:$data.Reputation"></h5></td>
+            <div class="row users " id="users_short" data-bind="foreach:users_short">
+                <div class="col-md-5">
+                    <table style="table-layout:fixed">
+                        <tr style="width:100%">
+                            <td colspan="3"  style="overflow: hidden"><h4><i class="glyphicon glyphicon-user" style="color:#337ab7;"></i><a data-bind="text:$data.Name"></a></h4></td>
                         </tr>
                         <tr>
-                            <td><smal data-bind="text:$data.CreationDate"></smal></td>
-                            <td><smal data-bind="text:$data.DownVotes"></smal></td>
-                            <td><smal data-bind="text:$data.UpVotes">>Up</smal></td>
-                            <td><smal data-bind="text:$data.CreationDate"></smal></td>
+                            <td style="width:33.3%"><smal data-bind="text:'Age: '+($data.Age)"></smal></td>
+                            <td  style="width:33.3%"><strong><span style="color:#1c72bd;" data-bind="text:'Reputation: '+$data.Reputation"></span></strong></td>
+                            <td style="width:33.3%"><i class="glyphicon glyphicon-calendar" style="color:#337ab7;padding-left:10px"></i><smal data-bind="text:($data.CreationDate).substring(0, 10)"></smal></td>
+                        </tr>
+                        <tr>
+                            <td ><i class="glyphicon glyphicon-thumbs-up" style="color:#337ab7"></i><smal data-bind="text:$data.UpVotes">>Up</smal></td>
+                            <td ><i class="glyphicon glyphicon-thumbs-down" style="color:#337ab7"></i><smal data-bind="text:$data.DownVotes"></smal></td>
+                            <td style="overflow: hidden"><i class="glyphicon glyphicon-globe" style="color:#337ab7 ;padding-left:10px;"></i><smal data-bind="text:($data.Location).substring(0,15)"></smal></td>
                         </tr>
                     </table>
                 </div>
@@ -270,6 +270,6 @@
     <script src="~/App/UserViewModel.js"></script>
     <script src="~/App/QuestionViewModel.js"></script>
     <script src="~/App/masterViewModel.js"></script>
-
+    <link rel="stylesheet" href="Css/styles.css" />
 </body>
 </html>
