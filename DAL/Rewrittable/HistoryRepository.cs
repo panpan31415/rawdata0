@@ -12,10 +12,14 @@ namespace DAL
 	{
 		public HistoryRepository(string connectiomString) : base(new HistoryMapper(connectiomString)) { }
 
-		public void Insert(History history)
+		public int Insert(History history)
 		{
-			UpdatableDataMapper.Insert(history);
+			return UpdatableDataMapper.Insert(history);
 		}
+		public IEnumerable<History> getByUser(int uid)
+		{
+			return ((HistoryMapper)UpdatableDataMapper).GetByUser(uid);
+        }
 
 	}
 }

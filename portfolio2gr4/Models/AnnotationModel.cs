@@ -7,8 +7,8 @@ namespace portfolio2gr4.Models
 {
 	public class AnnotationModel
 	{
-		public string Url { get; set; }
-		public DateTime Date { get; set; }
+		public  int Id  { get; set; }
+		public string Date { get; set; }
 		public string Body { get; set; }
 		public int UserId { get; set; }
 		public int PostId { get; set; }

@@ -7,6 +7,7 @@ namespace portfolio2gr4.Models
 {
 	public class UserModel
 	{
+		public int Id { get; set; }
 		public string Url { get; set; }
 		public string Name { get; set; }
 		public string WebsiteUrl { get; set; }

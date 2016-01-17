@@ -27,6 +27,10 @@ namespace DAL.Rewrittable
 		{
 			return ((AnnotationMapper)UpdatableDataMapper).GetByPostAndUser(postid, userid);
 		}
+		public IEnumerable<Annotation> GetByUser( int userid)
+		{
+			return ((AnnotationMapper)UpdatableDataMapper).GetByUser( userid);
+		}
 
 
 

@@ -8,6 +8,7 @@ using WebService.Models;
 using DAL;
 using portfolio2gr4.Models;
 using System.Configuration;
+using DAL.Rewrittable;
 
 namespace portfolio2gr4.Controllers
 {
@@ -59,7 +60,7 @@ namespace portfolio2gr4.Controllers
 
 		public HttpResponseMessage GetById(int id)
 		{
-			var helper = new UrlHelper(Request);
+			//var helper = new UrlHelper(Request);
 			var user = _userRepository.GetById(id);
 			if (user == null)
 			{
@@ -67,6 +68,34 @@ namespace portfolio2gr4.Controllers
 			}
 			return Request.CreateResponse(
 				HttpStatusCode.OK, ModelFactory.Create(user));
+		}
+
+		public HttpResponseMessage GetAnnotations(int Annotation_UserID)
+		{
+			AnnotationRepository _a_repository = new AnnotationRepository(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
+			return Request.CreateResponse(
+				HttpStatusCode.OK, _a_repository.GetByUser(Annotation_UserID).Select(annotation => ModelFactory.Create(annotation)));
+			
+        }
+		public HttpResponseMessage PostAnnotation([FromBody] Annotation Annotation)
+		{
+			AnnotationRepository _a_repository = new AnnotationRepository(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
+			return Request.CreateResponse(
+				HttpStatusCode.OK, _a_repository.Insert(Annotation));
+
+		}
+		public HttpResponseMessage PostHistory([FromBody] History History)
+		{
+			HistoryRepository _a_history = new HistoryRepository(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
+			return Request.CreateResponse(
+				HttpStatusCode.OK, _a_history.Insert(History));
+
+		}
+		public HttpResponseMessage GetHistories(int history_UserID)
+		{
+			HistoryRepository _h_repository = new HistoryRepository(ConfigurationManager.ConnectionStrings["remote"].ConnectionString);
+			return Request.CreateResponse(
+				HttpStatusCode.OK, _h_repository.getByUser(history_UserID).Select(annotation => ModelFactory.Create(annotation)));
 		}
 
 	}

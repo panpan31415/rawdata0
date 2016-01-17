@@ -48,7 +48,11 @@
 small.text-muted {
     font-family: courier,courier-new,monospace;
 }
-
+hr {
+    border: 0;
+    border-bottom: 1px dashed #FFF;
+    background: #286090;
+}
 .search-content {
     margin: auto;
     border: 1px solid  #286090;

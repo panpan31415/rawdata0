@@ -24,6 +24,29 @@
             navigationViewModel.currentView("questions" + "_view");
         });
     };
+    /***show search result ****/
+    var search_questions = function (searchText) {
+        if (questions_short().length > 0) {
+            questions_short.removeAll();
+            $("#questions_short").empty();
+            $("#questions_short").append(QuestionModel.question_short_template);
+        }
+        QuestionModel.search_questions(searchText, function (result, status, xhr) {
+            if (result.length >= 1) {
+                $.map(result, function (q) {
+                    var UserName = ko.observable();
+                    var UserUrl = ko.observable();
+                    UserModel.getById(q.OwnerId, function (user) {
+                        UserName(user.Name); UserUrl(user.Url);
+                        questions_short.push({ Title: q.Title, Url: q.Url, CreationDate: q.CreationDate, UserName: UserName(), UserUrl: UserUrl() });
+                    });
+                });
+            }
+            PaginationViewModel.initialize(xhr, loadQuestionTitles);
+            navigationViewModel.currentView("questions" + "_view");
+        });
+
+    }
     /***show a specific question (question_full)****/
     var question_full = ko.observable();
     var showQuestion_full = function (url) {
@@ -32,7 +55,7 @@
             var UserUrl = ko.observable();
             UserModel.getById(q.OwnerId, function (user) {
                 UserName(user.Name); UserUrl(user.Url);
-                question_full({ Title: q.Title, Url: q.Url, CreationDate: q.CreationDate, UserName: UserName(), UserUrl: UserUrl(), Score: q.Score, Body: q.Body, answerCount: q.answerCount });
+                question_full({Id:q.Id, Title: q.Title, Url: q.Url, CreationDate: q.CreationDate, UserName: UserName(), UserUrl: UserUrl(), Score: q.Score, Body: q.Body, answerCount: q.answerCount });
                 loadCommentsForQuestion(q.Id);
                 loadAnswers(q.Id);
                 navigationViewModel.currentView("question_view");
@@ -110,6 +133,8 @@
         showQuestion_full: showQuestion_full,
         commentsOfQestion: commentsOfQestion,
         answersOfQestion: answersOfQestion,
-        commentsOfAnswer: commentsOfAnswer
+        commentsOfAnswer: commentsOfAnswer,
+        showSingleUserShort: UserViewModel.showSingleUserShort,
+        search_questions: search_questions
     };
 })();

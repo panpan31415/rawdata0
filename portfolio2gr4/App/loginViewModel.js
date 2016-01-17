@@ -1,72 +1,52 @@
 ﻿var loginViewModel = (function () {
-    var uid = ko.observable();
+    var uid = ko.observable(0);
     var user_url = ko.observable();
-    var loginStatus = false;
+    var loginStatus = ko.observable(false);
     var displaytext = ko.observable("Login");
     var bootbox_title = ko.observable("StackOverflow ");
-    var getUserName = function (id) {
-        $.getJSON("/api/users/" + id,null)
-  .done(function (json) {
-      displaytext("Hello " + json.Name);
-      user_url(json.Url);
-      uid(id);
-      loginStatus = true;
-  })
-  .fail(function (jqxhr, textStatus, error) {
-      var err = textStatus + ", " + error;
-      bootbox.alert("Login Failed, Try again ! "+err, function () {
-          //nothing todo 
-      });
-  });
-        //$.getJSON("/api/users/" + id, function (json) {
-        //    success = true;
-        //    // ... do what you need to do here
-        //});
-        //setTimeout(function () {
-        //    if (!success) {
-        //        // Handle error accordingly
-        //        bootbox.alert("Connot connect to Server", function () {
-        //            loginStatus = false;//nothing todo
-        //        });
-        //    }
-        //}, 5000);
-        //if (success) {
-        //    $.getJSON("/api/users/" + id, function (result) {
-        //        displaytext("Hello " + result.Name);
-        //        user_url(result.Url);
-        //        uid(id);
-        //        loginStatus = true;
-        //    });
-        //} else {
-        //    bootbox.alert("Login Failed, Try again !", function () {
-        //        //nothing todo 
-        //    });
-        //}
-    };
-    var setLoginInfo = function () {
-        if (!loginStatus) {
-            displaytext("Login");
-            bootbox.prompt(bootbox_title(), function (result) {
-                if (result === null) {
-                } else {
-                    var userinput = $("#LoginInput").val();
-                    getUserName(userinput);
-                    loginStatus = true;
+    var login = function () {
 
-                }
-            });
-        } else {
-            displaytext("Log out!");
-            loginStatus = false;
-        }
+        bootbox.prompt(bootbox_title(), function () {
+            
+            var result = $('#LoginInput').val();
+            if (result === "undefined" || result === "") {
+                $("#LoginBtn").removeClass("btn-default btn-success").addClass("btn-warning");
+                bootbox.alert(" Please enter a valid userID!");
+                displaytext("id not valid!")
+            } else if (result === null) {                
+                loginStatus(false);
+                displaytext("Login");
+                $("#LoginBtn").removeClass(" btn-warning btn-success").addClass("btn-default");
+            }
+            else {
+                                
+                UserModel.getById(result,
+                    function (user) {                        
+                        loginStatus(true);
+                        displaytext("Hello " + user.Name)
+                        uid(user.Id);
+                        $("#LoginBtn").removeClass("btn-default btn-warning").addClass("btn-success");
+                        UserViewModel.showSingleUserFull(user.Url);
+                    }, function (xhr) {
+                        loginStatus(false);
+                        displaytext("id not found!");
+                        $("#LoginBtn").removeClass("btn-default btn-success").addClass("btn-warning");
+                        bootbox.alert(" check userID!");
+                        uid(0);
+                    });
+            }
+            var toggle = $("#navbar-toggle-button").attr("aria-expanded");
+            if (toggle = (toggle === "true")) {
+                $("#navbar-collapse").click(function () {
+                    $("#navbar-toggle-button").trigger('click');
+                });
+            }
+        });
 
     };
     return {
-        displaytext: displaytext,
-        setLoginInfo: setLoginInfo,
-        loginStatus: loginStatus,
-        uid: uid
-    };
+        login: login, displaytext: displaytext, loginStatus: loginStatus, uid: uid
+    }
 
 })();
 //api/users/

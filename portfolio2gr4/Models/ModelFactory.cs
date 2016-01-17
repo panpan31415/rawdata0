@@ -26,7 +26,8 @@ namespace WebService.Models
 		{
 			return new UserModel
 			{
-				Url = _urlHelper.Link("UserByIdApi", new { Id = user.Id }), //HERE
+				Id = user.Id,
+                Url = _urlHelper.Link("UserByIdApi", new { Id = user.Id }), //HERE
 				Name = user.Name,
 				WebsiteUrl = user.WebsiteUrl,
 				Reputation = user.Reputation,
@@ -126,10 +127,10 @@ namespace WebService.Models
 		{
 			return new AnnotationModel
 			{
-				Url = _urlHelper.Link("AnnotationApi", new { id = annotation.Id }),
+				Id = annotation.Id,
 				Body = annotation.Body,
 				Date = annotation.Date,
-				UserId = annotation.PostId,
+				UserId = annotation.UserId,
 				PostId = annotation.PostId
 
 			};

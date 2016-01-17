@@ -77,6 +77,27 @@ namespace DAL.Rewrittable
 		{
 			throw new NotImplementedException("this function is not supported in this project");
 		}
+		public IEnumerable<History> GetByUser(int userid)
+		{
+			var sql = string.Format("SELECT ID, {0} from {1} WHERE userID=@userID", AttributeList, TableName);
+			using (var connection = new MySqlConnection(ConnectionString))
+			{
+				connection.Open();
+				using (var cmd = new MySqlCommand(sql))
+				{
+					cmd.Parameters.AddWithValue("@userID", userid);
+					cmd.Connection = connection;
+					using (var reader = cmd.ExecuteReader())
+					{
+						while (reader.Read())
+						{
+							yield return Map(reader);
+						}
 
+					}
+				}
+			}
+
+		}
 	}
 }

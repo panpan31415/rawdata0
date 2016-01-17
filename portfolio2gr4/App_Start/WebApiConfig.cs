@@ -16,11 +16,11 @@ namespace portfolio2gr4
 			config.Routes.MapHttpRoute(
 				name: "UserByIdApi",
 				routeTemplate: "api/users/{id}",
-				defaults: new { controller = "Users"}
+				defaults: new { controller = "Users"  }
 				);
 			config.Routes.MapHttpRoute(
 				name: "UserSearchApi",
-				routeTemplate: "api/users/GetBySearchName/{searchText_Name}-{size}-{page}",
+				routeTemplate: "api/users/GetBySearchName/{searchText_Name}",
 				defaults: new { controller = "Users" }
 			);
 			//users - End
@@ -47,7 +47,7 @@ namespace portfolio2gr4
 			);
 			config.Routes.MapHttpRoute(
 				name: "QuestionSearchApi",
-				routeTemplate: "api/questions/search/{searchText}-{size}-{page}",
+				routeTemplate: "api/questions/search/{searchText}",
 				defaults: new { controller = "Questions" }
 			);
 			config.Routes.MapHttpRoute(
@@ -84,44 +84,39 @@ namespace portfolio2gr4
 				routeTemplate: "api/questions/{qid}/answers/{pid}/votes",
 				defaults: new { controller = "Votes" }
 			);
-			config.Routes.MapHttpRoute(
-				name: "AnnotationApi",
-				routeTemplate: "api/annotations/{size}-{page}",
-				defaults: new { controller = "Annotations" }
-				);
+
 			config.Routes.MapHttpRoute(
 				name: "AnnotationByIdApi",
 				routeTemplate: "api/annotations/{id}",
 				defaults: new { controller = "Annotations" }
 				);
-			config.Routes.MapHttpRoute(
-				name: "AnnotationSearchApi",
-				routeTemplate: "api/annotations/search/{searchText_Annotation}-{uid}-{size}-{page}",
-				defaults: new { controller = "Annotations" }
-			);
+
 			config.Routes.MapHttpRoute(
 				name: "AnnotationApiByUserAndPost",
 				routeTemplate: "api/annotations/{postid}/{userid}",
 				defaults: new { controller = "Annotations" }
 			);
-			
-            config.Routes.MapHttpRoute(
+			config.Routes.MapHttpRoute(
+				name: "AnnotationApiByUser",
+				routeTemplate: "api/user/annotations/{Annotation_UserID}",
+				defaults: new { controller = "Users" }
+			);
+			config.Routes.MapHttpRoute(
+				name: "HistoryApiByUser",
+				routeTemplate: "api/user/histories/{history_UserID}",
+				defaults: new { controller = "Users" }
+			);
+			config.Routes.MapHttpRoute(
 			   name: "HistoryApi",
-			   routeTemplate: "api/users/{uid}-{size}-{page}/historys",
-			   //routeTemplate: "api/historys/{id}",
-			   defaults: new { controller = "Historys", }
-			  );
-			config.Routes.MapHttpRoute(
-			   name: "HistoryByIdApi",
 			   routeTemplate: "api/historys/{id}",
-			   defaults: new { controller = "Historys", }
+			   defaults: new { controller = "Historys",  id = RouteParameter.Optional }
 			  );
-			config.Routes.MapHttpRoute(
-			   name: "HistorySearchByKey",
-			   routeTemplate: "api/historys/search/{searchText_history}-{uid}-{size}-{page}",
-			   //routeTemplate: "api/historys/{id}",
-			   defaults: new { controller = "Historys", }
-			  );
+			//config.Routes.MapHttpRoute(
+			//   name: "HistorySearchByKey",
+			//   routeTemplate: "api/historys/search/{searchText_history}-{uid}-{size}-{page}",
+			//   //routeTemplate: "api/historys/{id}",
+			//   defaults: new { controller = "Historys", id = RouteParameter.Optional }
+			//  );
 
 			config.Routes.MapHttpRoute(
 				name: "DefaultApi",

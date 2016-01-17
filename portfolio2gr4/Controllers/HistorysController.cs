@@ -34,13 +34,16 @@ namespace portfolio2gr4.Controllers
 			var helper = new UrlHelper(Request);
 			return _hisRepository.GetAll().Select(history => ModelFactory.Create(history));
 		}
-		public IEnumerable<HistoryModel> GetBySearch(string searchText_history, int uid,int size,int page)
+		//public IEnumerable<HistoryModel> GetBySearch(string searchText_history)
+		//{
+		//	var helper = new UrlHelper(Request);// I don't need url helper here 
+		//	return _hisRepository.GetByKeyWords(searchText_history, "body",limit,offset).Select(history => ModelFactory.Create(history));
+		//	//return _hisRepository.GetByFullTextSearch(searchText_History, "body", 1000, 0).Select(annotation => ModelFactory.Create(annotation));
+		//}
+		public History GetById(int id)
 		{
-			page--;
-			var helper = new UrlHelper(Request);// I don't need url helper here 
-			return _hisRepository.GetByKeyWords(searchText_history, "body",uid,size,page).Select(history => ModelFactory.Create(history));
-			//return _hisRepository.GetByFullTextSearch(searchText_History, "body", 1000, 0).Select(annotation => ModelFactory.Create(annotation));
-		}
+			return _hisRepository.GetById(id);
+        }
 		public HttpResponseMessage Post([FromBody] HistoryModel model)
 		{
 			var helper = new UrlHelper(Request);

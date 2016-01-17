@@ -29,26 +29,6 @@ namespace DAL.Rewrittable.Tests
 			Assert.AreEqual(4, annotation.UserId);
 			Assert.AreEqual(45325, annotation.PostId);
 		}
-		/// <summary>
-		/// given userid = 4 and postid = 45325
-		///  should have id = 1
-		/// </summary>
-		[TestMethod()]
-		public void getByPostAndUserTest()
-		{
-			initiaizeTest();
-			var annotation = _annoRepository.GetByPostAndUser(45325, 4).ToArray()[0];
-
-			var actual = new Annotation { Id=1,PostId= 45325, UserId=4,Body= "something what?", Date= DateTime.Parse("2010-09-01 08:20:00") };
-			Assert.AreEqual(annotation.Id, actual.Id);
-			Assert.AreEqual(annotation.Body, actual.Body);
-			Assert.AreEqual(annotation.PostId, actual.PostId);
-			Assert.AreEqual(annotation.UserId, actual.UserId);
-			Assert.AreEqual(annotation.Date, actual.Date);
-
-		}
-
-	
 
 		[TestMethod()]
 		public void InsertTest()
@@ -64,8 +44,8 @@ namespace DAL.Rewrittable.Tests
 				UserId = userid,
 				PostId = postid,
 				Body = "annotation unit test , postid = " + postid + " userid = " + userid,
-				Date = DateTime.Now
-			};
+				Date = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
+		};
 			int count = _annoRepository.Insert(expected);
 			Annotation actual = _annoRepository.GetByPostAndUser(postid, userid).ToArray()[0]; ;
 			Assert.IsTrue(expected.PostId == actual.PostId);
@@ -73,18 +53,19 @@ namespace DAL.Rewrittable.Tests
 		}
 
 		/// <summary>
-		/// given annotation with userid = 36 , postid = 85553 
+		/// given annotation with userid = 4 , postid = 45325 
+		///
 		/// </summary>
 		[TestMethod()]
 		public void UpdationTest()
 		{
 			initiaizeTest();
-			Annotation a = _annoRepository.GetByPostAndUser(85553, 36).ToArray()[0]; ;
+			Annotation a = _annoRepository.GetByPostAndUser(45325, 4).ToArray()[0]; 
 			Random rdm = new Random();
             var ramdomNumber = rdm.Next(100000);
 			a.Body = "new unit test with a random number = " + ramdomNumber;
-			lock (_annoRepository) { int count = _annoRepository.Updation(a); }
-            Annotation actual = _annoRepository.GetByPostAndUser(85553, 36).ToArray()[0]; 
+			 int count = _annoRepository.Updation(a); 
+            Annotation actual = _annoRepository.GetByPostAndUser(45325, 4).ToArray()[0]; 
 			Assert.AreEqual(a.Body, actual.Body);
 		}
 

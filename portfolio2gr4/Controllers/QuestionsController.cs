@@ -57,7 +57,7 @@ namespace portfolio2gr4.Controllers
 			var response = Request
 				.CreateResponse(
 				HttpStatusCode.OK,
-				 _questionRepository.GetByFullTextSearch(searchText, "title,body", 10, 0).Select(question => ModelFactory.Create(question)));
+				 _questionRepository.GetByFullTextSearch(searchText, "title,body", limit, offset).Select(question => ModelFactory.Create(question)));
 			response.Headers.Add("ResultNumber", _questionRepository.QueryResultNumber + "");
 			return response;
 		}

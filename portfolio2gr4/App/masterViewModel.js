@@ -9,6 +9,9 @@
     this.PaginationViewModel = PaginationViewModel;
 })();
 ko.applyBindings(masterViewModel);
-QuestionModel.question_short_template = $("#questions_short").html;
-UserModel.user_short_template = $("#users_short").html;
+$(document).ready(function () {
+    QuestionModel.question_short_template = $("#questions_short").html;
+    UserModel.user_short_template = $("#users_short").html;
+    UserModel.userFull_template = $("#user_view").html;
+});
 

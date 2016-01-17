@@ -29,14 +29,14 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar-collapse">
                     <ul id="Login_menu" class="nav navbar-nav navbar-right login " href='' data-bind="with:loginViewModel">
-                        <li>
-                            <a data-bind="text:displaytext,click:setLoginInfo"></a>
+                        <li style="padding-left:15px">
+                            <a type="button" class="btn btn-default" id="LoginBtn" data-bind="click:login,text:displaytext" href="#"></a>
                         </li>
                     </ul>
                     <div data-bind="with:navigationViewModel">
                         <ul class="nav navbar-nav navbar-right" data-bind="foreach: menuItems">
                             <li data-bind="css: {active: $parent.isActive($data)}">
-                                <a href='' data-bind="click: $parent.showContent, text: $data,attr: {id: ($data)+'_menu'}"></a>
+                                <a href='' data-bind="click:$parent.showContent, text: $data,attr: {id: ($data)+'_menu'}"></a>
                             </li>
                         </ul>
                     </div>
@@ -61,7 +61,7 @@
                     </div>
                     <div class="row" id="question_suggestions">
                         <datalist id="question_suggestionList" data-bind="foreach:suggestions">
-                            <option data-bind="value:$data.Title"></option>
+                            <a><option data-bind="value:$data.Title"></option></a>
                         </datalist>
                     </div>
                     <div class="row" id="user_suggestions">
@@ -96,22 +96,123 @@
                 <div class="col-md-5">
                     <table style="table-layout:fixed">
                         <tr style="width:100%">
-                            <td colspan="3"  style="overflow: hidden"><h4><i class="glyphicon glyphicon-user" style="color:#337ab7;"></i><a data-bind="text:$data.Name"></a></h4></td>
+                            <td colspan="3" style="overflow: hidden"><h4><i class="glyphicon glyphicon-user" style="color:#337ab7;"></i><a data-bind="text:$data.Name"></a></h4></td>
                         </tr>
                         <tr>
                             <td style="width:33.3%"><smal data-bind="text:'Age: '+($data.Age)"></smal></td>
-                            <td  style="width:33.3%"><strong><span style="color:#1c72bd;" data-bind="text:'Reputation: '+$data.Reputation"></span></strong></td>
+                            <td style="width:33.3%"><strong><span style="color:#1c72bd;" data-bind="text:'Reputation: '+$data.Reputation"></span></strong></td>
                             <td style="width:33.3%"><i class="glyphicon glyphicon-calendar" style="color:#337ab7;padding-left:10px"></i><smal data-bind="text:($data.CreationDate).substring(0, 10)"></smal></td>
                         </tr>
                         <tr>
-                            <td ><i class="glyphicon glyphicon-thumbs-up" style="color:#337ab7"></i><smal data-bind="text:$data.UpVotes">>Up</smal></td>
-                            <td ><i class="glyphicon glyphicon-thumbs-down" style="color:#337ab7"></i><smal data-bind="text:$data.DownVotes"></smal></td>
-                            <td style="overflow: hidden"><i class="glyphicon glyphicon-globe" style="color:#337ab7 ;padding-left:10px;"></i><smal data-bind="text:($data.Location).substring(0,15)"></smal></td>
+                            <td><i class="glyphicon glyphicon-thumbs-up" style="color:#337ab7"></i><smal data-bind="text:$data.UpVotes">>Up</smal></td>
+                            <td><i class="glyphicon glyphicon-thumbs-down" style="color:#337ab7"></i><smal data-bind="text:$data.DownVotes"></smal></td>
+                            <td style="overflow: hidden" data-bind="title:$data.Location"><i class="glyphicon glyphicon-map-marker" style="color:#337ab7 ;padding-left:10px;"></i><smal data-bind="text:($data.Location).substring(0,15)"></smal></td>
                         </tr>
                     </table>
                 </div>
             </div>
         </div>
+    </script>
+    <script id="user_view" type="text/html">
+
+        <table class='table text-info' data-bind="with:UserViewModel">
+            <caption>User Information</caption>
+            <tbody>
+                <tr>
+                    <td>
+                        User Name:
+                    </td>
+                    <td data-bind="text:SingleUserFull().Name"></td>
+                </tr>
+                <tr>
+                <tr>
+                    <td>
+                        CreationDate:
+                    </td>
+                    <td data-bind="text:SingleUserFull().CreationDate"></td>
+                </tr>
+                <tr>
+                    <td>Reputation:</td>
+                    <td data-bind="text:SingleUserFull().Reputation"></td>
+                </tr>
+                <tr><td>Location:</td> <td data-bind="text:SingleUserFull().Location"></td> </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td data-bind="text:SingleUserFull().Age"></td>
+                </tr>
+                <tr><td>UpVotes:</td><td data-bind="text:SingleUserFull().UpVotes"></td> </tr>
+                <tr>
+                    <td>DownVotes</td>
+                    <td data-bind="text:SingleUserFull().DownVotes"></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+        <table class='table text-info' data-bind="with:UserViewModel">
+            <caption>Annotations</caption>
+            <tbody data-bind="foreach:SingleUserFull_Annotations()">
+                <tr>
+                    <td>
+                        Text:
+                    </td>
+                    <td data-bind="text:Text"></td>
+                </tr>
+                <tr>
+                    <td>Creation Date:</td>
+                    <td data-bind="text:Date"></td>
+                </tr>
+                <tr><td>Question:</td> <td data-bind="text:Title"></td> </tr>
+            </tbody>
+        </table>
+        <hr />
+        <table class='table text-info' data-bind="with:UserViewModel">
+            <caption data-bind="foreach:SingleUserFull_Histories">Histories</caption>
+            <tbody>
+                <tr>
+                    <td>
+                        Search Content:
+                    </td>
+                    <td data-bind="text:HistoryBody"></td>
+                </tr>
+                <tr>
+                    <td>Search Time:</td>
+                    <td data-bind="text:HistoryDate"></td>
+                </tr>
+
+            </tbody>
+
+        </table>
+        <button>Log out</button>
+    </script>
+    <script id="popup_userinfo" type="text/html">
+        <table class='table text-info' data-bind="UserViewModel">
+            <caption>User Infomation</caption>
+            <tbody>
+                <tr>
+                    <td>
+                        CreationDate:
+                    </td>
+                    <td id="user_popover_CreationDate"></td>
+                </tr>
+                <tr>
+                    <td>Reputation:</td>
+                    <td id="user_popover_Reputation"></td>
+                </tr>
+                <tr><td>Location:</td> <td id="user_popover_Location"></td> </tr>
+                <tr>
+                    <td>Age:</td>
+                    <td id="user_popover_Age"></td>
+                </tr>
+                <tr><td>UpVotes:</td><td id="user_popover_UpVotes"></td> </tr>
+                <tr>
+                    <td>DownVotes</td>
+                    <td id="user_popover_DownVotes"></td>
+                </tr>
+            </tbody>
+        </table>
+        <hr />
+
+
     </script>
     <script type="text/html" id="users_search_view">
         <h2>Users : Search Result</h2>
@@ -183,7 +284,7 @@
             <div id="questions_short" data-bind="foreach:questions_short">
                 <div class="col-sm-12 search-content">
                     <a data-bind="event:{click:function(){$parent.showQuestion_full($data.Url);}}"><h3 data-bind="text:$data.Title"></h3></a>
-                    <h4><a data-bind="attr:{href:$data.UserUrl}"><span class="label label-default" data-bind="text:$data.UserName"></span></a></h4><h4>
+                    <h4><a data-bind="event:{click:function(){$parent.showSingleUserShort($data.UserUrl);}}"><span class="label label-default" data-bind="text:$data.UserName"></span></a></h4><h4>
                         <small class="text-muted">
                             <span data-bind="text: $data.CreationDate"></span>•
                             <a data-bind="event:{click:function(){$parent.showQuestion_full($data.Url);}}" class="text-muted">Read More</a>
@@ -199,11 +300,11 @@
             <div class="col-sm-12 search-content">
                 <div>
                     <!--question start-->
-                    <a><h3 data-bind="text:question_full().Title"></h3></a>
+                    <h3 data-bind="text:question_full().Title"></h3><button class=" in form-inline glyphicon glyphicon-edit" data-bind="click:function(){UserViewModel.addAnnotation(question_full().Id)}"></button>
                     <div title="question" data-bind="html:question_full().Body"></div>
                     <h4>
                         <small class="text-muted signiture">
-                            <span data-bind="text: question_full().CreationDate"></span> • <a data-bind="attr:{href:question_full().UserUrl}"><span data-bind="text:question_full().UserName"></span></a> •<span class="label-default label" data-bind="text:'Score: '+question_full().Score"></span>
+                            <span data-bind="text: question_full().CreationDate"></span> • <a data-bind="event:{click:function(){showSingleUserShort(question_full().UserUrl);}}"><span data-bind="text:question_full().UserName"></span></a> •<span class="label-default label" data-bind="text:'Score: '+question_full().Score"></span>
                         </small>
                     </h4>
                     <!--question comments start-->
@@ -211,7 +312,7 @@
                     <div title="comment" class="comments" data-bind="foreach:commentsOfQestion">
                         <p data-bind="text:$data.CommentBody"></p>
                         <small class="text-muted">
-                            <span data-bind="text:$data.CommentDate"></span> • <a data-bind="attr:{href:$data.CommentOwnerUrl}"><span data-bind="text:$data.CommentOwnerName"></span></a>
+                            <span data-bind="text:$data.CommentDate"></span> • <a data-bind="event:{click:function(){$data.showSingleUserShort($data.CommentOwnerUrl);}}"><span data-bind="text:$data.CommentOwnerName"></span></a>
                         </small>
                         <hr />
                     </div><!--question comments end-->
@@ -225,7 +326,7 @@
                         <div data-bind="html:AnswerBody"></div>
                         <h4>
                             <small class="text-muted signiture">
-                                <span data-bind="text: AnswertDate"></span> • <a data-bind="attr:{href:AnswerOwnerUrl}"><span data-bind="text:AnswerOwner"></span></a> •<span class="label-default label" data-bind="text:'Score: '+AnswerScore"></span>
+                                <span data-bind="text: AnswertDate"></span> • <a data-bind="event:{click:function(){$parent.showSingleUserShort(AnswerOwnerUrl);}}"><span data-bind="text:AnswerOwner"></span></a> •<span class="label-default label" data-bind="text:'Score: '+AnswerScore"></span>
                             </small>
                         </h4>
                         <!--ansert comments start-->
@@ -233,7 +334,7 @@
                         <div title="comment" class="comments" data-bind="foreach:$parent.commentsOfAnswer">
                             <p data-bind="text:$data.CommentBody"></p>
                             <small class="text-muted">
-                                <span data-bind="text:$data.CommentDate"></span> • <a data-bind="attr:{href:$data.CommentOwnerUrl}"><span data-bind="text:$data.CommentOwnerName"></span></a>
+                                <span data-bind="text:$data.CommentDate"></span> •<a data-bind="event:{click:function(){UserViewModel.showSingleUserShort($data.CommentOwnerUrl);}}"><span data-bind="text:$data.CommentOwnerName"></span></a>
                             </small>
                             <hr />
                         </div><!--answer comments end-->
@@ -256,19 +357,20 @@
     <script src="Scripts/knockout-3.4.0.js"></script>
     <script src="Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/validator.js"></script>
-    <script src="~/Scripts/bootbox.min.js"></script>
+
+    <script src="~/Scripts/bootbox.js"></script>
     <script src="~/App/searchViewModel.js"></script>
     <script src="~/App/navigationViewModel.js"></script>
-    <script src="~/App/loginViewModel.js"></script>
     <script src="~/App/validatorViewModel.js"></script>
-    <script src="~/App/UserModel.js"></script>
-    <script src="~/App/AnswerModel.js"></script>
-    <script src="~/App/QuestionModel.js"></script>
     <script src="~/Scripts/validator.js"></script>
     <script src="~/App/jquery.twbsPagination.js"></script>
+    <script src="~/App/AnswerModel.js"></script>
+    <script src="~/App/QuestionModel.js"></script>
     <script src="~/App/PaginationViewModel.js"></script>
+    <script src="~/App/UserModel.js"></script>
     <script src="~/App/UserViewModel.js"></script>
     <script src="~/App/QuestionViewModel.js"></script>
+    <script src="~/App/loginViewModel.js"></script>
     <script src="~/App/masterViewModel.js"></script>
     <link rel="stylesheet" href="Css/styles.css" />
 </body>

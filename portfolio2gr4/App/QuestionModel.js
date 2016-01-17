@@ -24,7 +24,18 @@
             beforeSend: PaginationViewModel.setRequestHeader
         });
     };
+    var search_questions = function (SearchText,callback)
+    {
+        $.ajax({
+            url: "api/questions/search/" + SearchText,
+            type: 'GET',
+            dataType: 'json',
+            success: callback,
+            error: function () { alert('boo!'); },//for testing purpose
+            beforeSend: PaginationViewModel.setRequestHeader
+        });
+    };
     var question_short_template;
-    return { getById: getById, getByUrl: getByUrl, getCommentsByQuestionID: getCommentsByQuestionID, question_short_template: question_short_template, getQuestions_short: getQuestions_short };
+    return { getById: getById, getByUrl: getByUrl, getCommentsByQuestionID: getCommentsByQuestionID, question_short_template: question_short_template, getQuestions_short: getQuestions_short, search_questions: search_questions };
 })();
 

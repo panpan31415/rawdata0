@@ -1,12 +1,12 @@
 ﻿
 var searchViewModel = (function () {
-    var searchText = ko.observable("");
+    var searchText = ko.observable();
     var suggestions = ko.observableArray([]);// for searchbar
     var searchResult = ko.observableArray([]);// for page body
     var getSuggestions = function (target, event) {
         switch (navigationViewModel.currentMenu()) {
             case "Users":
-                $.getJSON("/api/users/GetByKey/" + searchText() + "-" + navigationViewModel.size()+"-"+navigationViewModel.page(), function (result) {
+                $.getJSON("/api/users/GetByKey/" + searchText() , function (result) {
                     if (result.length >= 1) {
                         var user_names = $.map(result, function (n) {
                             return { Name: n.Name, Url: n.Url };
@@ -15,18 +15,18 @@ var searchViewModel = (function () {
                     }
                 });
                 break;
-            case "Annotations":
-                if (loginViewModel.loginStatus()) {
-                    $.getJSON("/api/annotations/search/" + searchText() + "-" + loginViewModel.uid() + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
-                        if (result.length >= 1) {
-                            var annotation_bodies = $.map(result, function (n) {
-                                return { Body: n.Body, Url: n.Url };
-                            });
-                            searchResult(annotation_bodies);
-                        }
-                    });
-                }
-                break;
+            //case "Annotations":
+            //    if (loginViewModel.loginStatus()) {
+            //        $.getJSON("/api/annotations/search/" + searchText() + "-" + loginViewModel.uid() + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
+            //            if (result.length >= 1) {
+            //                var annotation_bodies = $.map(result, function (n) {
+            //                    return { Body: n.Body, Url: n.Url };
+            //                });
+            //                searchResult(annotation_bodies);
+            //            }
+            //        });
+            //    }
+            //    break;
             case "Questions":
                 $.getJSON("api/questions/search_title/" + searchText(), function (result) {
                     if (result.length >= 1) {
@@ -37,19 +37,19 @@ var searchViewModel = (function () {
                     }
                 });
                 break;
-            case "History":
-                if (loginViewModel.loginStatus()) {
-                    $.getJSON("api/historys/search/" + searchText() + "-" + loginViewModel.uid() + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
-                        if (result.length >= 1) {
-                            var titles = $.map(result, function (q) {
-                                return { Body: q.Body, Url: q.Url };
-                            });
-                            suggestions(titles);
-                        }
-                    });
+            //case "History":
+            //    if (loginViewModel.loginStatus()) {
+            //        $.getJSON("api/historys/search/" + searchText(), function (result) {
+            //            if (result.length >= 1) {
+            //                var titles = $.map(result, function (q) {
+            //                    return { Body: q.Body, Url: q.Url };
+            //                });
+            //                suggestions(titles);
+            //            }
+            //        });
 
-                }
-                break;
+            //    }
+            //    break;
         }
         selecte_suggestion(navigationViewModel.currentMenu());// display the correct suggestion list based on current menu
     };
@@ -57,7 +57,7 @@ var searchViewModel = (function () {
     var searchFor = function (target, event) {
         switch (navigationViewModel.currentMenu()) {
             case "Users":
-                $.getJSON("/api/users/GetByKey/" + searchText() + "-" + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
+                $.getJSON("/api/users/GetByKey/" + searchText(), function (result) {
                     if (result.length >= 1) {
                         searchResult(result);
                         currentView("users_search_view");
@@ -66,44 +66,37 @@ var searchViewModel = (function () {
                     }
                 });
                 break;
-            case "Annotations":
-                if (navigationViewModel.uid().length === 0) {
-                    var u = prompt("Fake login , Please enter your user id !", "9903");
-                    navigationViewModel.uid() = u;
-                }
-                $.getJSON("/api/annotations/search/" + searchText() + "-" + navigationViewModel.uid() + "-" + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
-                    if (result.length >= 1) {
-                        searchResult(result);
-                        currentView("annotations_search_view");
-                    } else {
-                        alert("no result found!");
-                    }
-                });
-                break;
+            //case "Annotations":
+            //    if (navigationViewModel.uid().length === 0) {
+            //        var u = prompt("Fake login , Please enter your user id !", "9903");
+            //        navigationViewModel.uid() = u;
+            //    }
+            //    $.getJSON("/api/annotations/search/" + searchText() + "-" + navigationViewModel.uid() + "-" + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
+            //        if (result.length >= 1) {
+            //            searchResult(result);
+            //            currentView("annotations_search_view");
+            //        } else {
+            //            alert("no result found!");
+            //        }
+            //    });
+            //    break;
             case "Questions":
-                $.getJSON("api/questions/search_title/" + searchText() + "-" + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
-                    if (result.length >= 1) {
-                        searchResult(result);
-                        currentView("questions_search_view");
-                    } else {
-                        alert("no result found!");
-                    }
-                });
+                QuestionViewModel.search_questions(searchText());
                 break;
-            case "History":
-                if (navigationViewModel.uid().length === 0) {
-                    var u = prompt("Fake login , Please enter your user id !", "9903");
-                    navigationViewModel.uid() = u;
-                }
-                $.getJSON("api/historys/search/" + searchText() + "-" + navigationViewModel.uid() + "-" + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
-                    if (result.length >= 1) {
-                        searchResult(result);
-                        currentView("history_search_view");
-                    } else {
-                        alert("no result found!");
-                    }
-                });
-                break;
+            //case "History":
+            //    if (navigationViewModel.uid().length === 0) {
+            //        var u = prompt("Fake login , Please enter your user id !", "9903");
+            //        navigationViewModel.uid() = u;
+            //    }
+            //    $.getJSON("api/historys/search/" + searchText() + "-" + navigationViewModel.uid() + "-" + navigationViewModel.size() + "-" + navigationViewModel.page(), function (result) {
+            //        if (result.length >= 1) {
+            //            searchResult(result);
+            //            currentView("history_search_view");
+            //        } else {
+            //            alert("no result found!");
+            //        }
+            //    });
+            //    break;
         }
     };
     var selecte_suggestion = function (currentMenu) {
@@ -123,20 +116,20 @@ var searchViewModel = (function () {
                 $("#Annotation_suggestions").toggle(false);
                 $("#history_suggestions").toggle(false);
                 break;
-            case "Annotations":
-                $("#user_suggestions").toggle(false);
-                $("#question_suggestions").toggle(false);
-                $("#Annotation_suggestions").toggle(true);
-                $("#search_textbox").attr("list", "Annotation_suggestionsList");
-                $("#history_suggestions").toggle(false);
-                break;
-            case "History":
-                $("#user_suggestions").toggle(false);
-                $("#question_suggestions").toggle(false);
-                $("#Annotation_suggestions").toggle(false);
-                $("#history_suggestions").toggle(true);
-                $("#search_textbox").attr("list", "history_suggestionsList");
-                break;
+            //case "Annotations":
+            //    $("#user_suggestions").toggle(false);
+            //    $("#question_suggestions").toggle(false);
+            //    $("#Annotation_suggestions").toggle(true);
+            //    $("#search_textbox").attr("list", "Annotation_suggestionsList");
+            //    $("#history_suggestions").toggle(false);
+            //    break;
+            //case "History":
+            //    $("#user_suggestions").toggle(false);
+            //    $("#question_suggestions").toggle(false);
+            //    $("#Annotation_suggestions").toggle(false);
+            //    $("#history_suggestions").toggle(true);
+            //    $("#search_textbox").attr("list", "history_suggestionsList");
+            //    break;
         }
 
     };

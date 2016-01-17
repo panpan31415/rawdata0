@@ -129,6 +129,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App\AnswerModel.js" />
+    <Content Include="App\bootbox.min.js" />
     <Content Include="App\jquery.twbsPagination.js" />
     <Content Include="App\masterViewModel.js" />
     <Content Include="App\loginViewModel.js" />
@@ -159,7 +160,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\bootbox.min.js" />
+    <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />

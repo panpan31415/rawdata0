@@ -9,5 +9,7 @@ namespace DAL
 	public class UserRepository : Repository<User>
 	{
 		public UserRepository(string connectionString) : base(new UserMapper(connectionString)) { }
+
+		
 	}
 }
